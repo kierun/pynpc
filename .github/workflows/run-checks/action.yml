@@ -1,0 +1,37 @@
+# checkout-and-yarn/action.yml
+
+name: 'run-checks'
+description: 'Composite action to run checks for code formatting and to run the unittests.'
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Black and isort formatting checks'
+      run: |
+        source .venv/bin/activate
+        task check-isort
+        task check-black
+      shell: bash
+
+    - name: 'ruff lint checks'
+      run: |
+        source .venv/bin/activate
+        task check-ruff
+      shell: bash
+
+    - name: 'Type hinting check'
+      run: |
+        source .venv/bin/activate
+        task check-mypy
+      shell: bash
+
+    - name: 'Documentation check'
+      run: |
+        source .venv/bin/activate
+        task check-docs
+      shell: bash
+
+    - name: 'Test with pytest'
+      run: |
+        source .venv/bin/activate
+        task tests
+      shell: bash

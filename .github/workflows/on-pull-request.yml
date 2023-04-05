@@ -1,0 +1,101 @@
+on:
+  merge_group:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+name: on-pull-request
+
+jobs:
+  # print_title_of_pr:
+  #   runs-on: ubuntu-20.04
+  #   if: contains(github.event.pull_request.title, "chore\(pip\):")
+  #   steps:
+  #   - name : Print Title of PR
+  #     run: echo The Title of your PR is ${{ github.event.pull_request.title }}
+
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Check out'
+        uses: actions/checkout@v3
+
+      - name: 'Set up the environment'
+        uses: ./.github/workflows/setup-poetry-env
+
+      - name: 'Install Task'
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: 'Run checks'
+        uses: ./.github/workflows/run-checks
+
+  matrix:
+    runs-on: ubuntu-latest
+    needs: quality
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 'Setup Python version'
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: 'Set up the environment'
+        uses: ./.github/workflows/setup-poetry-env
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: 'Setup GnuPG'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg
+
+      - name: 'Test with pytest-cov'
+        run: |
+          mkdir -p ./artifacts
+          source .venv/bin/activate
+          pytest \
+            --slow \
+            --junitxml=./artifacts/pytest-${{ matrix.python-version }}.xml \
+            --cov-report=term-missing \
+            --cov=pynpc \
+            --cov=tests \
+            tests/ \
+            | tee ./artifacts/pytest-${{ matrix.python-version }}.txt
+
+      - name: 'Upload pytest test results'
+        uses: actions/upload-artifact@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: pytest-coverage-${{ matrix.python-version }}
+          path: ./artifacts/
+        if: ${{ always() }}
+
+  coverage:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    needs: matrix
+    steps:
+      - name: 'Check out'
+        uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@master
+        with:
+          name: pytest-coverage-3.11
+          path: ./artifacts/
+
+      - name: 'Pytest coverage comment'
+        uses: MishaKav/pytest-coverage-comment@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          pytest-coverage-path: artifacts/pytest-3.11.txt
+          junitxml-path: artifacts/pytest-3.11.xml

@@ -1,0 +1,88 @@
+#     _________________________________________________
+# ___/ Usefull stuff you do WANT for all repositories. \________________________
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: check-json
+      - id: check-toml
+      - id: debug-statements # Python only!
+      - id: fix-encoding-pragma # Python only!
+  #     __________________
+  # ___/ Python specific. \______________________________________________________
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.3.1
+    hooks:
+      - id: python-safety-dependencies-check
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1 # Use the revision sha / tag you want to point at
+    hooks:
+      - id: isort
+  - repo: https://github.com/myint/docformatter
+    rev: v1.6.0
+    hooks:
+      - id: docformatter
+  - repo: https://gitlab.com/smop/pre-commit-hooks
+    rev: v1.0.0
+    hooks:
+      - id: check-poetry
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
+    rev: v1.0.6
+    hooks:
+      - id: python-bandit-vulnerability-check
+        args: [--verbose, --ini, .banditrc, --recursive, setupr]
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.260
+    hooks:
+      - id: ruff
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.12.2
+    hooks:
+      - id: validate-pyproject
+  #     ______
+  # ___/ BASH \__________________________________________________________________
+  - repo: https://github.com/lovesegfault/beautysh
+    rev: v6.2.1
+    hooks:
+      - id: beautysh
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 3.0.0
+    hooks:
+      - id: shellcheck
+  #     _______________
+  # ___/ Markdown lint \_________________________________________________________
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.33.0
+    hooks:
+      - id: markdownlint
+        args: [--ignore, CHANGELOG.md, -s, .mdl_style.rb]
+  #     ___________________________
+  # ___/ Semantic commit messages. \_____________________________________________
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+      - id: gitlint
+  #     ________________
+  # ___/ Docker linters \________________________________________________________
+  - repo: https://github.com/IamTheFij/docker-pre-commit
+    rev: v2.1.1
+    hooks:
+      - id: docker-compose-check
+  #     _______________
+  # ___/ GH linting    \_________________________________________________________
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.22.0
+    hooks:
+      - id: check-github-actions
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.22.0
+    hooks:
+      - id: check-dependabot
