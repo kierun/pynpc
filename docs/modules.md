@@ -1,3 +1,5 @@
 # Setupr Modules
 
-::: pynpc.console ::: pynpc.utils
+::: pynpc.console
+
+::: pynpc.utils
