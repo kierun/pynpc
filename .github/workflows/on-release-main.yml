@@ -1,0 +1,112 @@
+# on:
+#   release:
+#     types: [published]
+#     branches: [main]
+
+on: workflow_dispatch
+
+name: release-main
+
+jobs:
+    quality:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'Check out'
+              uses: actions/checkout@v3
+
+            - name: Set up the environment
+              uses: ./.github/workflows/setup-poetry-env
+
+            - name: 'Install Task'
+              uses: arduino/setup-task@v1
+              with:
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  version: 3.x
+
+            - name: 'Run checks'
+              uses: ./.github/workflows/run-checks
+
+    tox:
+        needs: quality
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                python-version: ['3.8', '3.9', '3.10', '3.11']
+        steps:
+            - name: 'Check out'
+              uses: actions/checkout@v3
+
+            - name: 'Set up the environment'
+              uses: ./.github/workflows/setup-poetry-env
+              with:
+                  python-version: ${{ matrix.python-version }}
+
+            - name: 'Test with tox'
+              run: |
+                  source .venv/bin/activate
+                  poetry add "tox-gh-actions==v2.9.1"
+                  tox
+
+    release:
+        # https://github.com/relekang/python-semantic-release/issues/311
+        needs: tox
+        runs-on: ubuntu-latest
+        concurrency: release
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+                  token: ${{ secrets.PAT }}
+
+            - name: 'Python Semantic Release'
+              uses: relekang/python-semantic-release@v7.33.2
+              with:
+                  github_token: ${{ secrets.PAT }}
+
+    publish:
+        needs: release
+        runs-on: ubuntu-latest
+        concurrency: publish
+        steps:
+            - name: 'Check out'
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Set up the environment
+              uses: ./.github/workflows/setup-poetry-env
+
+            - name: 'Install Task'
+              uses: arduino/setup-task@v1
+              with:
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  version: 3.x
+
+            - name: 'Get latest changes from release step'
+              run: |
+                  git pull
+
+            - name: 'Poetry build package'
+              run: |
+                  source .venv/bin/activate
+                  poetry build --verbose
+
+            - name: 'Poetry publish to TEST PyPi'
+              run: |
+                  source .venv/bin/activate
+                  poetry config repositories.test-pypi https://test.pypi.org/legacy/
+                  poetry config pypi-token.test-pypi ${{ secrets.TEST_PYPI_API_TOKEN }}
+                  poetry publish --verbose -r test-pypi
+
+            - name: 'Poetry dry run publish to PyPi'
+              run: |
+                  source .venv/bin/activate
+                  poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+                  poetry publish --verbose --dry-run
+
+            - name: 'Poetry publish to PyPi'
+              run: |
+                  source .venv/bin/activate
+                  poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+                  poetry publish --verbose

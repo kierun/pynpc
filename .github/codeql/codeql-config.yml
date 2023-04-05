@@ -1,0 +1,11 @@
+name: 'My CodeQL config'
+
+queries:
+  - uses: security-and-quality
+paths:
+  - pynpc
+  - tests
+  - docs
+paths-ignore:
+  - '.venv/**'
+  - '.*cache/**'

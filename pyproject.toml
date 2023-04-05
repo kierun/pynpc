@@ -1,0 +1,268 @@
+[tool.poetry]
+name = "pynpc"
+version = "0.1.0"
+description = "Generate simple NPCs for table top role playing games"
+authors = ["Dr Yann Golanski <github@kierun.org>"]
+keywords = ["ttrpg", "rpg", "generate", "NPC"]
+license = "MIT"
+homepage = "https://github.com/kierun/pynpc"
+repository = "https://github.com/kierun/pynpc"
+readme = "README.md"
+packages = [{ include = "pynpc" }]
+include = ["LICENSE"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+rich = ">=12.4.4,<14.0.0"
+click = "^8.1.3"
+click-help-colors = "^0.9.1"
+pendulum = "^2.1.2"
+structlog = "^22.1.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+isort = "^5.10.1"
+pytest = "^7.1.3"
+mkdocs = "^1.3.0"
+mkdocs-material = "^9.1.3"
+mkdocstrings = { extras = ["python"], version = "^0.20.0" }
+mypy = "^0.981"
+pre-commit = "^3.1.1"
+pdbpp = "^0.10.3"
+coverage = { extras = ["toml"], version = "^7.2.1" }
+bandit = "^1.7.4"
+pytest-skip-slow = "^0.0.5"
+commitizen = "^2.31.0"
+python-semantic-release = "7.33.2"
+pytest-cov = "^4.0.0"
+pydocstyle = "^6.1.1"
+ruff = "^0.0.260"
+dlint = "^0.14.0"
+ipython = "^8.5.0"
+pytest-sugar = "^0.9.6"
+requests-mock = "^1.10.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+target-version = ['py310']
+fast = true
+exclude = '''
+(
+  /(                        # exclude a few common directories in the
+    \.git                   # root of the project
+    | \.pytest_cache
+    | python-venv
+    | \.venv
+    | build
+    | dist
+    | \.tox
+  ))
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 79
+known_third_party = [
+  "click",
+  "click_help_colors",
+  "distro",
+  "gnupg",
+  "google",
+  "pendulum",
+  "plumbum",
+  "pytest",
+  "requests",
+  "requests_mock",
+  "rich",
+  "ruamel",
+  "semver",
+  "sha256sum",
+  "structlog",
+]
+
+[tool.mypy]
+disallow_untyped_defs = "True"
+disallow_any_unimported = "True"
+no_implicit_optional = "True"
+check_untyped_defs = "True"
+warn_return_any = "True"
+warn_unused_ignores = "True"
+show_error_codes = "True"
+exclude = ['\.venv', 'tests']
+enable_error_code = ['ignore-without-code']
+
+[tool.mypy-google.cloud]
+ignore_missing_imports = "True"
+
+[tool.poetry.scripts]
+pynpc = "pynpc.console:main"
+
+[tool.pytest.ini_options]
+log_auto_indent = true
+
+#log_cli = true
+#log_cli_level = "ERROR"
+#log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+#log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+log_file = "pytest.log"
+log_file_level = "DEBUG"
+log_file_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_file_date_format = "%Y-%m-%d %H:%M:%S"
+
+junit_duration_report = "total"
+addopts = "-ra -q --junit-xml=pytest.xml --last-failed "
+
+[tool.coverage.run]
+parallel = true
+branch = true
+
+[tool.semantic_release]
+version_toml = "pyproject.toml:tool.poetry.version"
+branch = "main"
+upload_to_pypi = false
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
+
+[tool.pyright]
+pythonVersion = "3.10"
+pythonPlatform = "Linux"
+
+[tool.pydocstyle]
+match-dir = "pynpc"
+
+[tool.ruff]
+line-length = 79
+select = [
+  "F",
+  "E",
+  "W",
+  "I",
+  "D",
+  "UP",
+  "N",
+  "YTT",
+  "ANN",
+  "S",
+  "BLE",
+  # "FBT", # boolean traps: Why? ¯\_(ツ)_/¯
+  "B",
+  "A",
+  "C4",
+  "T10",
+  "EM",
+  "ISC",
+  "ICN",
+  "T20",
+  "PT",
+  "Q",
+  "RET",
+  "SIM",
+  "TID",
+  "ARG",
+  "DTZ",
+  "ERA",
+  "PD",
+  "PGH",
+  # "PL", # Pylint, the horror! The horror!
+  "PIE",
+  # "COM",  # Black or add-trailing-comma can do all this comma insertion automatically.
+  "INP",
+  "EXE",
+  "TCH",
+  "TRY",
+  "PTH",
+  "RUF",
+]
+
+# The following is equivalent to --docstring-convention=pep8:
+extend-ignore = [
+  "D203",
+  "D212",
+  "D213",
+  "D214",
+  "D215",
+  "D404",
+  "D405",
+  "D406",
+  "D407",
+  "D408",
+  "D409",
+  "D410",
+  "D411",
+  "D413",
+  "D415",
+  "D416",
+  "D417",
+  "ANN101", # Missing type annotation for `self` in method. https://peps.python.org/pep-0673/
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in annotations.
+  "UP009",  # UTF-8 encoding declaration is unnecessary
+  "INP001", # pytest does not want an __init__.py file.
+]
+# Always autofix, but never try to fix `F401` (unused imports).
+#fix = true
+unfixable = [
+  "F401", # imported but unused.
+]
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+]
+per-file-ignores = { "test_**.py" = ["D100", "D103", "S101", "ANN"] }
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.10.
+target-version = "py310"
+
+[tool.ruff.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+[tool.flakeheaven]
+format = "grouped"
+max_line_length = 7.9
+
+[tool.flakeheaven.plugins]
+dlint = ["+*"]
+# flake8-bandit = ["+*"]
+flake8-black = ["+*"]
+flake8-comprehensions = ["+*"]
+flake8-debugger = ["+*"]
+flake8-fixme = ["+*"]
+flake8-isort = ["+*"]
+flake8-mock = ["+*"]
+# flake8-noqa = ["+*"]
+flake8-pytest-style = ["+*"]
+flake8-secure-coding-standard = ["+*"]
+flake8-simplify = ["+*"]
+flake8-warnings = ["+*"]
+
+# Match by glob.
+[tool.flakeheaven.exceptions."**/test_*.py"]
+flake8-secure-coding-standard = ["-SCS108"]
