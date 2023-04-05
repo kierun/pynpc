@@ -205,7 +205,7 @@ def main(
 
     # Configure the console.
     console = Console()
-    console.rule(f"[{COLOUR_INFO}]Notion Hound bot")
+    console.rule(f"[{COLOUR_INFO}]TTRPG NPC generator")
 
     # Check latest version.
     _version_check()
