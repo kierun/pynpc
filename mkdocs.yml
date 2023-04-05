@@ -1,0 +1,45 @@
+site_name: nhound
+repo_url: https://github.com/kierun/nhound
+site_url: https://kierun.github.io/nhound
+site_description:
+  A simple NPC generator for all your table top role playing games.
+site_author: Dr Yann Golanski
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Development: development.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append('../')
+copyright: Maintained by Dr Yann Golanski.
+theme:
+  name: material
+  favicon: assets/favicon.png
+  feature:
+    tabs: true
+  palette:
+    primary: slate
+    accent: teal
+  logo: assets/logo.png
+  features:
+    - navigation.instant
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - pymdownx.highlight:
+      use_pygments: true
+      auto_title: true
+      linenums: true
+      linenums_style: pymdownx-inline
+  - pymdownx.superfences
