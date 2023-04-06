@@ -3,3 +3,5 @@
 ::: pynpc.console
 
 ::: pynpc.utils
+
+::: pynpc.skills
