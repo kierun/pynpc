@@ -1,0 +1,93 @@
+Agitator
+Alchemist
+Artillerist
+Artisan
+Assassin
+Astrologer
+Augur
+Beggar
+Boatman
+Bodyguard
+Bounty Hunter
+Cat Burglar
+Charlatan
+Cleric
+Coachman
+Counterfeiter
+Daemon Slayer
+Daemonologist
+Demagogue
+Diviner
+Dragon Slayer
+Druid
+Duellist
+Engineer
+Entertainer
+Exorcist
+Explorer
+Farmer
+Fence
+Fighter
+Fisherman
+Forger
+Freelance
+Gambler
+Gamekeeper
+Gunner
+Hedge Wizard
+Herbalist
+Herdsman
+Highwayman
+Hunter
+Illusionist
+Informer
+Jailer
+Jester
+Judicial Champion
+Labourer
+Lawyer
+Loremaster
+Marine
+Mercenary
+Merchant
+Militiaman
+Miner
+Minstrel
+Mountaineer
+Navigator
+Necromancer
+Noble
+Outlaw
+Outrider
+Pedlar
+Pharmacist
+Physician
+Pilot
+Pit Fighter
+Prospector
+Racketeer
+Rustler
+Sapper
+Scholar
+Scout
+Scribe
+Seaman
+Seer
+Servant
+Shaman
+Ship Master
+Slaver
+Smuggler
+Soldier
+Spy
+Squire
+Student
+Templar
+Thief
+Torturer
+Trader
+Trapper
+Watchman
+Witch Hunter
+Wizard
+Woodsman
