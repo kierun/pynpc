@@ -12,6 +12,7 @@ from pynpc.skills import get_skill_value
 rlog = structlog.get_logger("pynpc.npoc")
 
 Skill = namedtuple("Skill", ["name", "rank"])
+Phobia = namedtuple("Phobia", ["name", "rank"])
 
 # We know they are bullshit. However, they make a good starting
 # ponit to give some NPC some direction as to what they do.
@@ -38,6 +39,20 @@ MYERS_BRIGGS = [
 ]
 
 
+PHOBIA_RANKS = (
+    ["Negligable"] * 16
+    + ["low"] * 8
+    + ["mild"] * 4
+    + ["severe"] * 2
+    + ["debilitating"]
+)
+
+
+def get_severity() -> str:
+    """Get phobia severity."""
+    return choice(PHOBIA_RANKS)
+
+
 class NPC:
     """Main NPC class."""
 
@@ -48,17 +63,25 @@ class NPC:
         random values to chose form. The patter is the same for all.
 
         """
+        # Meta data.
         rlog.debug(f"Creating {what} NPC")
         self._data_dir = Path(Path(__file__).resolve().parent, "data")
         self._jobs = RandomChoice(
-            source=Path(self._data_dir, f"{what}-professions.txt")
+            Path(self._data_dir, f"{what}-professions.txt")
         )
-        self.name = "Random"
+        self._personalities = RandomChoice(source=MYERS_BRIGGS)
+        self._phobias = RandomChoice(Path(self._data_dir, "phobia.txt"))
+        # Generates the first one.
+        self.generate()
 
-        self.personality = RandomChoice(source=MYERS_BRIGGS).get_value()
+    def generate(self) -> None:
+        """Generate an NPC."""
+        self.name = "Random"
+        self.personality = self._personalities.get_value()
         self.skill_primary = Skill(self._jobs.get_value(), get_skill_value())
         self.skill_secondary = Skill(self._jobs.get_value(), get_skill_value())
         self.skill_hobby = Skill(self._jobs.get_value(), get_skill_value())
+        self.phobia = Phobia(self._phobias.get_value(), get_severity())
 
     def __repr__(self) -> str:
         """Pretty print for class.
@@ -68,6 +91,7 @@ class NPC:
         skills = (
             f"Name: {self.name}\n"
             f"Personality: {self.personality}\n"
+            f"Phobia: {self.phobia}\n"
             f"Skills:\n"
             f"   Primary:   {self.skill_primary}\n"
             f"   Secondary: {self.skill_secondary}\n"

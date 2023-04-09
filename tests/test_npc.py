@@ -33,6 +33,7 @@ def test_variabe_existss(random, attr, expected) -> None:
     [
         ("Name"),
         ("Personality"),
+        ("Phobia"),
         ("Primary"),
         ("Secondary"),
     ],
