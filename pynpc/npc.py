@@ -71,6 +71,9 @@ class NPC:
         )
         self._personalities = RandomChoice(source=MYERS_BRIGGS)
         self._phobias = RandomChoice(Path(self._data_dir, "phobia.txt"))
+        self._idiosyncrasies = RandomChoice(
+            Path(self._data_dir, "idiosyncrasies.txt")
+        )
         # Generates the first one.
         self.generate()
 
@@ -78,6 +81,7 @@ class NPC:
         """Generate an NPC."""
         self.name = "Random"
         self.personality = self._personalities.get_value()
+        self.idiosyncrasy = self._idiosyncrasies.get_value()
         self.skill_primary = Skill(self._jobs.get_value(), get_skill_value())
         self.skill_secondary = Skill(self._jobs.get_value(), get_skill_value())
         self.skill_hobby = Skill(self._jobs.get_value(), get_skill_value())
@@ -90,12 +94,13 @@ class NPC:
         """
         skills = (
             f"Name: {self.name}\n"
-            f"Personality: {self.personality}\n"
-            f"Phobia: {self.phobia}\n"
             f"Skills:\n"
             f"   Primary:   {self.skill_primary}\n"
             f"   Secondary: {self.skill_secondary}\n"
             f"   Hobby:     {self.skill_hobby}\n"
+            f"Personality: {self.personality}\n"
+            f"Idiosyncrasy: {self.idiosyncrasy}\n"
+            f"Phobia: {self.phobia}\n"
         )
         data = f"{skills}"
         return f"NPC({data})"

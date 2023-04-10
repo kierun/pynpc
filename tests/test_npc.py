@@ -18,6 +18,8 @@ def random() -> Any:
     [
         ("name", True),
         ("personality", True),
+        ("phobia", True),
+        ("idiosyncrasy", True),
         ("skill_primary", True),
         ("skill_secondary", True),
         ("skill_hobby", True),
@@ -34,6 +36,7 @@ def test_variabe_existss(random, attr, expected) -> None:
         ("Name"),
         ("Personality"),
         ("Phobia"),
+        ("Idiosyncrasy"),
         ("Primary"),
         ("Secondary"),
     ],
