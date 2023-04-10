@@ -74,12 +74,15 @@ class NPC:
         self._idiosyncrasies = RandomChoice(
             Path(self._data_dir, "idiosyncrasies.txt")
         )
+        self._archetypes = RandomChoice(Path(self._data_dir, "archetypes.txt"))
         # Generates the first one.
         self.generate()
 
     def generate(self) -> None:
         """Generate an NPC."""
         self.name = "Random"
+        self.nature = self._archetypes.get_value()
+        self.demeanor = self._archetypes.get_value()
         self.personality = self._personalities.get_value()
         self.idiosyncrasy = self._idiosyncrasies.get_value()
         self.skill_primary = Skill(self._jobs.get_value(), get_skill_value())
@@ -99,6 +102,8 @@ class NPC:
             f"   Secondary: {self.skill_secondary}\n"
             f"   Hobby:     {self.skill_hobby}\n"
             f"Personality: {self.personality}\n"
+            f"Nature: {self.nature}\n"
+            f"Demeanor: {self.demeanor}\n"
             f"Idiosyncrasy: {self.idiosyncrasy}\n"
             f"Phobia: {self.phobia}\n"
         )
