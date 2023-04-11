@@ -25,6 +25,8 @@ def random() -> Any:
         ("skill_primary", True),
         ("skill_secondary", True),
         ("skill_hobby", True),
+        ("reading_major", True),
+        ("reading_minor", True),
         ("ook", False),
     ],
 )
@@ -43,6 +45,8 @@ def test_variabe_existss(random, attr, expected) -> None:
         ("Idiosyncrasy"),
         ("Primary"),
         ("Secondary"),
+        ("Major"),
+        ("Minor"),
     ],
 )
 def test_print(random, item) -> None:

@@ -5,6 +5,7 @@ from pathlib import Path, PosixPath
 from secrets import choice
 from typing import cast
 
+import orjson
 import structlog
 
 from pynpc.skills import get_skill_value
@@ -75,8 +76,18 @@ class NPC:
             Path(self._data_dir, "idiosyncrasies.txt")
         )
         self._archetypes = RandomChoice(Path(self._data_dir, "archetypes.txt"))
+        self._cards = orjson.loads(
+            Path(self._data_dir, "cards.json").read_text()
+        )["cards"]
         # Generates the first one.
         self.generate()
+
+    def reading(self) -> str:
+        """Return either upwards or revesed tarot cards draw."""
+        x = choice(range(0, 78))
+        if choice((0, 1)):
+            return f"{self._cards[x]['name']} - {self._cards[x]['meaning_up']}"
+        return f"{self._cards[x]['name']} - {self._cards[x]['meaning_rev']}"
 
     def generate(self) -> None:
         """Generate an NPC."""
@@ -89,6 +100,8 @@ class NPC:
         self.skill_secondary = Skill(self._jobs.get_value(), get_skill_value())
         self.skill_hobby = Skill(self._jobs.get_value(), get_skill_value())
         self.phobia = Phobia(self._phobias.get_value(), get_severity())
+        self.reading_major = self.reading()
+        self.reading_minor = self.reading()
 
     def __repr__(self) -> str:
         """Pretty print for class.
@@ -106,6 +119,9 @@ class NPC:
             f"Demeanor: {self.demeanor}\n"
             f"Idiosyncrasy: {self.idiosyncrasy}\n"
             f"Phobia: {self.phobia}\n"
+            f"Life events:\n"
+            f"  Major: {self.reading_major}\n"
+            f"  Minor: {self.reading_minor}\n"
         )
         data = f"{skills}"
         return f"NPC({data})"
