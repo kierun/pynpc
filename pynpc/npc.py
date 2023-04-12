@@ -77,47 +77,31 @@ class NPC:
             jobj = orjson.loads(Path(file).read_text())
             # note - this permits overwriting
             # so an extra dir can override core behaviour
-            self._resources[jobj["resource"]] = jobj
+            self._resources[jobj["resource"]] = ResourceObj(source=jobj)
 
-        self._personalities = RandomChoice(source=self._resources["personality"])
-        self._jobs = RandomChoice(source=self._resources[f"{self._setting}-professions"])
-        self._phobias = RandomChoice(self._resources["phobias"])
-        self._idiosyncrasies = RandomChoice(self._resources["idiosyncracies"])
-        # changed the format of this to better match the other resources
-        self._cards = RandomChoice(self._resources["cards"])
         # Generates the first one.
         self.generate()
 
     def reading(self) -> Reading:
         """Return either upwards or revesed tarot cards draw."""
-        x = choice(range(0, len(self._cards["values"]))
+        x = self._resources["cards"].get_values()
+        k = x.keys()
         if choice((0, 1)):
-            return Reading(
-                self._cards["values"][x]["name"], self._cards[x]["meaning_up"]
-            )
-        return Reading(self._cards["values"][x]["name"], self._cards[x]["meaning_rev"])
+            return Reading(k[0], x[k[0]]["meaning_up"])
+        return Reading(k[0], x[k[0]]["meaning_rev"])
 
     def generate(self) -> None:
         """Generate an NPC."""
         self.name = "Random"
-        _gen = {}
-        _gen["archetype"] = self._resources["archetypes"].get_value()
-        _gen["personality"] = self._resources["personality"].get_value()
-        _gen["idiosyncracies"] = self._resources["idiosyncracies"].get_value()
-        _gen["profession"] = self._resources[f"{self._setting}-professions"].get_value()
-        self._generated = _gen
 
-        _tmp = self._archetypes.get_value().split(" - ")
-        self.nature = Archetype(_tmp[0], _tmp[1])
-        _tmp = self._archetypes.get_value().split(" - ")
-        self.demeanor = Archetype(_tmp[0], _tmp[1])
-        self.personality = self._personalities.get_value()
-        self.idiosyncrasy = Idiosyncrasy(self._idiosyncrasies.get_value())
-        self.skill_primary = Skill(self._jobs.get_value(), get_skill_value())
-        self.skill_secondary = Skill(self._jobs.get_value(), get_skill_value())
-        self.skill_hobby = Skill(self._jobs.get_value(), get_skill_value())
-        _tmp = self._phobias.get_value().split(" - ")
-        self.phobia = Phobia(_tmp[0], get_severity(), _tmp[1])
+        self.nature = self._resources["archetypes"].get_values()
+        self.demeanour = self.nature
+        self.personality = self._resources["personality"].get_values()
+        self.idiosyncracy = self._resources["idiosyncracies"].get_values(count=2)
+        self.skill_primary = self._resources[f"{self._setting}-professions"].get_values()
+        self.skill_secondary = self._resources[f"{self._setting}-professions"].get_values()
+        self.skill_hobby = self._resources[f"{self._setting}-professions"].get_values()
+        self.phobia = self._resources["phobia"].get_values()
         self.reading_major = self.reading()
         self.reading_minor = self.reading()
 
@@ -129,14 +113,14 @@ class NPC:
         skills = (
             f"Name: {self.name}\n"
             f"Skills:\n"
-            f"   Primary:   {self.skill_primary}\n"
-            f"   Secondary: {self.skill_secondary}\n"
-            f"   Hobby:     {self.skill_hobby}\n"
-            f"Personality: {self.personality}\n"
-            f"Nature: {self.nature}\n"
-            f"Demeanor: {self.demeanor}\n"
-            f"Idiosyncrasy: {self.idiosyncrasy}\n"
-            f"Phobia: {self.phobia}\n"
+            f"   Primary:   {self.skill_primary.keys()[0]}\n"
+            f"   Secondary: {self.skill_secondary.keys()[0]}\n"
+            f"   Hobby:     {self.skill_hobby.keys()[0]}\n"
+            f"Personality: {self.personality.keys()[0]}\n"
+            f"Nature: {self.nature.keys()[0]}\n"
+            f"Demeanor: {self.nature.keys()[0]}\n"
+            f"Idiosyncrasy: {self.idiosyncracy.keys()[0]}\n"
+            f"Phobia: {self.phobia.keys()[0]}\n"
             f"Life events:\n"
             f"  Major: {self.reading_major}\n"
             f"  Minor: {self.reading_minor}\n"
@@ -163,7 +147,7 @@ class NPC:
 - **Nature** _{self.nature.name}_, {self.nature.description}
 - **Demeanor** _{self.demeanor.name}_, {self.demeanor.description}
 - {self.phobia.severity} {self.phobia.name}; {self.phobia.description}
-- {self.idiosyncrasy.description}
+- {self.idiosyncracy.description}
 
 ## Life events
 
@@ -177,33 +161,27 @@ class NPC:
 """  # noqa: E501
 
 
-class RandomChoice:
-    """Models a list of things and can get a random item from it.
+
+
+class ResourceObject:
+    """
+    Models a list of things and can get a random item from it.
 
     All items in the list have the same weight. A cheap hack is to add the
     same option multiple times to get a higher probability of being chosen.
     """
 
-    def __init__(self, source: list[Any] | Path) -> None:
-        """Initialise class.
+    def __init__(self, source: Any) -> None:
+        """Initialise class"""
+        self.values = source["values"]
+        self.name = source["resource"]
+        self.raw = source
 
-        The `source` can be a file (aka Path) or a list of strings.
-        """
-        self._lst = []
-        if type(source) is PosixPath:
-            # TODO:  get rid of this
-            src = cast(Path, source)
-            if src.is_file():
-                with Path.open(source) as f:
-                    self._lst = f.read().splitlines()
-            else:
-                rlog.warning(f"There is no such file: {source}")
-                self._lst = ["no choice"]
-            rlog.debug(f"Choice from {source} created")
-        else:
-            # it's an array of objects - just yoink the name for now
-            self._lst = [dic['name'] for dic in source["values"]]
-
-    def get_value(self) -> Any:
-        """Return a random value from the list."""
-        return choice(self._lst)
+    def get_values(self, count=1) -> Any:
+        """returns a dictionary of choices"""
+        ret = {}
+        while count > 0:
+            item = choice(self.values)
+            ret[item["name"]] = item
+            count = count - 1
+        return ret

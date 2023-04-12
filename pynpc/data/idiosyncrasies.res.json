@@ -3,7 +3,7 @@
   "choose": "variable",
   "values": [
     {
-	  "name": "Skin condition",
+      "name": "Skin condition",
       "description": "Acne, eczema, or other skin problems",
       "correlations": {}
     },
@@ -31,19 +31,19 @@
       "name": "Extremely short",
       "description": "",
       "correlations": {
-		"idiosyncracies": {
-	  		"Extremely tall": -100
-		}
-	  }
+          "idiosyncracies": {
+              "Extremely tall": -100
+          }
+      }
     },
     {
       "name": "Extremely tall",
       "description": "",
       "correlations": {
-		"idiosyncracies": {
-	  		"Extremely short": -100
-		}
-	  }
+        "idiosyncracies": {
+              "Extremely short": -100
+        }
+      }
     },
     {
       "name": "Has a stutter",
@@ -89,19 +89,19 @@
       "name": "Talks very loudly",
       "description": "",
       "correlations": {
-		  "idiosyncracies": {
-			  "Talks very quietly": -100
-		  }
-	  }
+          "idiosyncracies": {
+              "Talks very quietly": -100
+          }
+      }
     },
     {
       "name": "Talks very quietly",
       "description": "",
       "correlations": {
-		  "idiosyncracies": {
-			  "Talks very loudly": -100
-		  }
-	  }
+          "idiosyncracies": {
+              "Talks very loudly": -100
+          }
+      }
     },
     {
       "name": "Tattoos",
