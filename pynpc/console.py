@@ -5,15 +5,18 @@ from __future__ import annotations
 import logging
 import logging.config
 import sys
+from pathlib import Path
 
 import click
 import structlog
 from click_help_colors import HelpColorsCommand  # type: ignore[import]
+from rich import print as rprint
 from rich.console import Console
 from rich.prompt import Confirm
 from rich.traceback import install
 
 from pynpc import __version__
+from pynpc.npc import NPC
 from pynpc.utils import (
     COLOUR_INFO,
     VersionCheck,
@@ -181,6 +184,21 @@ def configure_logging(log_level: str, verbose: bool) -> None:
     "This affect the file logs as well.",
 )
 @click.option(
+    "-o",
+    "--output",
+    default="console",
+    show_default=True,
+    type=click.Choice(
+        [
+            "console",
+            "markdown",
+            "LaTeX",
+        ],
+        case_sensitive=False,
+    ),
+    help="What format to output to.",
+)
+@click.option(
     "-v", "--version", is_flag=True, help="Print the version and exit"
 )
 @click.option("--verbose", is_flag=True, help="Print the logs to stdout")
@@ -188,6 +206,7 @@ def main(
     log_level: str,
     version: bool,
     verbose: bool,
+    output: str,
 ) -> None:
     """Generate simple NPCs for table top role playing games."""
     # Prints the current version and exits.
@@ -212,6 +231,21 @@ def main(
 
     # Run commands.
     logger.debug("Starting real work…")
+    x = NPC()
+    if output.lower() == "console":
+        rprint(x)
+    elif output.lower() == "markdown":  # pragma: no cover
+        # This is super basic. It should be improved with tests.
+        with Path("npc.md").open(mode="w") as f:
+            f.write(x.to_markdown())
+        logger.info(
+            "pandoc command, if needed",
+            cmd="pandoc --pdf-engine=xelatex -o npc.pdf npc.md",
+        )
+    elif output.lower() == "latex":  # pragma: no cover
+        rprint("Not support yet")
+    else:  # pragma: no cover
+        rprint("Report a bug.")
 
     # We should be done…
     logger.debug("That's all folks!")

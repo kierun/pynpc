@@ -53,6 +53,15 @@ def test_print(random, item) -> None:
     assert item in str(random) is not None
 
 
+def test_markdown(random) -> None:
+    text = random.to_markdown()
+    assert "## Skills" in text
+    assert "## Personality" in text
+    assert "## Life events" in text
+    assert "### Major" in text
+    assert "### Minor" in text
+
+
 def test_random_choice_file_not_found() -> None:
     sut = RandomChoice(Path("/The/Thing/That/Should/Not/Be/name.txt"))
     assert sut._lst == ["no choice"]

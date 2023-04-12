@@ -187,3 +187,7 @@ archives/
 
 # SonarQube data.
 .scannerwork/
+
+# Generated files.
+npc.md
+npc.pdf
