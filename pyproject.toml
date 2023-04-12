@@ -50,7 +50,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line-length = 79
+line-length = 120
 include = '\.pyi?$'
 target-version = ['py310']
 fast = true
@@ -69,7 +69,7 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
-line_length = 79
+line_length = 120
 known_third_party = [
   "click",
   "click_help_colors",
@@ -140,7 +140,7 @@ pythonPlatform = "Linux"
 match-dir = "pynpc"
 
 [tool.ruff]
-line-length = 79
+line-length = 120
 select = [
   "F",
   "E",
