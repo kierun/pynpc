@@ -1,0 +1,996 @@
+{
+  "resource": "phobias",
+  "choose": "variable",
+  "values": [
+    {
+      "name": "Achluophobia",
+      "description": "fear of darkness",
+      "correlations": {}
+    },
+    {
+      "name": "Acousticophobia",
+      "description": "fear of noise – a branch of phonophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Acrophobia",
+      "description": "fear of heights",
+      "correlations": {}
+    },
+    {
+      "name": "Aerophobia",
+      "description": "fear of aircraft or flying",
+      "correlations": {}
+    },
+    {
+      "name": "Agoraphobia",
+      "description": "fear of open places",
+      "correlations": {}
+    },
+    {
+      "name": "Agyrophobia",
+      "description": "fear of crossing streets",
+      "correlations": {}
+    },
+    {
+      "name": "Aichmophobia",
+      "description": "fear of sharp or pointed objects such as a needle or knife",
+      "correlations": {}
+    },
+    {
+      "name": "Ailurophobia",
+      "description": "fear/dislike of cats, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Alektorophobia",
+      "description": "fear/dislike of chickens, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Anatidaephobia",
+      "description": "fear/dislike of ducks, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Algophobia",
+      "description": "fear of pain",
+      "correlations": {}
+    },
+    {
+      "name": "Alliumphobia",
+      "description": "fear of the strong-scented Allium genus: garlic, onions, chives, shallots",
+      "correlations": {}
+    },
+    {
+      "name": "Ancraophobia",
+      "description": "fear of wind or drafts",
+      "correlations": {}
+    },
+    {
+      "name": "Androphobia",
+      "description": "fear of adult men",
+      "correlations": {}
+    },
+    {
+      "name": "Anthropophobia",
+      "description": "fear of human beings",
+      "correlations": {}
+    },
+    {
+      "name": "Apeirophobia",
+      "description": "excessive fear of infinity, eternity, and the uncountable",
+      "correlations": {}
+    },
+    {
+      "name": "Aphenphosmphobia",
+      "description": "fear of being touched",
+      "correlations": {}
+    },
+    {
+      "name": "Apiphobia",
+      "description": "fear of bees, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Apotemnophobia",
+      "description": "fear of amputees, and/or of becoming an amputee",
+      "correlations": {}
+    },
+    {
+      "name": "Aquaphobia",
+      "description": "fear of water. Distinct from hydrophobia, a scientific property that makes chemicals averse to interaction with water, as well as an archaic name for rabies.",
+      "correlations": {}
+    },
+    {
+      "name": "Arachnophobia",
+      "description": "fear of spiders and other arachnids such as scorpions, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Astraphobia",
+      "description": "fear of thunder and lightning",
+      "correlations": {}
+    },
+    {
+      "name": "Atelophobia",
+      "description": "fear of imperfection",
+      "correlations": {}
+    },
+    {
+      "name": "Atychiphobia",
+      "description": "fear of failure or negative evaluations of others",
+      "correlations": {}
+    },
+    {
+      "name": "Autophobia",
+      "description": "fear of isolation",
+      "correlations": {}
+    },
+    {
+      "name": "Bacteriophobia",
+      "description": "fear of bacteria",
+      "correlations": {}
+    },
+    {
+      "name": "Basophobia",
+      "description": "fear associated with astasia-abasia (fear of walking/standing erect) and a fear of falling",
+      "correlations": {}
+    },
+    {
+      "name": "Batrachophobia",
+      "description": "fear/dislike of frogs and other amphibians, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Belonephobia",
+      "description": "fear of needles or pins",
+      "correlations": {}
+    },
+    {
+      "name": "Bibliophobia",
+      "description": "fear of books",
+      "correlations": {}
+    },
+    {
+      "name": "Cacophobia",
+      "description": "fear of ugliness",
+      "correlations": {}
+    },
+    {
+      "name": "Carcinophobia",
+      "description": "fear of cancer",
+      "correlations": {}
+    },
+    {
+      "name": "Catoptrophobia",
+      "description": "fear of mirrors",
+      "correlations": {}
+    },
+    {
+      "name": "Chemophobia",
+      "description": "fear of chemicals",
+      "correlations": {}
+    },
+    {
+      "name": "Cherophobia",
+      "description": "fear of happiness",
+      "correlations": {}
+    },
+    {
+      "name": "Chiroptophobia",
+      "description": "fear/dislike of bats, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Chromophobia",
+      "description": "fear of colors",
+      "correlations": {}
+    },
+    {
+      "name": "Chronophobia",
+      "description": "fear of time and time moving forward",
+      "correlations": {}
+    },
+    {
+      "name": "Chronomentrophobia",
+      "description": "fear of clocks",
+      "correlations": {}
+    },
+    {
+      "name": "Cibophobia",
+      "description": "aversion to food, synonymous with anorexia nervosa",
+      "correlations": {}
+    },
+    {
+      "name": "Claustrophobia",
+      "description": "fear of having no escape and being closed in",
+      "correlations": {}
+    },
+    {
+      "name": "Coimetrophobia",
+      "description": "fear of cemeteries",
+      "correlations": {}
+    },
+    {
+      "name": "Coprophobia",
+      "description": "fear of feces or defecation",
+      "correlations": {}
+    },
+    {
+      "name": "Coulrophobia",
+      "description": "fear of clowns",
+      "correlations": {}
+    },
+    {
+      "name": "Cyberphobia",
+      "description": "fear of computers",
+      "correlations": {}
+    },
+    {
+      "name": "Cynophobia",
+      "description": "fear/dislike of dogs, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "odontophobia",
+      "description": "fear of dentists and dental procedures",
+      "correlations": {}
+    },
+    {
+      "name": "Dentophobia",
+      "description": "fear of dentists",
+      "correlations": {}
+    },
+    {
+      "name": "Diagraphephobia",
+      "description": "fear of deleting files or an extreme fear of losing your computer data",
+      "correlations": {}
+    },
+    {
+      "name": "Domatophobia",
+      "description": "fear of houses",
+      "correlations": {}
+    },
+    {
+      "name": "Driving phobia",
+      "descriptiom": "fear of driving",
+      "correlations": {}
+    },
+    {
+      "name": "Dysmorphophobia",
+      "description": "a phobic obsession with a real or imaginary body defect",
+      "correlations": {}
+    },
+    {
+      "name": "Ecophobia",
+      "description": "fear of cataclysmic environmental change",
+      "correlations": {}
+    },
+    {
+      "name": "Eisoptrophobia",
+      "description": "fear of mirrors or seeing one's reflection in a mirror",
+      "correlations": {}
+    },
+    {
+      "name": "Emetophobia",
+      "description": "fear of vomiting",
+      "correlations": {}
+    },
+    {
+      "name": "Enochlophobia",
+      "description": "fear of crowds",
+      "correlations": {}
+    },
+    {
+      "name": "Entomophobia",
+      "description": "fear/dislike of insects, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Ephebiphobia",
+      "description": "fear of youth; inaccurate, exaggerated and sensational characterization of young people",
+      "correlations": {}
+    },
+    {
+      "name": "Equinophobia",
+      "description": "fear of horses",
+      "correlations": {}
+    },
+    {
+      "name": "Ergophobia",
+      "description": "fear of work or functioning, or a surgeon's fear of operating",
+      "correlations": {}
+    },
+    {
+      "name": "Erotophobia",
+      "description": "fear of sexual love or sexual abuse",
+      "correlations": {}
+    },
+    {
+      "name": "Erythrophobia",
+      "description": "fear of the color red, or fear of blushing",
+      "correlations": {}
+    },
+    {
+      "name": "Eurotophobia",
+      "description": "aversion to female genitals",
+      "correlations": {}
+    },
+    {
+      "name": "Frigophobia",
+      "description": "fear of becoming too cold",
+      "correlations": {}
+    },
+    {
+      "name": "Gamophobia",
+      "description": "fear of marriage",
+      "correlations": {}
+    },
+    {
+      "name": "Gelotophobia",
+      "description": "fear of being laughed at",
+      "correlations": {}
+    },
+    {
+      "name": "Gephyrophobia",
+      "description": "fear of bridges",
+      "correlations": {}
+    },
+    {
+      "name": "Genophobia",
+      "description": "fear of sexual intercourse",
+      "correlations": {}
+    },
+    {
+      "name": "Genuphobia",
+      "description": "fear of knees or the act of kneeling",
+      "correlations": {}
+    },
+    {
+      "name": "Gerascophobia",
+      "description": "fear of growing old or aging",
+      "correlations": {}
+    },
+    {
+      "name": "Gerontophobia",
+      "description": "fear of growing old, or a hatred or fear of the elderly",
+      "correlations": {}
+    },
+    {
+      "name": "Globophobia",
+      "description": "fear of balloons",
+      "correlations": {}
+    },
+    {
+      "name": "Glossophobia",
+      "description": "fear of speaking in public or of trying to speak",
+      "correlations": {}
+    },
+    {
+      "name": "Gymnophobia",
+      "description": "fear of nudity",
+      "correlations": {}
+    },
+    {
+      "name": "Gynophobia",
+      "description": "fear of adult women",
+      "correlations": {}
+    },
+    {
+      "name": "Halitophobia",
+      "description": "fear of bad breath",
+      "correlations": {}
+    },
+    {
+      "name": "Haphephobia",
+      "description": "fear of being touched",
+      "correlations": {}
+    },
+    {
+      "name": "Heptadekaphobia",
+      "description": "fear of the number 17",
+      "correlations": {}
+    },
+    {
+      "name": "Hedonophobia",
+      "description": "fear of obtaining pleasure",
+      "correlations": {}
+    },
+    {
+      "name": "Heliophobia",
+      "description": "fear of the sun or sunlight",
+      "correlations": {}
+    },
+    {
+      "name": "Helminthophobia",
+      "description": "fear of worms a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Hemophobia",
+      "description": "fear of blood",
+      "correlations": {}
+    },
+    {
+      "name": "Herpetophobia",
+      "description": "fear/dislike of reptiles or amphibians, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Hexakosioihexekontahexaphobia",
+      "description": "fear of the number 666",
+      "correlations": {}
+    },
+    {
+      "name": "Hippophobia",
+      "description": "fear/dislike of horses, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Hodophobia",
+      "description": "fear of travel",
+      "correlations": {}
+    },
+    {
+      "name": "Hydrophobia",
+      "description": "fear of water",
+      "correlations": {}
+    },
+    {
+      "name": "Hypnophobia",
+      "description": "fear of sleep or nightmares",
+      "correlations": {}
+    },
+    {
+      "name": "Hypochondria",
+      "description": "fear of illness",
+      "correlations": {}
+    },
+    {
+      "name": "Ichthyophobia",
+      "description": "fear of fish, including fear of eating fish, or fear of dead fish, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Insectophobia",
+      "description": "fear of insects, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Koumpounophobia",
+      "description": "fear of buttons on clothing",
+      "correlations": {}
+    },
+    {
+      "name": "Lilapsophobia",
+      "description": "fear of tornadoes or hurricanes",
+      "correlations": {}
+    },
+    {
+      "name": "Lepidopterophobia",
+      "description": "fear of butterflies and moths, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Mageiricophobia",
+      "description": "fear of cooking",
+      "correlations": {}
+    },
+    {
+      "name": "Masklophobia",
+      "description": "fear of people in masks, costumes and mascots",
+      "correlations": {}
+    },
+    {
+      "name": "Megalophobia",
+      "description": "fear of large objects",
+      "correlations": {}
+    },
+    {
+      "name": "Melanophobia",
+      "description": "fear of the color black",
+      "correlations": {}
+    },
+    {
+      "name": "Melissophobia",
+      "description": "fear/dislike of bees, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Monophobia",
+      "description": "fear of being alone or isolated or of one's self",
+      "correlations": {}
+    },
+    {
+      "name": "Musophobia",
+      "description": "fear/dislike of mice or rats, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Mycophobia",
+      "description": "fear of mushrooms",
+      "correlations": {}
+    },
+    {
+      "name": "Myrmecophobia",
+      "description": "fear of ants, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Mysophobia",
+      "description": "fear of germs, contamination or dirt",
+      "correlations": {}
+    },
+    {
+      "name": "Necrophobia",
+      "description": "fear of death or the dead",
+      "correlations": {}
+    },
+    {
+      "name": "Neophobia",
+      "description": "fear of newness, novelty, change or progress",
+      "correlations": {}
+    },
+    {
+      "name": "Noctiphobia",
+      "description": "fear of the night",
+      "correlations": {}
+    },
+    {
+      "name": "Nomophobia",
+      "description": "fear of being out of mobile phone contact",
+      "correlations": {}
+    },
+    {
+      "name": "Nosocomephobia",
+      "description": "fear of hospitals",
+      "correlations": {}
+    },
+    {
+      "name": "Nosophobia",
+      "description": "fear of contracting a disease",
+      "correlations": {}
+    },
+    {
+      "name": "Nostophobia",
+      "description": "fear of returning home",
+      "correlations": {}
+    },
+    {
+      "name": "Numerophobia",
+      "description": "fear of numbers",
+      "correlations": {}
+    },
+    {
+      "name": "Nyctophobia",
+      "description": "fear of darkness",
+      "correlations": {}
+    },
+    {
+      "name": "Obesophobia",
+      "description": "fear of gaining weight",
+      "correlations": {}
+    },
+    {
+      "name": "Oikophobia",
+      "description": "fear of home surroundings and household appliances",
+      "correlations": {}
+    },
+    {
+      "name": "Odontophobia",
+      "description": "dental fear",
+      "correlations": {}
+    },
+    {
+      "name": "Ommetaphobia",
+      "description": "fear of eyes",
+      "correlations": {}
+    },
+    {
+      "name": "Oneirophobia",
+      "description": "fear of dreams",
+      "correlations": {}
+    },
+    {
+      "name": "Ophidiophobia",
+      "description": "fear/dislike of snakes, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Ophthalmophobia",
+      "description": "fear of being stared at",
+      "correlations": {}
+    },
+    {
+      "name": "Ornithophobia",
+      "description": "fear/dislike of birds, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Osmophobia",
+      "description": "fear of odors",
+      "correlations": {}
+    },
+    {
+      "name": "Ostraconophobia",
+      "description": "fear/dislike of shellfish, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Panphobia",
+      "description": "fear of everything or constant fear of an unknown cause",
+      "correlations": {}
+    },
+    {
+      "name": "Pedophobia",
+      "description": "fear of babies and children",
+      "correlations": {}
+    },
+    {
+      "name": "Phagophobia",
+      "description": "fear of swallowing",
+      "correlations": {}
+    },
+    {
+      "name": "Phallophobia",
+      "description": "fear of erections",
+      "correlations": {}
+    },
+    {
+      "name": "Pharmacophobia",
+      "description": "fear of medications",
+      "correlations": {}
+    },
+    {
+      "name": "Phasmophobia",
+      "description": "fear of ghosts or phantoms",
+      "correlations": {}
+    },
+    {
+      "name": "Philophobia",
+      "description": "fear of love",
+      "correlations": {}
+    },
+    {
+      "name": "Phyllophobia",
+      "description": "fear of leaves",
+      "correlations": {}
+    },
+    {
+      "name": "Phobophobia",
+      "description": "fear of fear itself or of having a phobia",
+      "correlations": {}
+    },
+    {
+      "name": "Phonophobia",
+      "description": "fear of loud sounds or voices",
+      "correlations": {}
+    },
+    {
+      "name": "Pogonophobia",
+      "description": "fear of beards",
+      "correlations": {}
+    },
+    {
+      "name": "Pornophobia",
+      "description": "dislike or fear of pornography; may be used in reference to the opposition to visual nudity",
+      "correlations": {}
+    },
+    {
+      "name": "Porphyrophobia",
+      "description": "fear of the color purple",
+      "correlations": {}
+    },
+    {
+      "name": "Pteromerhanophobia",
+      "description": "fear of flying",
+      "correlations": {}
+    },
+    {
+      "name": "Pyrophobia",
+      "description": "fear of fire",
+      "correlations": {}
+    },
+    {
+      "name": "Radiophobia",
+      "description": "fear of radioactivity or X-rays",
+      "correlations": {}
+    },
+    {
+      "name": "Ranidaphobia",
+      "description": "fear/dislike of frogs, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Scopophobia",
+      "description": "fear of being looked at or stared at",
+      "correlations": {}
+    },
+    {
+      "name": "Sexophobia",
+      "description": "fear of sexual organs or sexual activities",
+      "correlations": {}
+    },
+    {
+      "name": "Siderodromophobia",
+      "description": "fear of trains or railroads",
+      "correlations": {}
+    },
+    {
+      "name": "Social phobia",
+      "description": "fear of people or social situations",
+      "correlations": {}
+    },
+    {
+      "name": "Somniphobia",
+      "description": "fear of sleep",
+      "correlations": {}
+    },
+    {
+      "name": "Spectrophobia",
+      "description": "fear of mirrors",
+      "correlations": {}
+    },
+    {
+      "name": "Spheksophobia",
+      "description": "fear of wasps, a zoophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Stasiphobia",
+      "description": "fear of standing or walking",
+      "correlations": {}
+    },
+    {
+      "name": "Submechanophobia",
+      "description": "fear of partially or fully submerged man-made objects",
+      "correlations": {}
+    },
+    {
+      "name": "Taphephobia",
+      "description": "fear of graves, or fear of being placed in a grave while still alive",
+      "correlations": {}
+    },
+    {
+      "name": "Taphophobia",
+      "description": "fear of graves, or fear of being placed in a grave while still alive",
+      "correlations": {}
+    },
+    {
+      "name": "Technophobia",
+      "description": "fear of advanced technology (see also Luddite)",
+      "correlations": {}
+    },
+    {
+      "name": "Telephone phobia",
+      "description": "fear or reluctance of making or taking telephone calls",
+      "correlations": {}
+    },
+    {
+      "name": "Teratophobia",
+      "description": "fear of giving birth to a monster or a disfigured foetus",
+      "correlations": {}
+    },
+    {
+      "name": "Tetraphobia",
+      "description": "fear of the number 4",
+      "correlations": {}
+    },
+    {
+      "name": "Thalassophobia",
+      "description": "fear of the sea, or fear of being in the ocean",
+      "correlations": {}
+    },
+    {
+      "name": "Thanatophobia",
+      "description": "fear of dying",
+      "correlations": {}
+    },
+    {
+      "name": "Thermophobia",
+      "description": "fear of intolerance to high temperatures",
+      "correlations": {}
+    },
+    {
+      "name": "Tokophobia",
+      "description": "fear of childbirth or pregnancy",
+      "correlations": {}
+    },
+    {
+      "name": "Tomophobia",
+      "description": "fear of invasive medical procedure",
+      "correlations": {}
+    },
+    {
+      "name": "Tonitrophobia",
+      "description": "fear of thunder",
+      "correlations": {}
+    },
+    {
+      "name": "Toxiphobia",
+      "description": "fear of being poisoned",
+      "correlations": {}
+    },
+    {
+      "name": "Traumatophobia",
+      "description": "a synonym for injury phobia: fear of having an injury",
+      "correlations": {}
+    },
+    {
+      "name": "Trichophobia",
+      "description": "delusional fear of something in the roots of the hair that stops it from growing, or fear of hair loss",
+      "correlations": {}
+    },
+    {
+      "name": "Triskaidekaphobia",
+      "description": "fear of the number 13",
+      "correlations": {}
+    },
+    {
+      "name": "Trypanophobia",
+      "description": "fear of needles or injections",
+      "correlations": {}
+    },
+    {
+      "name": "Trypophobia",
+      "description": "fear of holes or textures with a pattern of holes",
+      "correlations": {}
+    },
+    {
+      "name": "Vehophobia",
+      "description": "fear of driving",
+      "correlations": {}
+    },
+    {
+      "name": "Verminophobia",
+      "description": "fear of germs",
+      "correlations": {}
+    },
+    {
+      "name": "Workplace phobia",
+      "description": "fear of the workplace, a subset of ergophobia",
+      "correlations": {}
+    },
+    {
+      "name": "Xanthophobia",
+      "description": "fear of the color yellow",
+      "correlations": {}
+    },
+    {
+      "name": "Zoophobia",
+      "description": "fear of animals",
+      "correlations": {}
+    },
+    {
+      "name": "Acephobia",
+      "description": "fear/dislike of asexual people",
+      "correlations": {}
+    },
+    {
+      "name": "Aporophobia",
+      "description": "fear/dislike of people without resources",
+      "correlations": {}
+    },
+    {
+      "name": "Biphobia",
+      "description": "fear/dislike of bisexuality or bisexuals",
+      "correlations": {}
+    },
+    {
+      "name": "Ephebiphobia",
+      "description": "fear/dislike of youth",
+      "correlations": {}
+    },
+    {
+      "name": "Gayphobia",
+      "description": "fear/dislike of gay men (specifically)",
+      "correlations": {}
+    },
+    {
+      "name": "Gerontophobia",
+      "description": "fear/dislike of aging or the elderly",
+      "correlations": {}
+    },
+    {
+      "name": "Heterophobia",
+      "description": "fear/dislike of heterosexuals",
+      "correlations": {}
+    },
+    {
+      "name": "Homophobia",
+      "description": "fear/dislike of homosexuality, homosexuals, or gays (as opposed to lesbians)",
+      "correlations": {}
+    },
+    {
+      "name": "Lesbophobia",
+      "description": "fear/dislike of lesbians",
+      "correlations": {}
+    },
+    {
+      "name": "Pedophobia",
+      "description": "fear/dislike of babies or children",
+      "correlations": {}
+    },
+    {
+      "name": "Psychophobia",
+      "description": "fear/dislike of mental illness or the mentally ill",
+      "correlations": {}
+    },
+    {
+      "name": "Transphobia",
+      "description": "fear/dislike of transgender people",
+      "correlations": {}
+    },
+    {
+      "name": "Xenophobia",
+      "description": "fear/dislike of foreigners",
+      "correlations": {}
+    },
+    {
+      "name": "Osmophobia",
+      "description": "hypersensitivity to smells causing aversion to odors",
+      "correlations": {}
+    },
+    {
+      "name": "Phonophobia",
+      "description": "hypersensitivity to sound causing aversion to sounds",
+      "correlations": {}
+    },
+    {
+      "name": "Photophobia",
+      "description": "hypersensitivity to light causing aversion to light",
+      "correlations": {}
+    },
+    {
+      "name": "Bibliophobia",
+      "description": "fear or hatred of books, as a cultural phenomenon",
+      "correlations": {}
+    },
+    {
+      "name": "Lipophobia",
+      "description": "avoidance of fats in food",
+      "correlations": {}
+    },
+    {
+      "name": "Acidophobia",
+      "description": "preference for non-acidic conditions",
+      "correlations": {}
+    },
+    {
+      "name": "Heliophobia",
+      "description": "aversion to sunlight",
+      "correlations": {}
+    },
+    {
+      "name": "Hydrophobia",
+      "description": "the property of being repelled by water",
+      "correlations": {}
+    },
+    {
+      "name": "Lipophobicity",
+      "description": "the property of fat rejection (sometimes also called lipophobia)",
+      "correlations": {}
+    },
+    {
+      "name": "Oleophobicity",
+      "description": "the property of oil rejection",
+      "correlations": {}
+    },
+    {
+      "name": "Photophobia (biology)",
+      "description": "a negative phototaxis or phototropism response, or a tendency to stay out of the light",
+      "correlations": {}
+    },
+    {
+      "name": "Ultrahydrophobicity",
+      "description": "the property given to materials that are extremely difficult to get wet",
+      "correlations": {}
+    },
+    {
+      "name": "Thermophobia",
+      "description": "aversion to heat",
+      "correlations": {}
+    }
+  ]
+}

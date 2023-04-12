@@ -1,0 +1,90 @@
+{
+	"resource": "personality",
+	"urls": [
+		"https://en.wikipedia.org/wiki/Myers%E2%80%93Briggs_Type_Indicator",
+		"https://www.verywellmind.com/the-myers-briggs-type-indicator-2795583"
+	],
+	"choose": "single",
+	"values": [
+        {
+            "code": "ISTJ",
+            "name": "Inspector",
+            "description": "Reserved and practical, they tend to be loyal, orderly, and traditional."
+        },
+        {
+            "code": "ISTP",
+            "name": "Crafter",
+            "description": "Highly independent, they enjoy new experiences that provide first-hand learning."
+        },
+        {
+            "code": "ISFJ",
+            "name": "Protector",
+            "description": "Warm-hearted and dedicated, they are always ready to protect the people they care about."
+        },
+        {
+            "code": "ISFP",
+            "name": "Artist",
+            "description": "Easy-going and flexible, they tend to be reserved and artistic."
+        },
+        {
+            "code": "INFJ",
+            "name": "Advocate",
+            "description": "Creative and analytical, they are one of the rarest types."
+        },
+        {
+            "code": "INFP",
+            "name": "Mediator",
+            "description": "Idealistic with high values, they strive to make the world a better place."
+        },
+        {
+            "code": "INTJ",
+            "name": "Architect",
+            "description": "High logical, they are both very creative and analytical."
+        },
+        {
+            "code": "INTP",
+            "name": "Thinker",
+            "description": "Quiet and introverted, they are known for having a rich inner world."
+        },
+        {
+            "code": "ESTP",
+            "name": "Persuader",
+            "description": "Out-going and dramatic, they enjoy spending time with others and focusing on the here-and-now."
+        },
+        {
+            "code": "ESTJ",
+            "name": "Director",
+            "description": "Assertive and rule-oriented, they have high principles and a tendency to take charge."
+        },
+        {
+            "code": "ESFP",
+            "name": "Performer",
+            "description": "Outgoing and spontaneous, they enjoy taking center stage."
+        },
+        {
+            "code": "ESFJ",
+            "name": "Caregiver",
+            "description": "Soft-hearted and outgoing, they tend to believe the best about other people."
+        },
+        {
+            "code": "ENFP",
+            "name": "Champion",
+            "description": "Charismatic and energetic, they enjoy situations where they can put their creativity to work. "
+        },
+        {
+            "code": "ENFJ",
+            "name": "Giver",
+            "description": "Loyal and sensitive, they are known for being understanding and generous."
+        },
+        {
+            "code": "ENTP",
+            "name": "Debater",
+            "description": "Highly inventive, they love being surrounded by ideas and tend to start many projects, but may struggle to finish them."
+        },
+        {
+            "code": "ENTJ",
+            "name": "Commander",
+            "description": "Outspoken and confident, they are great at making plans and organizing projects."
+    	}
+    ]
+}

@@ -5,6 +5,7 @@ from pathlib import Path, PosixPath
 from secrets import choice
 from typing import Any, cast
 
+import glob
 import orjson
 import structlog
 
@@ -31,104 +32,12 @@ def get_severity() -> str:
     return choice(PHOBIA_RANKS)
 
 
-# Personality types.
-#
-# We know they are bullshit. However, they make a good starting
-# ponit to give some NPC some direction as to what they do.
-#
-# https://www.truity.com/page/16-personality-types-myers-briggs
-# https://en.wikipedia.org/wiki/Myers%E2%80%93Briggs_Type_Indicator
-# https://www.verywellmind.com/the-myers-briggs-type-indicator-2795583
-Persona = namedtuple("Persona", ["code", "title", "description"])
-MYERS_BRIGGS = [
-    Persona(
-        "ISTJ",
-        "Inspector",
-        "Reserved and practical, they tend to be loyal, orderly, and traditional.",  # noqa: E501
-    ),
-    Persona(
-        "ISTP",
-        "Crafter",
-        "Highly independent, they enjoy new experiences that provide first-hand learning.",  # noqa: E501
-    ),
-    Persona(
-        "ISFJ",
-        "Protector",
-        "Warm-hearted and dedicated, they are always ready to protect the people they care about.",  # noqa: E501
-    ),
-    Persona(
-        "ISFP",
-        "Artist",
-        "Easy-going and flexible, they tend to be reserved and artistic.",
-    ),
-    Persona(
-        "INFJ",
-        "Advocate",
-        "Creative and analytical, they are one of the rarest types.",
-    ),
-    Persona(
-        "INFP",
-        "Mediator",
-        "Idealistic with high values, they strive to make the world a better place.",  # noqa: E501
-    ),
-    Persona(
-        "INTJ",
-        "Architect",
-        "High logical, they are both very creative and analytical.",
-    ),
-    Persona(
-        "INTP",
-        "Thinker",
-        "Quiet and introverted, they are known for having a rich inner world.",
-    ),
-    Persona(
-        "ESTP",
-        "Persuader",
-        "Out-going and dramatic, they enjoy spending time with others and focusing on the here-and-now.",  # noqa: E501
-    ),
-    Persona(
-        "ESTJ",
-        "Director",
-        "Assertive and rule-oriented, they have high principles and a tendency to take charge.",  # noqa: E501
-    ),
-    Persona(
-        "ESFP",
-        "Performer",
-        "Outgoing and spontaneous, they enjoy taking center stage.",
-    ),
-    Persona(
-        "ESFJ",
-        "Caregiver",
-        "Soft-hearted and outgoing, they tend to believe the best about other people.",  # noqa: E501
-    ),
-    Persona(
-        "ENFP",
-        "Champion",
-        "Charismatic and energetic, they enjoy situations where they can put their creativity to work. ",  # noqa: E501
-    ),
-    Persona(
-        "ENFJ",
-        "Giver",
-        "Loyal and sensitive, they are known for being understanding and generous.",  # noqa: E501
-    ),
-    Persona(
-        "ENTP",
-        "Debater",
-        "Highly inventive, they love being surrounded by ideas and tend to start many projects, but may struggle to finish them.",  # noqa: E501
-    ),
-    Persona(
-        "ENTJ",
-        "Commander",
-        "Outspoken and confident, they are great at making plans and organizing projects.",  # noqa: E501
-    ),
-]
 
+# random properties - name and description
+Trait = namedtuple("Trait", ["name", "description"])
 
 # Life events: A tarot card and its meaning.
 Reading = namedtuple("Reading", ["card", "meaning"])
-
-# Archetypes model: name and description
-Archetype = namedtuple("Archetype", ["name", "description"])
 
 # Idiosyncrasy model: a simple phrase.
 Idiosyncrasy = namedtuple("Idiosyncrasy", ["description"])
@@ -137,6 +46,7 @@ Idiosyncrasy = namedtuple("Idiosyncrasy", ["description"])
 class NPC:
     """Main NPC class."""
 
+    # TODO:  Accept extra data dirs as arg
     def __init__(self, what: str = "fantasy") -> None:
         """Initialise the class.
 
@@ -146,34 +56,57 @@ class NPC:
         """
         # Meta data.
         rlog.debug(f"Creating {what} NPC")
-        self._data_dir = Path(Path(__file__).resolve().parent, "data")
-        self._jobs = RandomChoice(
-            Path(self._data_dir, f"{what}-professions.txt")
-        )
-        self._personalities = RandomChoice(source=MYERS_BRIGGS)
-        self._phobias = RandomChoice(Path(self._data_dir, "phobia.txt"))
-        self._idiosyncrasies = RandomChoice(
-            Path(self._data_dir, "idiosyncrasies.txt")
-        )
-        self._archetypes = RandomChoice(Path(self._data_dir, "archetypes.txt"))
-        self._cards = orjson.loads(
-            Path(self._data_dir, "cards.json").read_text()
-        )["cards"]
+        self._setting = what
+        self._data_dir = [Path(Path(__file__).resolve().parent, "data")]
+        # TODO: append extra data dirs here
+
+        # read resource files - everything called *.res.json in the data dir
+        # expecting a 'resource' string with a name in it
+        # expecting a 'values' array with objects in
+        # under the resource we store the whole object, so you have to
+        # access the 'values' object to get the array of data
+        # this is to preserve any other values at the top level
+        self._resources = {}
+        self._res_files = []
+        # find our files
+        for dpath in self._data_dir:
+            self._res_files.append(glob.glob(f"{dpath}/*.res.json"))
+
+        # read them ALL
+        for file in self._res_files:
+            jobj = orjson.loads(Path(file).read_text())
+            # note - this permits overwriting
+            # so an extra dir can override core behaviour
+            self._resources[jobj["resource"]] = jobj
+
+        self._personalities = RandomChoice(source=self._resources["personality"])
+        self._jobs = RandomChoice(source=self._resources[f"{self._setting}-professions"])
+        self._phobias = RandomChoice(self._resources["phobias"])
+        self._idiosyncrasies = RandomChoice(self._resources["idiosyncracies"])
+        # changed the format of this to better match the other resources
+        self._cards = RandomChoice(self._resources["cards"])
         # Generates the first one.
         self.generate()
 
     def reading(self) -> Reading:
         """Return either upwards or revesed tarot cards draw."""
-        x = choice(range(0, 78))
+        x = choice(range(0, len(self._cards["values"]))
         if choice((0, 1)):
             return Reading(
-                self._cards[x]["name"], self._cards[x]["meaning_up"]
+                self._cards["values"][x]["name"], self._cards[x]["meaning_up"]
             )
-        return Reading(self._cards[x]["name"], self._cards[x]["meaning_rev"])
+        return Reading(self._cards["values"][x]["name"], self._cards[x]["meaning_rev"])
 
     def generate(self) -> None:
         """Generate an NPC."""
         self.name = "Random"
+        _gen = {}
+        _gen["archetype"] = self._resources["archetypes"].get_value()
+        _gen["personality"] = self._resources["personality"].get_value()
+        _gen["idiosyncracies"] = self._resources["idiosyncracies"].get_value()
+        _gen["profession"] = self._resources[f"{self._setting}-professions"].get_value()
+        self._generated = _gen
+
         _tmp = self._archetypes.get_value().split(" - ")
         self.nature = Archetype(_tmp[0], _tmp[1])
         _tmp = self._archetypes.get_value().split(" - ")
@@ -258,6 +191,7 @@ class RandomChoice:
         """
         self._lst = []
         if type(source) is PosixPath:
+            # TODO:  get rid of this
             src = cast(Path, source)
             if src.is_file():
                 with Path.open(source) as f:
@@ -267,7 +201,8 @@ class RandomChoice:
                 self._lst = ["no choice"]
             rlog.debug(f"Choice from {source} created")
         else:
-            self._lst = cast(list[str], source)
+            # it's an array of objects - just yoink the name for now
+            self._lst = [dic['name'] for dic in source["values"]]
 
     def get_value(self) -> Any:
         """Return a random value from the list."""

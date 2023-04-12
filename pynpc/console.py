@@ -231,6 +231,7 @@ def main(
 
     # Run commands.
     logger.debug("Starting real work…")
+    # TODO:  pass extra data dirs in somehow
     x = NPC()
     if output.lower() == "console":
         rprint(x)
