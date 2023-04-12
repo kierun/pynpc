@@ -26,3 +26,7 @@
 ## What is this?
 
 A simple NPC generator for all your table top role playing games.
+
+## Thanks
+
+- [Tarot card data taken from E Kelen](https://github.com/ekelen/tarot-api).
