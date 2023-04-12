@@ -18,19 +18,12 @@ Skill = namedtuple("Skill", ["name", "rank"])
 
 # Model for phobia: a name, explanation, and serverity.
 Phobia = namedtuple("Phobia", ["name", "severity", "description"])
-PHOBIA_RANKS = (
-    ["Negligable"] * 16
-    + ["low"] * 8
-    + ["mild"] * 4
-    + ["severe"] * 2
-    + ["debilitating"]
-)
+PHOBIA_RANKS = ["Negligable"] * 16 + ["low"] * 8 + ["mild"] * 4 + ["severe"] * 2 + ["debilitating"]
 
 
 def get_severity() -> str:
     """Get phobia severity."""
     return choice(PHOBIA_RANKS)
-
 
 
 # random properties - name and description
@@ -70,30 +63,29 @@ class NPC:
         self._res_files = []
         # find our files
         for dpath in self._data_dir:
-            self._res_files.append(glob.glob(f"{dpath}/*.res.json"))
+            self._res_files = glob.glob(f"{dpath}/*.res.json")
 
         # read them ALL
         for file in self._res_files:
             jobj = orjson.loads(Path(file).read_text())
             # note - this permits overwriting
             # so an extra dir can override core behaviour
-            self._resources[jobj["resource"]] = ResourceObj(source=jobj)
+            self._resources[jobj["resource"]] = ResourceObject(source=jobj)
 
         # Generates the first one.
         self.generate()
 
     def reading(self) -> Reading:
         """Return either upwards or revesed tarot cards draw."""
-        x = self._resources["cards"].get_values()
-        k = x.keys()
+        card = self._resources["cards"].get_values()
+        key = next(iter(card))  # This is not intuitive at all!
         if choice((0, 1)):
-            return Reading(k[0], x[k[0]]["meaning_up"])
-        return Reading(k[0], x[k[0]]["meaning_rev"])
+            return Reading(card[key], card[key]["meaning_up"])
+        return Reading(card[key], card[key]["meaning_rev"])
 
     def generate(self) -> None:
         """Generate an NPC."""
         self.name = "Random"
-
         self.nature = self._resources["archetypes"].get_values()
         self.demeanour = self.nature
         self.personality = self._resources["personality"].get_values()
@@ -101,7 +93,7 @@ class NPC:
         self.skill_primary = self._resources[f"{self._setting}-professions"].get_values()
         self.skill_secondary = self._resources[f"{self._setting}-professions"].get_values()
         self.skill_hobby = self._resources[f"{self._setting}-professions"].get_values()
-        self.phobia = self._resources["phobia"].get_values()
+        self.phobia = self._resources["phobias"].get_values()
         self.reading_major = self.reading()
         self.reading_minor = self.reading()
 
@@ -113,14 +105,14 @@ class NPC:
         skills = (
             f"Name: {self.name}\n"
             f"Skills:\n"
-            f"   Primary:   {self.skill_primary.keys()[0]}\n"
-            f"   Secondary: {self.skill_secondary.keys()[0]}\n"
-            f"   Hobby:     {self.skill_hobby.keys()[0]}\n"
-            f"Personality: {self.personality.keys()[0]}\n"
-            f"Nature: {self.nature.keys()[0]}\n"
-            f"Demeanor: {self.nature.keys()[0]}\n"
-            f"Idiosyncrasy: {self.idiosyncracy.keys()[0]}\n"
-            f"Phobia: {self.phobia.keys()[0]}\n"
+            f"   Primary:   {next(iter(self.skill_primary.values()))}\n"
+            f"   Secondary: {next(iter(self.skill_secondary.values()))}\n"
+            f"   Hobby:     {next(iter(self.skill_hobby.values()))}\n"
+            f"Personality: {next(iter(self.personality.values()))}\n"
+            f"Nature: {next(iter(self.nature.values()))}\n"
+            f"Demeanor: {next(iter(self.nature.values()))}\n"
+            f"Idiosyncrasy: {next(iter(self.idiosyncracy.values()))}\n"
+            f"Phobia: {next(iter(self.phobia.values()))}\n"
             f"Life events:\n"
             f"  Major: {self.reading_major}\n"
             f"  Minor: {self.reading_minor}\n"
@@ -161,8 +153,6 @@ class NPC:
 """  # noqa: E501
 
 
-
-
 class ResourceObject:
     """
     Models a list of things and can get a random item from it.
@@ -172,16 +162,15 @@ class ResourceObject:
     """
 
     def __init__(self, source: Any) -> None:
-        """Initialise class"""
+        """Initialise class."""
         self.values = source["values"]
         self.name = source["resource"]
         self.raw = source
 
-    def get_values(self, count=1) -> Any:
-        """returns a dictionary of choices"""
+    def get_values(self, count: int = 1) -> Any:
+        """Return a dictionary of choices."""
         ret = {}
-        while count > 0:
+        for _ in range(0, count):
             item = choice(self.values)
             ret[item["name"]] = item
-            count = count - 1
         return ret
