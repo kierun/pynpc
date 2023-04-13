@@ -27,20 +27,20 @@ tasks:
     desc: 'run all the fast tests, no coverage'
     deps: ['activate']
     cmds:
-      - .venv/bin/coverage run -m pytest --doctest-modules
-      - .venv/bin/coverage combine
-      - .venv/bin/coverage report -m
-      - .venv/bin/coverage xml
+      - coverage run -m pytest --doctest-modules
+      - coverage combine
+      - coverage report -m
+      - coverage xml
     sources:
       - pynpc/*.py
       - tests/*.py
   tests:
     desc: 'run all the tests and coverage'
     cmds:
-      - .venv/bin/coverage run --concurrency=thread -m pytest --doctest-modules --slow
-      - .venv/bin/coverage combine
-      - .venv/bin/coverage report -m
-      - .venv/bin/coverage xml
+      - coverage run --concurrency=thread -m pytest --doctest-modules --slow
+      - coverage combine
+      - coverage report -m
+      - coverage xml
     sources:
       - pynpc/*.py
       - tests/*.py
@@ -48,7 +48,7 @@ tasks:
     desc: 'Generates an HTML coverage report'
     deps: ['tests']
     cmds:
-      - .venv/bin/coverage html
+      - coverage html
       - xdg-open ./htmlcov/index.html
     sources:
       - pynpc/*.py
