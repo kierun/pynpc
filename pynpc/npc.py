@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """NPC class."""
 from collections import namedtuple
-from pathlib import Path, PosixPath
+#from pathlib import Path, PosixPath
+from pathlib import Path
 from secrets import choice
 from typing import Any, cast
 
@@ -181,9 +182,9 @@ class ResourceObject:
         return ret
 
     def get_value(self) -> Any:
-        """Return a random entry"""
+        """Return a random entry."""
         return choice(self.values)
 
     def get_name(self) -> str:
-        """Return the name of a random choice"""
+        """Return the name of a random choice."""
         return choice(self.values)["name"]
