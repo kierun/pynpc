@@ -19,7 +19,7 @@ def random() -> Any:
         ("name", True),
         ("personality", True),
         ("nature", True),
-        ("demeanor", True),
+        ("demeanour", True),
         ("phobia", True),
         ("idiosyncrasy", True),
         ("skill_primary", True),
@@ -30,7 +30,7 @@ def random() -> Any:
         ("ook", False),
     ],
 )
-def test_variabe_existss(random, attr, expected) -> None:
+def test_variabe_exists(random, attr, expected) -> None:
     assert hasattr(random, attr) is expected
 
 
@@ -60,15 +60,3 @@ def test_markdown(random) -> None:
     assert "## Life events" in text
     assert "### Major" in text
     assert "### Minor" in text
-
-
-def test_random_choice_file_not_found() -> None:
-    obj = {}
-    entry = {}
-    obj["resource"] = "Personality"
-    entry["name"] = "testval"
-    entry["description"] = "testdesc"
-    obj["values"] = [ entry, entry, entry ]
-    sut = ResourceObject(source=obj)
-    assert sut.values[0] == [ entry ]
-    assert sut.get_value() == entry

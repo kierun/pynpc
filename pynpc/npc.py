@@ -29,6 +29,9 @@ def get_severity() -> str:
 # random properties - name and description
 Trait = namedtuple("Trait", ["name", "description"])
 
+# Personality - includes code
+Personality = namedtuple("Personality", ["name", "description", "code"])
+
 # Life events: A tarot card and its meaning.
 Reading = namedtuple("Reading", ["card", "meaning"])
 
@@ -77,23 +80,25 @@ class NPC:
 
     def reading(self) -> Reading:
         """Return either upwards or revesed tarot cards draw."""
-        card = self._resources["cards"].get_values()
-        key = next(iter(card))  # This is not intuitive at all!
+        card = self._resources["cards"].get_value()
         if choice((0, 1)):
-            return Reading(card[key], card[key]["meaning_up"])
-        return Reading(card[key], card[key]["meaning_rev"])
+            return Reading(card["name"], card["meaning_up"])
+        return Reading(card["name"], card["meaning_rev"])
 
     def generate(self) -> None:
         """Generate an NPC."""
         self.name = "Random"
-        self.nature = self._resources["archetypes"].get_values()
+        _arc = self._resources["archetypes"].get_value()
+        self.nature = Trait(_arc["name"], _arc["description"])
         self.demeanour = self.nature
-        self.personality = self._resources["personality"].get_values()
-        self.idiosyncracy = self._resources["idiosyncracies"].get_values(count=2)
-        self.skill_primary = self._resources[f"{self._setting}-professions"].get_values()
-        self.skill_secondary = self._resources[f"{self._setting}-professions"].get_values()
-        self.skill_hobby = self._resources[f"{self._setting}-professions"].get_values()
-        self.phobia = self._resources["phobias"].get_values()
+        _pers = self._resources["personality"].get_value()
+        self.personality = Personality(_pers["name"], _pers["description"], _pers["code"])
+        self.idiosyncrasy = Idiosyncrasy(self._resources["idiosyncracies"].get_name())
+        self.skill_primary = Skill(self._resources[f"{self._setting}-professions"].get_name(),get_skill_value())
+        self.skill_secondary = Skill(self._resources[f"{self._setting}-professions"].get_name(),get_skill_value())
+        self.skill_hobby = Skill(self._resources[f"{self._setting}-professions"].get_name(),get_skill_value())
+        _ph = self._resources["phobias"].get_value()
+        self.phobia = Phobia(_ph["name"],get_severity(),_ph["description"])
         self.reading_major = self.reading()
         self.reading_minor = self.reading()
 
@@ -105,14 +110,14 @@ class NPC:
         skills = (
             f"Name: {self.name}\n"
             f"Skills:\n"
-            f"   Primary:   {next(iter(self.skill_primary.values()))}\n"
-            f"   Secondary: {next(iter(self.skill_secondary.values()))}\n"
-            f"   Hobby:     {next(iter(self.skill_hobby.values()))}\n"
-            f"Personality: {next(iter(self.personality.values()))}\n"
-            f"Nature: {next(iter(self.nature.values()))}\n"
-            f"Demeanor: {next(iter(self.nature.values()))}\n"
-            f"Idiosyncrasy: {next(iter(self.idiosyncracy.values()))}\n"
-            f"Phobia: {next(iter(self.phobia.values()))}\n"
+            f"   Primary:   {self.skill_primary.name}\n"
+            f"   Secondary: {self.skill_secondary.name}\n"
+            f"   Hobby:     {self.skill_hobby.name}\n"
+            f"Personality: {self.personality}\n"
+            f"Nature: {self.nature}\n"
+            f"Demeanor: {self.nature}\n"
+            f"Idiosyncrasy: {self.idiosyncrasy}\n"
+            f"Phobia: {self.phobia.name}\n"
             f"Life events:\n"
             f"  Major: {self.reading_major}\n"
             f"  Minor: {self.reading_minor}\n"
@@ -135,11 +140,11 @@ class NPC:
 
 ## Personality
 
-- **{self.personality.title}** [{self.personality.code}] {self.personality.description}
+- **{self.personality.name}** [{self.personality.code}] {self.personality.description}
 - **Nature** _{self.nature.name}_, {self.nature.description}
-- **Demeanor** _{self.demeanor.name}_, {self.demeanor.description}
+- **Demeanor** _{self.demeanour.name}_, {self.demeanour.description}
 - {self.phobia.severity} {self.phobia.name}; {self.phobia.description}
-- {self.idiosyncracy.description}
+- {self.idiosyncrasy.description}
 
 ## Life events
 
@@ -174,3 +179,11 @@ class ResourceObject:
             item = choice(self.values)
             ret[item["name"]] = item
         return ret
+
+    def get_value(self) -> Any:
+        """Return a random entry"""
+        return choice(self.values)
+
+    def get_name(self) -> str:
+        """Return the name of a random choice"""
+        return choice(self.values)["name"]
