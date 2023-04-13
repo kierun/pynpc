@@ -12,10 +12,7 @@ from pynpc.utils import VersionCheck
 def test_help():
     runner = CliRunner()
     result = runner.invoke(main, ["--help"])
-    assert (
-        "Generate simple NPCs for table top role playing games"
-        in result.output
-    )
+    assert "Generate simple NPCs for table top role playing games" in result.output
 
 
 def test_version():
@@ -35,9 +32,7 @@ def test_version():
     ],
 )
 def test_pynpc_version_status(ask, check):
-    with patch("pynpc.console.check_if_latest_version") as mock_check, patch(
-        "pynpc.console.Confirm.ask"
-    ) as mock_ask:
+    with patch("pynpc.console.check_if_latest_version") as mock_check, patch("pynpc.console.Confirm.ask") as mock_ask:
         mock_ask.return_value = ask
         mock_check.return_value = check
         runner = CliRunner()

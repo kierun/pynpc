@@ -17,12 +17,7 @@ from rich.traceback import install
 
 from pynpc import __version__
 from pynpc.npc import NPC
-from pynpc.utils import (
-    COLOUR_INFO,
-    VersionCheck,
-    check_if_latest_version,
-    wprint,
-)
+from pynpc.utils import COLOUR_INFO, VersionCheck, check_if_latest_version, wprint
 
 # Rich.
 install(show_locals=True)
@@ -180,8 +175,7 @@ def configure_logging(log_level: str, verbose: bool) -> None:
         ["notset", "debug", "info", "warning", "error", "critical"],
         case_sensitive=False,
     ),
-    help="Chose the logging level from the available options. "
-    "This affect the file logs as well.",
+    help="Chose the logging level from the available options. " "This affect the file logs as well.",
 )
 @click.option(
     "-o",
@@ -198,9 +192,7 @@ def configure_logging(log_level: str, verbose: bool) -> None:
     ),
     help="What format to output to.",
 )
-@click.option(
-    "-v", "--version", is_flag=True, help="Print the version and exit"
-)
+@click.option("-v", "--version", is_flag=True, help="Print the version and exit")
 @click.option("--verbose", is_flag=True, help="Print the logs to stdout")
 def main(
     log_level: str,
@@ -260,9 +252,7 @@ def _version_check() -> None:
     if check == VersionCheck.LATEST:
         wprint(f"This is the latest version {__version__}.", level="info")
     elif check == VersionCheck.LAGGING:
-        wprint(
-            "there is a new version available: please update.", level="warning"
-        )
+        wprint("there is a new version available: please update.", level="warning")
         if Confirm.ask("Exit and update?", default=True):
             wprint(
                 "Please run [i]python -m pip install -U pynpc[/i]",

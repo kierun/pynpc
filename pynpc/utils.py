@@ -47,10 +47,7 @@ def join_with_oxford_commas(obj_list: "Sequence[Any]") -> str:
     size = len(obj_list)
     if size == 1:
         return f"{str(obj_list[0])}"
-    return (
-        ", ".join(str(obj) for obj in obj_list[: size - 1])
-        + f", and {str(obj_list[size - 1])}"
-    )
+    return ", ".join(str(obj) for obj in obj_list[: size - 1]) + f", and {str(obj_list[size - 1])}"
 
 
 def check_if_latest_version() -> VersionCheck:

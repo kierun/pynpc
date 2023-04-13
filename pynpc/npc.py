@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """NPC class."""
+import glob
 from collections import namedtuple
-#from pathlib import Path, PosixPath
+
+# from pathlib import Path, PosixPath
 from pathlib import Path
 from secrets import choice
 from typing import Any, cast
 
-import glob
 import orjson
 import structlog
 
@@ -95,11 +96,11 @@ class NPC:
         _pers = self._resources["personality"].get_value()
         self.personality = Personality(_pers["name"], _pers["description"], _pers["code"])
         self.idiosyncrasy = Idiosyncrasy(self._resources["idiosyncracies"].get_name())
-        self.skill_primary = Skill(self._resources[f"{self._setting}-professions"].get_name(),get_skill_value())
-        self.skill_secondary = Skill(self._resources[f"{self._setting}-professions"].get_name(),get_skill_value())
-        self.skill_hobby = Skill(self._resources[f"{self._setting}-professions"].get_name(),get_skill_value())
+        self.skill_primary = Skill(self._resources[f"{self._setting}-professions"].get_name(), get_skill_value())
+        self.skill_secondary = Skill(self._resources[f"{self._setting}-professions"].get_name(), get_skill_value())
+        self.skill_hobby = Skill(self._resources[f"{self._setting}-professions"].get_name(), get_skill_value())
         _ph = self._resources["phobias"].get_value()
-        self.phobia = Phobia(_ph["name"],get_severity(),_ph["description"])
+        self.phobia = Phobia(_ph["name"], get_severity(), _ph["description"])
         self.reading_major = self.reading()
         self.reading_minor = self.reading()
 
