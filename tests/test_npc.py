@@ -5,7 +5,7 @@ from typing import Any
 
 import pytest
 
-from pynpc.npc import NPC, RandomChoice
+from pynpc.npc import NPC, ResourceObject
 
 
 @pytest.fixture(autouse=True, scope="package")
@@ -63,6 +63,12 @@ def test_markdown(random) -> None:
 
 
 def test_random_choice_file_not_found() -> None:
-    sut = RandomChoice(Path("/The/Thing/That/Should/Not/Be/name.txt"))
-    assert sut._lst == ["no choice"]
-    assert sut.get_value() == "no choice"
+    obj = {}
+    entry = {}
+    obj["resource"] = "Personality"
+    entry["name"] = "testval"
+    entry["description"] = "testdesc"
+    obj["values"] = [ entry, entry, entry ]
+    sut = ResourceObject(source=obj)
+    assert sut.values[0] == [ entry ]
+    assert sut.get_value() == entry
