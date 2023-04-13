@@ -6,13 +6,7 @@ import pytest
 import requests_mock
 
 from pynpc import __version__
-from pynpc.utils import (
-    GITHUB_URL,
-    VersionCheck,
-    check_if_latest_version,
-    join_with_oxford_commas,
-    wprint,
-)
+from pynpc.utils import GITHUB_URL, VersionCheck, check_if_latest_version, join_with_oxford_commas, wprint
 
 TXT = "I Am Malenia, Blade Of Miquella, And I Have Never Known Defeat."
 TXT_FMT = (
@@ -56,9 +50,7 @@ def test_join_with_oxford_commas(items: tuple, text: str) -> None:
         ({"tag_name": f"v{__version__}"}, 200, VersionCheck.LATEST),
     ],
 )
-def test_check_if_latest_version(
-    payload: dict, status: int, expected: VersionCheck
-) -> None:
+def test_check_if_latest_version(payload: dict, status: int, expected: VersionCheck) -> None:
     with requests_mock.Mocker() as mocked:
         mocked.get(GITHUB_URL, json=payload, status_code=status)
         assert check_if_latest_version() == expected

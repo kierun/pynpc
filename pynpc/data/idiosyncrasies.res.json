@@ -1,0 +1,152 @@
+{
+  "resource": "idiosyncracies",
+  "choose": "variable",
+  "values": [
+    {
+      "name": "Skin condition",
+      "description": "Acne, eczema, or other skin problems",
+      "correlations": {}
+    },
+    {
+      "name": "Always picking their teeth",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Ambidextrous",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Constantly chews or eats",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Constantly fidgeting and can’t sit still",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Extremely short",
+      "description": "",
+      "correlations": {
+          "idiosyncracies": {
+              "Extremely tall": -100
+          }
+      }
+    },
+    {
+      "name": "Extremely tall",
+      "description": "",
+      "correlations": {
+        "idiosyncracies": {
+              "Extremely short": -100
+        }
+      }
+    },
+    {
+      "name": "Has a stutter",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Heterochromia",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Minority ethnicity, race, or group",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Often tucks their hair behind their ears",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Piercings",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Says everything like it’s a question",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Smokes and has a raspy voice",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Some discerning physical mark",
+      "description": "birthmark, freckles, mole, or scar",
+      "correlations": {}
+    },
+    {
+      "name": "Talks very loudly",
+      "description": "",
+      "correlations": {
+          "idiosyncracies": {
+              "Talks very quietly": -100
+          }
+      }
+    },
+    {
+      "name": "Talks very quietly",
+      "description": "",
+      "correlations": {
+          "idiosyncracies": {
+              "Talks very loudly": -100
+          }
+      }
+    },
+    {
+      "name": "Tattoos",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Unique eye colour",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Unique hair colour",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Unusually hairy arms and legs",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Very long painted nails",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Wears unusual cloths",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Wears unusual glasses",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Wears religious iconography",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Wears political iconography",
+      "description": "",
+      "correlations": {}
+    }
+  ]
+}

@@ -1,0 +1,471 @@
+{
+  "resource": "fantasy-professions",
+  "choose": "single",
+  "values": [
+    {
+      "name": "Agitator",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Alchemist",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Artillerist",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Artisan",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Assassin",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Astrologer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Augur",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Beggar",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Boatman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Bodyguard",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Bounty Hunter",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Cat Burglar",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Charlatan",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Cleric",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Coachman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Counterfeiter",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Daemon Slayer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Daemonologist",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Demagogue",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Diviner",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Dragon Slayer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Druid",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Duellist",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Engineer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Entertainer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Exorcist",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Explorer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Farmer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Fence",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Fighter",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Fisherman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Forger",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Freelance",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Gambler",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Gamekeeper",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Gunner",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Hedge Wizard",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Herbalist",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Herdsman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Highwayman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Hunter",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Illusionist",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Informer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Jailer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Jester",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Judicial Champion",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Labourer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Lawyer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Loremaster",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Marine",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Mercenary",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Merchant",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Militiaman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Miner",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Minstrel",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Mountaineer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Navigator",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Necromancer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Noble",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Outlaw",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Outrider",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Pedlar",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Pharmacist",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Physician",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Pilot",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Pit Fighter",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Prospector",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Racketeer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Rustler",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Sapper",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Scholar",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Scout",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Scribe",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Seaman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Seer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Servant",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Shaman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Ship Master",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Slaver",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Smuggler",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Soldier",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Spy",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Squire",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Student",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Templar",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Thief",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Torturer",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Trader",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Trapper",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Watchman",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Witch Hunter",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Wizard",
+      "description": "",
+      "correlations": {}
+    },
+    {
+      "name": "Woodsman",
+      "description": "",
+      "correlations": {}
+    }
+  ]
+}

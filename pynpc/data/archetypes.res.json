@@ -1,0 +1,696 @@
+{
+  "resource": "archetypes",
+  "choose": "single",
+  "values": [
+    {
+      "name": "Addict",
+      "description": "Whatever your fix is, you've GOT TO have it.",
+      "correlations": {}
+    },
+    {
+      "name": "Adherent",
+      "description": "Stay true to your goals/beliefs no matter what.",
+      "correlations": {}
+    },
+    {
+      "name": "Adjudicator",
+      "description": "Pronounce the solutions to others' problems.",
+      "correlations": {}
+    },
+    {
+      "name": "Advisor",
+      "description": "Your wise counsel is sought out.",
+      "correlations": {}
+    },
+    {
+      "name": "Analyst",
+      "description": "Collection and study of information brings understanding.",
+      "correlations": {}
+    },
+    {
+      "name": "Architect",
+      "description": "Creation is your passion.",
+      "correlations": {}
+    },
+    {
+      "name": "Artisan",
+      "description": "Hard work and dedication will get you there, wherever that is.",
+      "correlations": {}
+    },
+    {
+      "name": "Artist",
+      "description": "Inspire, challenge or provoke others with your works.",
+      "correlations": {}
+    },
+    {
+      "name": "Aspirant",
+      "description": "A master of none is better than a master of one.",
+      "correlations": {}
+    },
+    {
+      "name": "Autocrat",
+      "description": "Control freak.",
+      "correlations": {}
+    },
+    {
+      "name": "Avant Garde",
+      "description": "A fascination with the trendy and new.",
+      "correlations": {}
+    },
+    {
+      "name": "Barbarian",
+      "description": "Civilization is the crutch of the weak",
+      "correlations": {}
+    },
+    {
+      "name": "Beast",
+      "description": "Conquer all who oppose you, destroying them if possible.",
+      "correlations": {}
+    },
+    {
+      "name": "Believer",
+      "description": "You must convince others of the Truth only you know.",
+      "correlations": {}
+    },
+    {
+      "name": "Bon Vivant",
+      "description": "Eat, drink, and be merry, for tomorrow we die.",
+      "correlations": {}
+    },
+    {
+      "name": "Bravo",
+      "description": "Cruelty and bullying are your good points.",
+      "correlations": {}
+    },
+    {
+      "name": "Bumpkin",
+      "description": "Solid and practical, common sense, and pragmatism.",
+      "correlations": {}
+    },
+    {
+      "name": "Bureaucrat",
+      "description": "Rules and laws weren't made to be broken, ever.",
+      "correlations": {}
+    },
+    {
+      "name": "Caregiver",
+      "description": "Actively caring or helping others.",
+      "correlations": {}
+    },
+    {
+      "name": "Cavalier",
+      "description": "The fearless hero.",
+      "correlations": {}
+    },
+    {
+      "name": "Celebrant",
+      "description": "Pursue excitement in all things.",
+      "correlations": {}
+    },
+    {
+      "name": "Challenger",
+      "description": "You exist to test the mettle of others, especially your so-called betters.",
+      "correlations": {}
+    },
+    {
+      "name": "Child",
+      "description": "Working through immaturity and innocence.",
+      "correlations": {}
+    },
+    {
+      "name": "Churl",
+      "description": "Manners are for wimps, wusses, and mama's boys.",
+      "correlations": {}
+    },
+    {
+      "name": "Competitor",
+      "description": "You must win everything to be happy.",
+      "correlations": {}
+    },
+    {
+      "name": "Comrade",
+      "description": "You value friendship above all other things.",
+      "correlations": {}
+    },
+    {
+      "name": "Confidant",
+      "description": "A good listener and keeper of secrets.",
+      "correlations": {}
+    },
+    {
+      "name": "Conformist",
+      "description": "You would rather follow a powerful figure than lead.",
+      "correlations": {}
+    },
+    {
+      "name": "Conniver",
+      "description": "You want something for nothing.",
+      "correlations": {}
+    },
+    {
+      "name": "Courtier",
+      "description": "The social butterfly.",
+      "correlations": {}
+    },
+    {
+      "name": "Coward",
+      "description": "The Coward fears himself above all.",
+      "correlations": {}
+    },
+    {
+      "name": "Crafter",
+      "description": "The urge to improve things burns strong within you.",
+      "correlations": {}
+    },
+    {
+      "name": "Craven",
+      "description": "Better a live coward than a dead hero.",
+      "correlations": {}
+    },
+    {
+      "name": "Critic",
+      "description": "You find imperfections in everything.",
+      "correlations": {}
+    },
+    {
+      "name": "Crusader",
+      "description": "All action must serve your goal and inspire others likewise.",
+      "correlations": {}
+    },
+    {
+      "name": "Curmudgeon",
+      "description": "Cynicism is the main means of operation.",
+      "correlations": {}
+    },
+    {
+      "name": "Dandy",
+      "description": "A social climber at heart, whatever it takes.",
+      "correlations": {}
+    },
+    {
+      "name": "Darling",
+      "description": "You are the apple of everyone's eye.",
+      "correlations": {}
+    },
+    {
+      "name": "Defender",
+      "description": "You stand guard over that for which you care.",
+      "correlations": {}
+    },
+    {
+      "name": "Demagogue",
+      "description": "Incite others to your side using their fears and prejudices.",
+      "correlations": {}
+    },
+    {
+      "name": "Deviant",
+      "description": "The status quo is for suckers.",
+      "correlations": {}
+    },
+    {
+      "name": "Diplomat",
+      "description": "There is always a compromise to be had.",
+      "correlations": {}
+    },
+    {
+      "name": "Director",
+      "description": "Order is the name of the game.",
+      "correlations": {}
+    },
+    {
+      "name": "Dreamer",
+      "description": "Focus on the loftiness of your goals, not their practicality.",
+      "correlations": {}
+    },
+    {
+      "name": "Eccentric",
+      "description": "Strange times call for strange behavior/attitudes.",
+      "correlations": {}
+    },
+    {
+      "name": "Engine",
+      "description": "Utterly implacable, nothing sways you from your goal.",
+      "correlations": {}
+    },
+    {
+      "name": "Evangelist",
+      "description": "Whatever it is you have faith in, you must spread the word.",
+      "correlations": {}
+    },
+    {
+      "name": "Explorer",
+      "description": "Seek new experiences and ideas.",
+      "correlations": {}
+    },
+    {
+      "name": "Eye of the Storm",
+      "description": "The thrill of chaos calls to you.",
+      "correlations": {}
+    },
+    {
+      "name": "Fanatic",
+      "description": "One cause, full support for it.",
+      "correlations": {}
+    },
+    {
+      "name": "Fatalist",
+      "description": "All things will go wrong.",
+      "correlations": {}
+    },
+    {
+      "name": "Fiend",
+      "description": "You inflict pain for no other reason than the enjoyment you get out of watching others suffer.",
+      "correlations": {}
+    },
+    {
+      "name": "Fool",
+      "description": "No matter the cause, as long as someone tells you what it is.",
+      "correlations": {}
+    },
+    {
+      "name": "Fop",
+      "description": "Appearance is everything.",
+      "correlations": {}
+    },
+    {
+      "name": "Freak",
+      "description": "Your mind is a seething realm of chaos that you can barely understand",
+      "correlations": {}
+    },
+    {
+      "name": "Futurist",
+      "description": "Revels in the magnificent unknown.",
+      "correlations": {}
+    },
+    {
+      "name": "Gadfly",
+      "description": "The watcher watching the watchmen, keeping the powers that be honest.",
+      "correlations": {}
+    },
+    {
+      "name": "Gallant",
+      "description": "A rogue to themselves, a jerk to most.",
+      "correlations": {}
+    },
+    {
+      "name": "Grotesque",
+      "description": "You love disgusting others and go out of your way to push their buttons.",
+      "correlations": {}
+    },
+    {
+      "name": "Guru",
+      "description": "Your enlightenment draws others to you.",
+      "correlations": {}
+    },
+    {
+      "name": "Healer",
+      "description": "Ease the pain and suffering of the afflicted.",
+      "correlations": {}
+    },
+    {
+      "name": "Hedonist",
+      "description": "The pursuit of pleasure is your reason for living.",
+      "correlations": {}
+    },
+    {
+      "name": "Hermit",
+      "description": "Reclusive and ascetic.",
+      "correlations": {}
+    },
+    {
+      "name": "Hoarder",
+      "description": "You have determined that you will never lack for anything.",
+      "correlations": {}
+    },
+    {
+      "name": "Honest Abe",
+      "description": "The simple things in life are best.",
+      "correlations": {}
+    },
+    {
+      "name": "Humbug",
+      "description": "Grumpy, sour, and just plain cranky, nothing ever satisfies you.",
+      "correlations": {}
+    },
+    {
+      "name": "Ice heart",
+      "description": "You are the Ice Queen, the detached and cold pragmatist.",
+      "correlations": {}
+    },
+    {
+      "name": "Jester",
+      "description": "In the school of life, you are the class clown.",
+      "correlations": {}
+    },
+    {
+      "name": "Jobs worth",
+      "description": "The routine is the only comfortable way to exist.",
+      "correlations": {}
+    },
+    {
+      "name": "Judge",
+      "description": "Brutal honesty results in improvements.",
+      "correlations": {}
+    },
+    {
+      "name": "Knave",
+      "description": "With a sparkle in your eye, you cajole, encourage, tempt, trick, and manipulate others into exploring their darkest desires.",
+      "correlations": {}
+    },
+    {
+      "name": "Knight",
+      "description": "You follow all the old codes of chivalry/bushido/whatever and seek to aid those in need.",
+      "correlations": {}
+    },
+    {
+      "name": "Lackey",
+      "description": "You are a servile minion, drawing strength from those you serve.",
+      "correlations": {}
+    },
+    {
+      "name": "Loner",
+      "description": "Company makes for uncomfortable situations.",
+      "correlations": {}
+    },
+    {
+      "name": "Lurker",
+      "description": "To not be noticed, and you slouch, slink, and creep out of the way.",
+      "correlations": {}
+    },
+    {
+      "name": "Manipulator",
+      "description": "It's fun to tweak the actions of others.",
+      "correlations": {}
+    },
+    {
+      "name": "Martyr",
+      "description": "The sacrifice of one is beneficial to others.",
+      "correlations": {}
+    },
+    {
+      "name": "Masochist",
+      "description": "It ain't good until it hurts.",
+      "correlations": {}
+    },
+    {
+      "name": "Mastermind",
+      "description": "You are the brilliant, if underestimated, architect of destruction.",
+      "correlations": {}
+    },
+    {
+      "name": "Meddler",
+      "description": "You know what's best for everyone.",
+      "correlations": {}
+    },
+    {
+      "name": "Mediator",
+      "description": "Balance is the best way.",
+      "correlations": {}
+    },
+    {
+      "name": "Merchant",
+      "description": "Everything and everyone is up for sale.",
+      "correlations": {}
+    },
+    {
+      "name": "Minion",
+      "description": "ou crave the attentions of beings more powerful than yourself.",
+      "correlations": {}
+    },
+    {
+      "name": "Monger",
+      "description": "You value only one thing, be it money, fame, power, etc.",
+      "correlations": {}
+    },
+    {
+      "name": "Monster",
+      "description": "knows she is a creature of darkness and acts like it.",
+      "correlations": {}
+    },
+    {
+      "name": "Mystic",
+      "description": "It's a strange world out there, and you're determined to find out more about it.",
+      "correlations": {}
+    },
+    {
+      "name": "None Partisan",
+      "description": "Avoid external preconceptions, judge things/people for yourself.",
+      "correlations": {}
+    },
+    {
+      "name": "Obfuscater",
+      "description": "One who buries their secrets.",
+      "correlations": {}
+    },
+    {
+      "name": "Optimist",
+      "description": "Life is good. Live it.",
+      "correlations": {}
+    },
+    {
+      "name": "Orchid",
+      "description": "Innocence, now faced with the harsh realities of the world.",
+      "correlations": {}
+    },
+    {
+      "name": "Outcast",
+      "description": "You are a loner, a drifter on the outskirts of society.",
+      "correlations": {}
+    },
+    {
+      "name": "Outlaw",
+      "description": " You take what you want from others without a moment's hesitation and guilt.",
+      "correlations": {}
+    },
+    {
+      "name": "Outsider",
+      "description": "rebel, with or without a cause.",
+      "correlations": {}
+    },
+    {
+      "name": "Paladin",
+      "description": "Nothing is too good or too low for your God.",
+      "correlations": {}
+    },
+    {
+      "name": "Panderer",
+      "description": "You love to see other people happy, regardless of yourself.",
+      "correlations": {}
+    },
+    {
+      "name": "Pandora",
+      "description": "You just can't seem to keep your box shut.",
+      "correlations": {}
+    },
+    {
+      "name": "Paragon",
+      "description": "Stick to your code to provide an example to the rest.",
+      "correlations": {}
+    },
+    {
+      "name": "Paranoid",
+      "description": "They actually are after you…",
+      "correlations": {}
+    },
+    {
+      "name": "Peacock",
+      "description": "You are the most attractive, smartest, best person in the world.",
+      "correlations": {}
+    },
+    {
+      "name": "Pedagogue",
+      "description": "Learning is what life is all about.",
+      "correlations": {}
+    },
+    {
+      "name": "Penitent",
+      "description": "There is no right to exist. It must be earned.",
+      "correlations": {}
+    },
+    {
+      "name": "Perfectionist",
+      "description": "Mistakes cannot be made.",
+      "correlations": {}
+    },
+    {
+      "name": "Philanthropist",
+      "description": "You have a highly defined sense of morality and always strive to do the 'right' thing.",
+      "correlations": {}
+    },
+    {
+      "name": "Pishogue",
+      "description": "You interpret reality very differently than everyone else, but in a benign fashion.",
+      "correlations": {}
+    },
+    {
+      "name": "Plotter",
+      "description": "Nothing can be done right without a plan.",
+      "correlations": {}
+    },
+    {
+      "name": "Poltroon",
+      "description": "Someone cannot shoot at a target they do not have.",
+      "correlations": {}
+    },
+    {
+      "name": "Praise Seeker",
+      "description": "The opinions of others drive existence.",
+      "correlations": {}
+    },
+    {
+      "name": "Prankster",
+      "description": "Jokes, pranks, and laughs. Loki would be proud.",
+      "correlations": {}
+    },
+    {
+      "name": "Predator",
+      "description": "You divide the world into those who hunt, and those who are hunted.",
+      "correlations": {}
+    },
+    {
+      "name": "Provider",
+      "description": "Your focus is your family's well-being.",
+      "correlations": {}
+    },
+    {
+      "name": "Questor",
+      "description": "The Questor seeks to find the one great answer that will make sense of the world.",
+      "correlations": {}
+    },
+    {
+      "name": "Ragamuffin",
+      "description": "Substance is all that matters",
+      "correlations": {}
+    },
+    {
+      "name": "Rake",
+      "description": "You are a greedy sensualist, a miser, a glutton, an obsessive collector, and a hoarder of experience.",
+      "correlations": {}
+    },
+    {
+      "name": "Rational",
+      "description": "Logic and reason above all else.",
+      "correlations": {}
+    },
+    {
+      "name": "Rebel",
+      "description": "The establishment is a joke.",
+      "correlations": {}
+    },
+    {
+      "name": "Regent",
+      "description": "Nobility in the purest sense, you are the ruler, the patriarch or matriarch.",
+      "correlations": {}
+    },
+    {
+      "name": "Ringleader",
+      "description": "You have your gang and you rule them with an iron fist.",
+      "correlations": {}
+    },
+    {
+      "name": "Rogue",
+      "description": "Only one thing matters to the Rogue: herself. To each his own.",
+      "correlations": {}
+    },
+    {
+      "name": "Sadist",
+      "description": "You like to push the boundaries other others and try to see how much they can take.",
+      "correlations": {}
+    },
+    {
+      "name": "Sage",
+      "description": "You are the advisor, the wise one, the teacher.",
+      "correlations": {}
+    },
+    {
+      "name": "Saint",
+      "description": "You feel the pain of those around you and strive to ease their suffering.",
+      "correlations": {}
+    },
+    {
+      "name": "Savage",
+      "description": "Back to nature, trash the rest.",
+      "correlations": {}
+    },
+    {
+      "name": "Schismatic",
+      "description": "Things fall apart. The center cannot hold. You are a destroyer of social institutions.",
+      "correlations": {}
+    },
+    {
+      "name": "Seer",
+      "description": "Someone has to plumb the mysteries of the world, for the good of others.",
+      "correlations": {}
+    },
+    {
+      "name": "Soldier",
+      "description": "Your firm resolve under pressure keeps the team together.",
+      "correlations": {}
+    },
+    {
+      "name": "Sophist",
+      "description": "One who teaches solely for self gain.",
+      "correlations": {}
+    },
+    {
+      "name": "Squire",
+      "description": "Servant and side kick, all in one.",
+      "correlations": {}
+    },
+    {
+      "name": "Stoic",
+      "description": "All hardships must be endured with calm.",
+      "correlations": {}
+    },
+    {
+      "name": "Survivor",
+      "description": "Perseverance is the only way to get ahead in life.",
+      "correlations": {}
+    },
+    {
+      "name": "Sycophant",
+      "description": "Let others do the hard work and live on praise for it.",
+      "correlations": {}
+    },
+    {
+      "name": "Thrill Seeker",
+      "description": "Take a chance on everything.",
+      "correlations": {}
+    },
+    {
+      "name": "Traditionalist",
+      "description": "The old ways are the best ways.",
+      "correlations": {}
+    },
+    {
+      "name": "Trickster",
+      "description": "Find the absurd in everything.",
+      "correlations": {}
+    },
+    {
+      "name": "Troubadour",
+      "description": "You walk in a fog of pink and lilac optimism.",
+      "correlations": {}
+    },
+    {
+      "name": "Vigilante",
+      "description": "Decide and dispense justice yourself.",
+      "correlations": {}
+    },
+    {
+      "name": "Virtuoso",
+      "description": "Seek to master one thing, be the best of the best.",
+      "correlations": {}
+    },
+    {
+      "name": "Visionary",
+      "description": "There is something more to life and this existence.",
+      "correlations": {}
+    },
+    {
+      "name": "Wayfarer",
+      "description": "The endless wanderer.",
+      "correlations": {}
+    }
+  ]
+}
