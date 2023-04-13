@@ -184,6 +184,6 @@ class ResourceObject:
         """Return a random entry."""
         return choice(self._values)
 
-    def get_name(self) -> str:
+    def get_name(self) -> Any:
         """Return the name of a random choice."""
         return choice(self._values)["name"]
