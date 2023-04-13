@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """NPC class tests."""
-from pathlib import Path
 from typing import Any
 
 import pytest
 
-from pynpc.npc import NPC, ResourceObject
+from pynpc.npc import NPC
 
 
 @pytest.fixture(autouse=True, scope="package")

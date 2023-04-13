@@ -2,11 +2,9 @@
 """NPC class."""
 import glob
 from collections import namedtuple
-
-# from pathlib import Path, PosixPath
 from pathlib import Path
 from secrets import choice
-from typing import Any, cast
+from typing import Any
 
 import orjson
 import structlog
@@ -157,7 +155,7 @@ class NPC:
 ### Minor: {self.reading_minor.card}
 
 {self.reading_minor.meaning}
-"""  # noqa: E501
+"""
 
 
 class ResourceObject:
@@ -170,22 +168,22 @@ class ResourceObject:
 
     def __init__(self, source: Any) -> None:
         """Initialise class."""
-        self.values = source["values"]
-        self.name = source["resource"]
-        self.raw = source
+        self._values = source["values"]
+        self._name = source["resource"]
+        self._raw = source
 
     def get_values(self, count: int = 1) -> Any:
         """Return a dictionary of choices."""
         ret = {}
         for _ in range(0, count):
-            item = choice(self.values)
+            item = choice(self._values)
             ret[item["name"]] = item
         return ret
 
     def get_value(self) -> Any:
         """Return a random entry."""
-        return choice(self.values)
+        return choice(self._values)
 
     def get_name(self) -> str:
         """Return the name of a random choice."""
-        return choice(self.values)["name"]
+        return choice(self._values)["name"]
