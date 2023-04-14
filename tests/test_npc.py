@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from pynpc.npc import NPC
+from pynpc.npc import NPC, ResourceObject
 
 
 @pytest.fixture(autouse=True, scope="package")
@@ -59,3 +59,29 @@ def test_markdown(random) -> None:
     assert "## Life events" in text
     assert "### Major" in text
     assert "### Minor" in text
+
+
+@pytest.fixture(autouse=True, scope="package")
+def res() -> Any:
+    elem = {
+        "name": "Test",
+        "description": "A test value",
+    }
+    source = {
+        "values": [elem],
+        "resource": [],
+    }
+    return ResourceObject(source)
+
+
+def test_resource_get_name(res) -> None:
+    assert res.get_name() == "Test"
+
+
+def test_resource_get_values(res) -> None:
+    assert res.get_values() == {
+        "Test": {
+            "name": "Test",
+            "description": "A test value",
+        },
+    }
