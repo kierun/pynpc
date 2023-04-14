@@ -44,6 +44,7 @@ dlint = "^0.14.0"
 ipython = "^8.5.0"
 pytest-sugar = "^0.9.6"
 requests-mock = "^1.10.0"
+ipdb = "^0.13.13"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
