@@ -31,9 +31,11 @@ def test_version():
         (False, VersionCheck.LAGGING),
     ],
 )
-def test_pynpc_version_status(ask, check):
+@patch("pynpc.console._do_stuff")
+def test_pynpc_version_status(m_stuff, ask, check):
     with patch("pynpc.console.check_if_latest_version") as mock_check, patch("pynpc.console.Confirm.ask") as mock_ask:
         mock_ask.return_value = ask
+        m_stuff.return_value = None
         mock_check.return_value = check
         runner = CliRunner()
         result = runner.invoke(main, ["--verbose"])

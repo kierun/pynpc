@@ -8,7 +8,9 @@ from typing import Any
 
 import orjson
 import structlog
+from faker import Faker
 
+from pynpc.name_corruptor import NameCorruptor, parse_patterns
 from pynpc.skills import get_skill_value
 
 rlog = structlog.get_logger("pynpc.npoc")
@@ -75,8 +77,29 @@ class NPC:
             # so an extra dir can override core behaviour
             self._resources[jobj["resource"]] = ResourceObject(source=jobj)
 
+        # Faker, for names.
+        self._fake = Faker(["en_GB"])
+        data = Path(Path(__file__).resolve().parent.parent, "pynpc", "data", "name-corruption-pattern.json")
+        patterns = parse_patterns(orjson.loads(data.read_text()))
+        self._corruptor = NameCorruptor(patterns)
+
         # Generates the first one.
         self.generate()
+
+    def _get_name(self, name: str, sz: int = 3) -> str:
+        """Get corruptions variations from a name."""
+        try:
+            first, last = name.split(" ")
+        except ValueError as e:
+            rlog.error("Name is not in the expected format: 'first last'", name=name, error=e)
+            first = name
+            last = ""
+        generated = [first]
+        for _ in range(0, sz):
+            _next = generated[-1]
+            corrupted = self._corruptor.corrupt_once(_next)
+            generated.append(corrupted)
+        return f"{first} (" + " ".join(generated[1:]) + ") " + last
 
     def reading(self) -> Reading:
         """Return either upwards or revesed tarot cards draw."""
@@ -87,7 +110,9 @@ class NPC:
 
     def generate(self) -> None:
         """Generate an NPC."""
-        self.name = "Random"
+        self.name_fem = self._get_name(self._fake.name_female())  # Female
+        self.name_mal = self._get_name(self._fake.name_male())  # Male
+        self.name_non = self._get_name(self._fake.name_nonbinary())  # Non-binary
         _arc = self._resources["archetypes"].get_value()
         self.nature = Trait(_arc["name"], _arc["description"])
         self.demeanour = self.nature
@@ -108,11 +133,15 @@ class NPC:
         This is the simple console printing. Nothing fancy.
         """
         skills = (
-            f"Name: {self.name}\n"
+            "\n"
+            "Names:\n"
+            f"   ♀ {self.name_fem}\n"
+            f"   ♂ {self.name_mal}\n"
+            f"   ⚥ {self.name_non}\n"
             f"Skills:\n"
-            f"   Primary:   {self.skill_primary.name}\n"
-            f"   Secondary: {self.skill_secondary.name}\n"
-            f"   Hobby:     {self.skill_hobby.name}\n"
+            f"   Primary:   {self.skill_primary}\n"
+            f"   Secondary: {self.skill_secondary}\n"
+            f"   Hobby:     {self.skill_hobby}\n"
             f"Personality: {self.personality}\n"
             f"Nature: {self.nature}\n"
             f"Demeanor: {self.nature}\n"
@@ -128,7 +157,10 @@ class NPC:
     def to_markdown(self) -> str:
         """Print NPC in markdown."""
         return f"""
-# {self.name}
+# Fame
+-  f"♀ Name: {self.name_fem}\n"
+-  f"♂ Name: {self.name_mal}\n"
+-  f"⚥ Name: {self.name_non}\n"
 
 ## Skills
 
