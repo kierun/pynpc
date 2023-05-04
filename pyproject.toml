@@ -36,7 +36,7 @@ pdbpp = "^0.10.3"
 coverage = { extras = ["toml"], version = "^7.2.1" }
 bandit = "^1.7.4"
 pytest-skip-slow = "^0.0.5"
-commitizen = "^2.31.0"
+commitizen = ">=2.31,<4.0"
 python-semantic-release = "7.33.2"
 pytest-cov = "^4.0.0"
 pydocstyle = "^6.1.1"
