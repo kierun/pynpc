@@ -15,6 +15,8 @@
 
 ---
 
+![A nice d20 icon](docs/assets/d20.png "d20 icon")
+
 ## Documentation
 
 - [Installation](docs/installation.md)
