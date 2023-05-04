@@ -223,7 +223,19 @@ def main(
 
     # Run commands.
     logger.debug("Starting real work…")
-    # TODO:  pass extra data dirs in somehow
+    _do_stuff(logger, output)
+
+    # We should be done…
+    logger.debug("That's all folks!")
+    wprint("Operation was successful.", level="success")
+    sys.exit(EXIT_CODE_SUCCESS)
+
+
+def _do_stuff(logger: structlog.BoundLogger, output: str) -> None:  # pragma: no cover
+    """Do stuff.
+
+    This has no unit tests since it does everything. We could mock everything, but why?
+    """
     x = NPC()
     if output.lower() == "console":
         rprint(x)
@@ -239,11 +251,6 @@ def main(
         rprint("Not support yet")
     else:  # pragma: no cover
         rprint("Report a bug.")
-
-    # We should be done…
-    logger.debug("That's all folks!")
-    wprint("Operation was successful.", level="success")
-    sys.exit(EXIT_CODE_SUCCESS)
 
 
 def _version_check() -> None:
