@@ -27,7 +27,7 @@ repos:
     hooks:
       - id: isort
   - repo: https://github.com/myint/docformatter
-    rev: v1.7.1
+    rev: v1.7.3
     hooks:
       - id: docformatter
   - repo: https://gitlab.com/smop/pre-commit-hooks
@@ -40,7 +40,7 @@ repos:
       - id: python-bandit-vulnerability-check
         args: [--verbose, --ini, .banditrc, --recursive, setupr]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.270
+    rev: v0.0.276
     hooks:
       - id: ruff
   - repo: https://github.com/abravalheri/validate-pyproject
@@ -60,7 +60,7 @@ repos:
   #     _______________
   # ___/ Markdown lint \_________________________________________________________
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.34.0
+    rev: v0.35.0
     hooks:
       - id: markdownlint
         args: [--ignore, CHANGELOG.md, -s, .mdl_style.rb]
@@ -79,10 +79,10 @@ repos:
   #     _______________
   # ___/ GH linting    \_________________________________________________________
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.23.1
+    rev: 0.23.2
     hooks:
       - id: check-github-actions
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.23.1
+    rev: 0.23.2
     hooks:
       - id: check-dependabot
