@@ -19,7 +19,7 @@ repos:
     hooks:
       - id: black
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.3.1
+    rev: v1.3.2
     hooks:
       - id: python-safety-dependencies-check
   - repo: https://github.com/pre-commit/mirrors-isort
@@ -40,7 +40,7 @@ repos:
       - id: python-bandit-vulnerability-check
         args: [--verbose, --ini, .banditrc, --recursive, setupr]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.280
+    rev: v0.0.282
     hooks:
       - id: ruff
   - repo: https://github.com/abravalheri/validate-pyproject
