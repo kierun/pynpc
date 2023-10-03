@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """NPC class."""
-import glob
 from collections import namedtuple
 from pathlib import Path
 from secrets import choice
@@ -50,7 +49,6 @@ class NPC:
 
         The option `what` is special. It defines which files are used for the
         random values to chose form. The patter is the same for all.
-
         """
         # Meta data.
         rlog.debug(f"Creating {what} NPC")
@@ -68,7 +66,7 @@ class NPC:
         self._res_files = []
         # find our files
         for dpath in self._data_dir:
-            self._res_files = glob.glob(f"{dpath}/*.res.json")
+            self._res_files = Path(dpath).glob("*.res.json")
 
         # read them ALL
         for file in self._res_files:
@@ -95,7 +93,7 @@ class NPC:
             first = name
             last = ""
         generated = [first]
-        for _ in range(0, sz):
+        for _ in range(sz):
             _next = generated[-1]
             corrupted = self._corruptor.corrupt_once(_next)
             generated.append(corrupted)
@@ -191,11 +189,11 @@ class NPC:
 
 
 class ResourceObject:
-    """
-    Models a list of things and can get a random item from it.
+    """Models a list of things and can get a random item from it.
 
-    All items in the list have the same weight. A cheap hack is to add the
-    same option multiple times to get a higher probability of being chosen.
+    All items in the list have the same weight. A cheap hack is to add
+    the same option multiple times to get a higher probability of being
+    chosen.
     """
 
     def __init__(self, source: Any) -> None:
@@ -207,7 +205,7 @@ class ResourceObject:
     def get_values(self, count: int = 1) -> Any:
         """Return a dictionary of choices."""
         ret = {}
-        for _ in range(0, count):
+        for _ in range(count):
             item = choice(self._values)
             ret[item["name"]] = item
         return ret

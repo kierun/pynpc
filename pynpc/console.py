@@ -78,7 +78,7 @@ def configure_logging(log_level: str, verbose: bool) -> None:
             self.param = param
             super()
 
-        def filter(self, _: logging.LogRecord) -> bool:  # noqa: A003
+        def filter(self, _: logging.LogRecord) -> bool:
             # We have no choice in the method's name.
             # We do not care about record thus mark it as _.
             #
@@ -234,7 +234,8 @@ def main(
 def _do_stuff(logger: structlog.BoundLogger, output: str) -> None:  # pragma: no cover
     """Do stuff.
 
-    This has no unit tests since it does everything. We could mock everything, but why?
+    This has no unit tests since it does everything. We could mock
+    everything, but why?
     """
     x = NPC()
     if output.lower() == "console":
