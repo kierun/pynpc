@@ -12,7 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: 'Check out'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Set up the environment
               uses: ./.github/workflows/setup-poetry-env
@@ -34,7 +34,7 @@ jobs:
                 python-version: ['3.9', '3.10', '3.11']
         steps:
             - name: 'Check out'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: 'Set up the environment'
               uses: ./.github/workflows/setup-poetry-env
@@ -54,7 +54,7 @@ jobs:
         concurrency: release
 
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
               with:
                   fetch-depth: 0
                   token: ${{ secrets.PAT }}
@@ -70,7 +70,7 @@ jobs:
         concurrency: publish
         steps:
             - name: 'Check out'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 0
 
