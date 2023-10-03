@@ -63,10 +63,10 @@ class NPC:
         # access the 'values' object to get the array of data
         # this is to preserve any other values at the top level
         self._resources = {}
-        self._res_files = []
+        self._res_files = []  # type: ignore[var-annotated]
         # find our files
         for dpath in self._data_dir:
-            self._res_files = Path(dpath).glob("*.res.json")
+            self._res_files = Path(dpath).glob("*.res.json")  # type: ignore[assignment]
 
         # read them ALL
         for file in self._res_files:
