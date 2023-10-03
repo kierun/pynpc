@@ -15,7 +15,7 @@ repos:
   #     __________________
   # ___/ Python specific. \______________________________________________________
   - repo: https://github.com/psf/black
-    rev: 23.7.0
+    rev: 23.9.1
     hooks:
       - id: black
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -40,7 +40,7 @@ repos:
       - id: python-bandit-vulnerability-check
         args: [--verbose, --ini, .banditrc, --recursive, setupr]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.287
+    rev: v0.0.292
     hooks:
       - id: ruff
   - repo: https://github.com/abravalheri/validate-pyproject
@@ -60,7 +60,7 @@ repos:
   #     _______________
   # ___/ Markdown lint \_________________________________________________________
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.36.0
+    rev: v0.37.0
     hooks:
       - id: markdownlint
         args: [--ignore, CHANGELOG.md, -s, .mdl_style.rb]
@@ -79,10 +79,10 @@ repos:
   #     _______________
   # ___/ GH linting    \_________________________________________________________
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.26.3
+    rev: 0.27.0
     hooks:
       - id: check-github-actions
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.26.3
+    rev: 0.27.0
     hooks:
       - id: check-dependabot
