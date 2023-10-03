@@ -29,9 +29,9 @@ TXT_FMT = (
         ((1, 2, 3), "1, 2, and 3"),
         (
             (
-                Path(""),
-                Path(""),
-                Path(""),
+                Path(),
+                Path(),
+                Path(),
             ),
             "., ., and .",
         ),
