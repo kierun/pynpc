@@ -2,7 +2,7 @@
 # ___/ Usefull stuff you do WANT for all repositories. \________________________
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -15,7 +15,7 @@ repos:
   #     __________________
   # ___/ Python specific. \______________________________________________________
   - repo: https://github.com/psf/black
-    rev: 23.9.1
+    rev: 23.10.1
     hooks:
       - id: black
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -40,11 +40,11 @@ repos:
       - id: python-bandit-vulnerability-check
         args: [--verbose, --ini, .banditrc, --recursive, setupr]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.292
+    rev: v0.1.2
     hooks:
       - id: ruff
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.14
+    rev: v0.15
     hooks:
       - id: validate-pyproject
   #     ______
