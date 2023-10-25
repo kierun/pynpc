@@ -9,7 +9,7 @@ from pathlib import Path
 
 import click
 import structlog
-from click_help_colors import HelpColorsCommand  # type: ignore[import]
+from click_help_colors import HelpColorsCommand  # type: ignore[import-untyped]
 from rich import print as rprint
 from rich.console import Console
 from rich.prompt import Confirm
