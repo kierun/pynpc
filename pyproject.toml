@@ -40,7 +40,7 @@ commitizen = "^3.10.0"
 python-semantic-release = "8.1.1"
 pytest-cov = "^4.1.0"
 pydocstyle = "^6.3.0"
-ruff = "0.0.292"
+ruff = "0.1.2"
 dlint = "^0.14.1"
 ipython = "^8.16.1"
 pytest-sugar = "^0.9.7"
@@ -73,21 +73,21 @@ exclude = '''
 profile = "black"
 line_length = 120
 known_third_party = [
-  "click",
-  "click_help_colors",
-  "distro",
-  "gnupg",
-  "google",
-  "pendulum",
-  "plumbum",
-  "pytest",
-  "requests",
-  "requests_mock",
-  "rich",
-  "ruamel",
-  "semver",
-  "sha256sum",
-  "structlog",
+    "click",
+    "click_help_colors",
+    "distro",
+    "gnupg",
+    "google",
+    "pendulum",
+    "plumbum",
+    "pytest",
+    "requests",
+    "requests_mock",
+    "rich",
+    "ruamel",
+    "semver",
+    "sha256sum",
+    "structlog",
 ]
 
 [tool.mypy]
@@ -144,98 +144,98 @@ match-dir = "pynpc"
 [tool.ruff]
 line-length = 120
 select = [
-  "F",
-  "E",
-  "W",
-  "I",
-  "D",
-  "UP",
-  "N",
-  "YTT",
-  "ANN",
-  "S",
-  "BLE",
-  # "FBT", # boolean traps: Why? ¯\_(ツ)_/¯
-  "B",
-  "A",
-  "C4",
-  "T10",
-  "EM",
-  "ISC",
-  "ICN",
-  "T20",
-  "PT",
-  "Q",
-  "RET",
-  "SIM",
-  "TID",
-  "ARG",
-  "DTZ",
-  "ERA",
-  "PD",
-  "PGH",
-  # "PL", # Pylint, the horror! The horror!
-  "PIE",
-  # "COM",  # Black or add-trailing-comma can do all this comma insertion automatically.
-  "INP",
-  "EXE",
-  "TCH",
-  "TRY",
-  "PTH",
-  "RUF",
+    "F",
+    "E",
+    "W",
+    "I",
+    "D",
+    "UP",
+    "N",
+    "YTT",
+    "ANN",
+    "S",
+    "BLE",
+    # "FBT", # boolean traps: Why? ¯\_(ツ)_/¯
+    "B",
+    "A",
+    "C4",
+    "T10",
+    "EM",
+    "ISC",
+    "ICN",
+    "T20",
+    "PT",
+    "Q",
+    "RET",
+    "SIM",
+    "TID",
+    "ARG",
+    "DTZ",
+    "ERA",
+    "PD",
+    "PGH",
+    # "PL", # Pylint, the horror! The horror!
+    "PIE",
+    # "COM",  # Black or add-trailing-comma can do all this comma insertion automatically.
+    "INP",
+    "EXE",
+    "TCH",
+    "TRY",
+    "PTH",
+    "RUF",
 ]
 
 # The following is equivalent to --docstring-convention=pep8:
 extend-ignore = [
-  "D203",
-  "D212",
-  "D213",
-  "D214",
-  "D215",
-  "D404",
-  "D405",
-  "D406",
-  "D407",
-  "D408",
-  "D409",
-  "D410",
-  "D411",
-  "D413",
-  "D415",
-  "D416",
-  "D417",
-  "ANN101", # Missing type annotation for `self` in method. https://peps.python.org/pep-0673/
-  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in annotations.
-  "UP009",  # UTF-8 encoding declaration is unnecessary
-  "INP001", # pytest does not want an __init__.py file.
+    "D203",
+    "D212",
+    "D213",
+    "D214",
+    "D215",
+    "D404",
+    "D405",
+    "D406",
+    "D407",
+    "D408",
+    "D409",
+    "D410",
+    "D411",
+    "D413",
+    "D415",
+    "D416",
+    "D417",
+    "ANN101", # Missing type annotation for `self` in method. https://peps.python.org/pep-0673/
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in annotations.
+    "UP009",  # UTF-8 encoding declaration is unnecessary
+    "INP001", # pytest does not want an __init__.py file.
 ]
 # Always autofix, but never try to fix `F401` (unused imports).
 #fix = true
 unfixable = [
-  "F401", # imported but unused.
+    "F401", # imported but unused.
 ]
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
-  ".bzr",
-  ".direnv",
-  ".eggs",
-  ".git",
-  ".hg",
-  ".mypy_cache",
-  ".nox",
-  ".pants.d",
-  ".ruff_cache",
-  ".svn",
-  ".tox",
-  ".venv",
-  "__pypackages__",
-  "_build",
-  "buck-out",
-  "build",
-  "dist",
-  "node_modules",
-  "venv",
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
 ]
 per-file-ignores = { "test_**.py" = ["D100", "D103", "S101", "ANN"] }
 
