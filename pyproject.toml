@@ -21,7 +21,7 @@ structlog = "^23.2.0"
 requests = "^2.31.0"
 types-requests = "^2.31.0.10"
 orjson = "^3.9.10"
-faker = ">=18.13,<20.0"
+faker = ">=18.13,<23.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.11.0"
