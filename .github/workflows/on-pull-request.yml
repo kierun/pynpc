@@ -87,6 +87,9 @@ jobs:
       - name: 'Check out'
         uses: actions/checkout@v4
 
+      - name: "Debug"
+        run: ls -la ./artifacts
+
       - uses: actions/download-artifact@master
         with:
           name: pytest-coverage-3.11
