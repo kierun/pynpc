@@ -101,5 +101,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          pytest-coverage-path: artifacts/pytest-3.12.txt
-          junitxml-path: artifacts/pytest-3.12.xml
+          pytest-coverage-path: artifacts/pytest-coverage-3.12/pytest-3.12.txt
+          junitxml-path: artifacts/pytest-coverage-3.12/pytest-3.12.xml
