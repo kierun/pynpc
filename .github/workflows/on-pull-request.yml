@@ -6,12 +6,6 @@ on:
 name: on-pull-request
 
 jobs:
-  # print_title_of_pr:
-  #   runs-on: ubuntu-20.04
-  #   if: contains(github.event.pull_request.title, "chore\(pip\):")
-  #   steps:
-  #   - name : Print Title of PR
-  #     run: echo The Title of your PR is ${{ github.event.pull_request.title }}
 
   quality:
     runs-on: ubuntu-latest
@@ -36,7 +30,7 @@ jobs:
     needs: quality
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11']
+        python-version: ['3.9', '3.10', '3.11', '3.12']
 
     steps:
       - uses: actions/checkout@v4
@@ -107,5 +101,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          pytest-coverage-path: artifacts/pytest-3.11.txt
-          junitxml-path: artifacts/pytest-3.11.xml
+          pytest-coverage-path: artifacts/pytest-coverage-3.12/pytest-3.12.txt
+          junitxml-path: artifacts/pytest-coverage-3.12/pytest-3.12.xml
