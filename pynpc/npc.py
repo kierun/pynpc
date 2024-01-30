@@ -104,7 +104,7 @@ class NPC:
         card = self._resources["cards"].get_value()
         if choice((0, 1)):
             return Reading(card["name"], card["meaning_up"])
-        return Reading(card["name"], card["meaning_rev"])
+        return Reading(card["name"], card["meaning_rev"])  # pragma: no cover
 
     def generate(self) -> None:
         """Generate an NPC."""
