@@ -15,11 +15,11 @@ repos:
   #     __________________
   # ___/ Python specific. \______________________________________________________
   - repo: https://github.com/psf/black
-    rev: 23.12.1
+    rev: 24.1.1
     hooks:
       - id: black
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.3.2
+    rev: v1.3.3
     hooks:
       - id: python-safety-dependencies-check
   - repo: https://github.com/pre-commit/mirrors-isort
@@ -40,11 +40,11 @@ repos:
       - id: python-bandit-vulnerability-check
         args: [--verbose, --ini, .banditrc, --recursive, setupr]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.1.11
+    rev: v0.1.15
     hooks:
       - id: ruff
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.15
+    rev: v0.16
     hooks:
       - id: validate-pyproject
   #     ______
@@ -60,7 +60,7 @@ repos:
   #     _______________
   # ___/ Markdown lint \_________________________________________________________
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.38.0
+    rev: v0.39.0
     hooks:
       - id: markdownlint
         args: [--ignore, CHANGELOG.md, -s, .mdl_style.rb]
