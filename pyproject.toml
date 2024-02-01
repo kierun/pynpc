@@ -24,7 +24,7 @@ orjson = "^3.9.12"
 faker = "^22.6.0"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.12.1"
+black = ">=23.12.1,<25.0.0"
 isort = "^5.13.2"
 pytest = ">=8.0.0"
 mkdocs = "^1.5.3"
