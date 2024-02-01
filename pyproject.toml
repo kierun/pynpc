@@ -35,7 +35,7 @@ pre-commit = "^3.6.0"
 coverage = "^7.4.1"
 bandit = "^1.7.7"
 pytest-skip-slow = "^0.0.5"
-commitizen = "^3.13.0"
+commitizen = "^3.14.0"
 python-semantic-release = "^8.7.0"
 pytest-cov = "^4.1.0"
 pydocstyle = "^6.3.0"
@@ -43,6 +43,7 @@ ruff = "^0.1.11"
 dlint = "^0.14.1"
 pytest-sugar = "^0.9.7"
 requests-mock = "^1.11.0"
+ptpython = "^3.0.25"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
