@@ -98,3 +98,23 @@ def test_resource_get_values(res) -> None:
 
 def test_get_name(random) -> None:
     assert "fred" in random._get_name("fred")
+
+
+@pytest.mark.parametrize(
+    ("value", "expected"),
+    [
+        (0, "Rev"),
+        (1, "Up"),
+    ],
+)
+def test_reading(value, expected) -> None:
+    """Test reading of the card: reverse or up.
+
+    The oddness of the mock comes from secrets.choice() is used to pick the card from the stack
+    and to chose whether we pick the reversed or up meansing. As such, we need to mock two calls.
+    The first one gets the fake card. The second one gets the meaning from the card.
+    """
+    npc = NPC()
+    with patch("pynpc.npc.choice") as mock_choice:
+        mock_choice.side_effect = [{"name": "Test", "meaning_up": "Up", "meaning_rev": "Rev"}, value]
+        assert npc.reading() == ("Test", expected)
