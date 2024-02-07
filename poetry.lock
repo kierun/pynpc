@@ -434,20 +434,6 @@ files = [
 test = ["pytest (>=6)"]
 
 [[package]]
-name = "faker"
-version = "22.6.0"
-description = "Faker is a Python package that generates fake data for you."
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "Faker-22.6.0-py3-none-any.whl", hash = "sha256:2b57f0256da6b45b7851dca87836ef5e2ae2fbb64d63d8697f1e47830d7b505d"},
-    {file = "Faker-22.6.0.tar.gz", hash = "sha256:fa6d969728ef3da6229da91267a1bd4e6b902044c4822012d4fc46c71bb92b26"},
-]
-
-[package.dependencies]
-python-dateutil = ">=2.4"
-
-[[package]]
 name = "filelock"
 version = "3.13.1"
 description = "A platform independent file lock."
@@ -786,6 +772,17 @@ python-versions = ">=3.6"
 files = [
     {file = "mergedeep-1.3.4-py3-none-any.whl", hash = "sha256:70775750742b25c0d8f36c55aed03d24c3384d17c951b3175d898bd778ef0307"},
     {file = "mergedeep-1.3.4.tar.gz", hash = "sha256:0096d52e9dad9939c3d975a774666af186eda617e6ca84df4c94dec30004f2a8"},
+]
+
+[[package]]
+name = "mimesis"
+version = "14.0.0"
+description = "Mimesis: Fake Data Generator."
+optional = false
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "mimesis-14.0.0-py3-none-any.whl", hash = "sha256:464df13c7c7ca214fc0adbe1d7a217055a5df04d8075b6250965ed625da5882a"},
+    {file = "mimesis-14.0.0.tar.gz", hash = "sha256:37c4d9116c3be247f5180dfe63d2e1a9a0f3d950be5b0842c18e29a03c041198"},
 ]
 
 [[package]]
@@ -2136,4 +2133,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "ec383482fe4476e74f68b6bf4c8a858df211caeb06240197420ae0696f69363b"
+content-hash = "27b484038c7d8cac1384c41c0250a5e83c77c6a5b975fe841f2267970324c87d"

@@ -7,7 +7,7 @@ from typing import Any
 
 import orjson
 import structlog
-from faker import Faker
+from mimesis import Gender, Locale, Person
 
 from pynpc.name_corruptor import NameCorruptor, parse_patterns
 from pynpc.skills import get_skill_value
@@ -75,8 +75,7 @@ class NPC:
             # so an extra dir can override core behaviour
             self._resources[jobj["resource"]] = ResourceObject(source=jobj)
 
-        # Faker, for names.
-        self._fake = Faker(["en_GB"])
+        # Name corruption.
         data = Path(Path(__file__).resolve().parent.parent, "pynpc", "data", "name-corruption-pattern.json")
         patterns = parse_patterns(orjson.loads(data.read_text()))
         self._corruptor = NameCorruptor(patterns)
@@ -108,9 +107,10 @@ class NPC:
 
     def generate(self) -> None:
         """Generate an NPC."""
-        self.name_fem = self._get_name(self._fake.name_female())  # Female
-        self.name_mal = self._get_name(self._fake.name_male())  # Male
-        self.name_non = self._get_name(self._fake.name_nonbinary())  # Non-binary
+        person = Person(Locale.EN)
+        self.name_fem = person.full_name(gender=Gender.FEMALE)
+        self.name_mal = person.full_name(gender=Gender.MALE)
+        self.name_non = person.full_name()
         _arc = self._resources["archetypes"].get_value()
         self.nature = Trait(_arc["name"], _arc["description"])
         self.demeanour = self.nature
@@ -164,7 +164,7 @@ class NPC:
 
 | **Abilities** |   **Name**    | **Rank** |
 | --- | --- | --- |
-| **Primary**   | | {self.skill_primary.name}   | {self.skill_primary.rank} |
+| **Primary**   | {self.skill_primary.name}   | {self.skill_primary.rank} |
 | **Secondary** | {self.skill_secondary.name} | {self.skill_secondary.rank} |
 | **Hobby**     | {self.skill_hobby.name}     | {self.skill_hobby.rank} |
 

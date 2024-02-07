@@ -10,12 +10,10 @@ from pynpc.npc import NPC, ResourceObject
 
 @pytest.fixture(autouse=True, scope="package")
 def random() -> Any:
-    with patch("pynpc.npc.Faker") as mock_faker:
-        mock_fake = Mock()
-        mock_fake.name_female.return_value = "Ferro Maljinn"
-        mock_fake.name_male.return_value = "Logen Ninefingers"
-        mock_fake.name_nonbinary.return_value = "R2D2"
-        mock_faker.return_value = mock_fake
+    with patch("pynpc.npc.Person") as mock_fake:
+        mock_person = Mock()
+        mock_person.full_name.side_effect = ["Ferro Maljinn", "Logen Ninefingers", "R2D2"]
+        mock_fake.return_value = mock_person
         return NPC()
 
 

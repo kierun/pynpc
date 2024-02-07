@@ -78,7 +78,7 @@ def configure_logging(log_level: str, verbose: bool) -> None:
             self.param = param
             super()
 
-        def filter(self, _: logging.LogRecord) -> bool:
+        def filter(self, _: logging.LogRecord) -> bool:  # pyright: ignore [reportIncompatibleMethodOverride]
             # We have no choice in the method's name.
             # We do not care about record thus mark it as _.
             #
