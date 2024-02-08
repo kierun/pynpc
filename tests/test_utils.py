@@ -41,6 +41,10 @@ def test_join_with_oxford_commas(items: tuple, text: str) -> None:
     assert join_with_oxford_commas(items) == text
 
 
+def test_join_with_oxford_commas_conjunction() -> None:
+    assert join_with_oxford_commas((1, 2, 3), conjunction="or") == "1, 2, or 3"
+
+
 @pytest.mark.parametrize(
     ("payload", "status", "expected"),
     [

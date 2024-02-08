@@ -35,7 +35,7 @@ class VersionCheck(enum.Enum):
     UNKNOWN = enum.auto()
 
 
-def join_with_oxford_commas(obj_list: "Sequence[Any]") -> str:
+def join_with_oxford_commas(obj_list: "Sequence[Any]", conjunction: str = "and") -> str:
     """Oxford commas for lists.
 
     Takes a list of objects and returns their string representations,
@@ -47,7 +47,7 @@ def join_with_oxford_commas(obj_list: "Sequence[Any]") -> str:
     size = len(obj_list)
     if size == 1:
         return f"{str(obj_list[0])}"  # noqa: RUF010
-    return ", ".join(str(obj) for obj in obj_list[: size - 1]) + f", and {str(obj_list[size - 1])}"  # noqa: RUF010
+    return ", ".join(str(obj) for obj in obj_list[: size - 1]) + f", {conjunction} {obj_list[size - 1]!s}"
 
 
 def check_if_latest_version() -> VersionCheck:

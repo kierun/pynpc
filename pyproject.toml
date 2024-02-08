@@ -22,6 +22,9 @@ requests = "^2.31.0"
 types-requests = "^2.31.0.20240125"
 orjson = "^3.9.12"
 mimesis = "^14.0.0"
+typer = { extras = ["all"], version = "^0.9.0" }
+typer-config = { extras = ["all"], version = "^1.4.0" }
+anyascii = "^0.3.2"
 
 [tool.poetry.group.dev.dependencies]
 black = ">=23.12.1,<25.0.0"
@@ -103,7 +106,7 @@ enable_error_code = ['ignore-without-code']
 ignore_missing_imports = "True"
 
 [tool.poetry.scripts]
-pynpc = "pynpc.console:main"
+pynpc = "pynpc.console:app"
 
 [tool.pytest.ini_options]
 log_auto_indent = true

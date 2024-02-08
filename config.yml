@@ -1,0 +1,4 @@
+output: markdown
+log_level: debug
+verbose: true
+version: false

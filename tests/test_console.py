@@ -2,22 +2,22 @@
 from unittest.mock import patch
 
 import pytest
-from click.testing import CliRunner
+from typer.testing import CliRunner
 
 from pynpc import __version__
-from pynpc.console import main
+from pynpc.console import app
 from pynpc.utils import VersionCheck
 
 
 def test_help():
     runner = CliRunner()
-    result = runner.invoke(main, ["--help"])
+    result = runner.invoke(app, ["--help"])
     assert "Generate simple NPCs for table top role playing games" in result.output
 
 
 def test_version():
     runner = CliRunner()
-    result = runner.invoke(main, ["--version"])
+    result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0, f"CLI output: {result.output}"
     assert __version__ in result.output
 
@@ -38,5 +38,19 @@ def test_pynpc_version_status(m_stuff, ask, check):
         m_stuff.return_value = None
         mock_check.return_value = check
         runner = CliRunner()
-        result = runner.invoke(main, ["--verbose"])
+        result = runner.invoke(app, ["--verbose"])
         assert result is not None
+
+
+def test_wrong_output():
+    runner = CliRunner()
+    result = runner.invoke(app, ["ko1ni2IP3pu/L>uugh[aexooJ6nu+mu#ukeic"])
+    assert result.exit_code == 2
+    assert "Usage: main [OPTIONS]" in result.output
+
+
+def test_wrong_log_level():
+    runner = CliRunner()
+    result = runner.invoke(app, ["--log-level=ko1ni2IP3pu/L>uugh[aexooJ6nu+mu#ukeic"])
+    assert result.exit_code == 2
+    assert "Usage: main [OPTIONS]" in result.output
