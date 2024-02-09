@@ -72,7 +72,7 @@ def configure_logging(log_level: str, verbose: bool) -> None:
                 structlog.processors.CallsiteParameter.FILENAME,
                 structlog.processors.CallsiteParameter.FUNC_NAME,
                 structlog.processors.CallsiteParameter.LINENO,
-            ]
+            ],
         ),
     ]
 
@@ -100,7 +100,7 @@ def configure_logging(log_level: str, verbose: bool) -> None:
                 "myfilter": {
                     "()": VerboseFilter,  # -*- coding: utf-8 -*-
                     "param": "noshow",
-                }
+                },
             },
             "formatters": {
                 "plain": {
@@ -154,7 +154,7 @@ def configure_logging(log_level: str, verbose: bool) -> None:
                     "propagate": True,
                 },
             },
-        }
+        },
     )
     structlog.configure(
         processors=[

@@ -32,7 +32,6 @@ class NameCorruptor:
             if new_name != name:
                 # if the name changed, we're done
                 self.cursor = cursor
-                # todo -- put 'relax' back in
                 return new_name
 
             # if not, keep going with the next pattern
