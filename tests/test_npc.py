@@ -101,8 +101,8 @@ def test_get_name(random) -> None:
 @pytest.mark.parametrize(
     ("value", "expected"),
     [
-        (0, "Rev"),
-        (1, "Up"),
+        (0, "↓ Rev"),
+        (1, "↑ Up"),
     ],
 )
 def test_reading(value, expected) -> None:
@@ -116,3 +116,15 @@ def test_reading(value, expected) -> None:
     with patch("pynpc.npc.choice") as mock_choice:
         mock_choice.side_effect = [{"name": "Test", "meaning_up": "Up", "meaning_rev": "Rev"}, value]
         assert npc.reading() == ("Test", expected)
+
+
+def test_translocalisation() -> None:
+    """Check there is a translocalisation for the name.
+
+    Since we cannot check for exact names, we check for the presence of
+    the " — " in the names.
+    """
+    npc = NPC(localisation=["ja"])
+    assert " — " in npc.name_fem
+    assert " — " in npc.name_mal
+    assert " — " in npc.name_non

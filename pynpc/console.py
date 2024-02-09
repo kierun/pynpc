@@ -4,11 +4,13 @@
 import logging
 import logging.config
 import sys
+from enum import Enum
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Optional
 
 import structlog
 import typer
+from mimesis.enums import Locale
 from rich import print as rprint
 from rich.console import Console
 from rich.prompt import Confirm
@@ -24,14 +26,21 @@ EXIT_CODE_SCRIPT_FAILED = 2
 EXIT_CODE_SERVICE_ACCOUNT_FAILED = 3
 EXIT_CODE_YAML_DATA_FAILED = 4
 
-_lvl = {
-    "critical": 50,
-    "error": 40,
-    "warning": 30,
-    "info": 20,
-    "debug": 10,
-    "notset": 0,
-}
+
+class LogLevels(str, Enum):
+    """Log levels choices.
+
+    https://typer.tiangolo.com/tutorial/parameter-types/enum/
+    """
+
+    critical = "critical"
+    error = "error"
+    warning = "warning"
+    info = "info"
+    debug = "debug"
+    notset = "notset"
+
+
 _outputs = ("console", "markdown", "latex")
 
 app = typer.Typer()
@@ -172,20 +181,21 @@ def callback_output(ctx: typer.Context, value: str) -> str | None:
     if ctx.resilient_parsing:
         return None  # pragma: no cover
     if value.lower() not in _outputs:
-        err = f"Invalid output: {value}, should be one of {join_with_oxford_commas(_outputs, conjunction='or')}"
+        err = f"Invalid output: '{value}', should be one of {join_with_oxford_commas(_outputs, conjunction='or')}"
         raise typer.BadParameter(err)
     return value
 
 
-def callback_logging_level(ctx: typer.Context, value: str) -> str | None:
-    """Check logging level callback."""
+def callback_localisation(ctx: typer.Context, values: list[str]) -> list[str] | None:
+    """Check localisation callback."""
     if ctx.resilient_parsing:
         return None  # pragma: no cover
-    if value.lower() not in _lvl:
-        err = f"Invalid logging level: {value}, "
-        err += f"should be one of {join_with_oxford_commas(list(_lvl.keys()), conjunction='or')}"
-        raise typer.BadParameter(err)
-    return value
+    err = [x for x in values if x not in Locale.values()]
+    if err:
+        msg = f"Invalid localisation: '{join_with_oxford_commas(err)}' "
+        msg += f"should be one of {join_with_oxford_commas(list(Locale.values()), conjunction='or')}"
+        raise typer.BadParameter(msg)
+    return values
 
 
 # ruff: noqa: UP007
@@ -194,9 +204,20 @@ def callback_logging_level(ctx: typer.Context, value: str) -> str | None:
 @use_yaml_config(default_value="config.yml")  # MUST BE AFTER @app.command()
 def main(
     output: Annotated[str, typer.Argument(envvar="PYNPC_OUTPUT", callback=callback_output)] = "console",
-    log_level: Annotated[str, typer.Option(envvar="PYNPC_LOG_LEVEL", callback=callback_logging_level)] = "info",
+    log_level: Annotated[
+        LogLevels,
+        typer.Option(case_sensitive=False, envvar="PYNPC_LOG_LEVEL"),
+    ] = LogLevels.info,
     verbose: Annotated[bool, typer.Option(envvar="PYNPC_VERBOSE")] = False,
     version: Annotated[bool, typer.Option(envvar="PYNPC_VERSION")] = False,
+    localisation: Annotated[
+        Optional[list[str]],
+        typer.Option("--localisation", "-l", envvar="PYNPC_LOCALS", callback=callback_localisation),
+    ] = [  # noqa: B006
+        "en",
+        "ja",
+        "fr",
+    ],  # Do not use mutable data structures for argument defaults. But, in this case, this is fine.
 ) -> None:
     """Generate simple NPCs for table top role playing games."""
     # Prints the current version and exits.
@@ -205,7 +226,7 @@ def main(
         sys.exit(EXIT_CODE_SUCCESS)
 
     # Configure logging.
-    configure_logging(log_level, verbose)
+    configure_logging(log_level.value, verbose)
     logger = structlog.get_logger("pynpc")
     logger.debug(
         "All the loggers",
@@ -222,7 +243,7 @@ def main(
 
     # Run commands.
     logger.debug("Starting real work…")
-    _do_stuff(logger, output)
+    _do_stuff(logger, output, localisation)
 
     # We should be done…
     logger.debug("That's all folks!")
@@ -251,13 +272,13 @@ def _version_check() -> None:
         wprint("This is bug, please report!", level="error")
 
 
-def _do_stuff(logger: structlog.BoundLogger, output: str) -> None:  # pragma: no cover
+def _do_stuff(logger: structlog.BoundLogger, output: str, localisation: list[str] | None) -> None:  # pragma: no cover
     """Do stuff.
 
     This has no unit tests since it does everything. We could mock
     everything, but why?
     """
-    x = NPC()
+    x = NPC(localisation=localisation)
     if output.lower() == "console":
         rprint(x)
     elif output.lower() == "markdown":  # pragma: no cover

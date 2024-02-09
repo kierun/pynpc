@@ -46,11 +46,18 @@ def test_wrong_output():
     runner = CliRunner()
     result = runner.invoke(app, ["ko1ni2IP3pu/L>uugh[aexooJ6nu+mu#ukeic"])
     assert result.exit_code == 2
-    assert "Usage: main [OPTIONS]" in result.output
+    assert "Invalid output" in result.output
 
 
 def test_wrong_log_level():
     runner = CliRunner()
     result = runner.invoke(app, ["--log-level=ko1ni2IP3pu/L>uugh[aexooJ6nu+mu#ukeic"])
     assert result.exit_code == 2
-    assert "Usage: main [OPTIONS]" in result.output
+    assert "Invalid value for '--log-level'" in result.output
+
+
+def test_wrong_localisation():
+    runner = CliRunner()
+    result = runner.invoke(app, ["--localisation=fred,bob,jack"])
+    assert result.exit_code == 2
+    assert "Invalid value for '--localisation'" in result.output
