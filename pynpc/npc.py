@@ -70,7 +70,7 @@ class Idiosyncrasy(NamedTuple):
 class NPC:
     """Main NPC class."""
 
-    def __init__(self, what: str = "fantasy") -> None:
+    def __init__(self, localisation: list[str] | None = None, what: str = "fantasy") -> None:
         """Initialise the class.
 
         The option `what` is special. It defines which files are used for the
@@ -78,6 +78,12 @@ class NPC:
         """
         # Meta data.
         rlog.debug(f"Creating {what} NPC")
+        self._localistation: list[str] = []
+        if localisation is None:
+            self._localistation.append(choice(Locale.values()))
+        else:
+            self._localistation += localisation
+        rlog.debug("NPC name localisation", locals=self._localistation)
         self._setting = what
         self._data_dir = [Path(Path(__file__).resolve().parent, "data")]
         # read resource files - everything called *.res.json in the data dir
@@ -126,15 +132,21 @@ class NPC:
         """Return either upwards or revesed tarot cards draw."""
         card = self._resources["cards"].get_value()
         if choice((0, 1)):
-            return Reading(card["name"], card["meaning_up"])
-        return Reading(card["name"], card["meaning_rev"])
+            return Reading(card["name"], "↑ " + card["meaning_up"])
+        return Reading(card["name"], "↓ " + card["meaning_rev"])
 
     def generate(self) -> None:
         """Generate an NPC."""
-        person = Person(Locale.EN)
+        person = Person(choice(self._localistation))
         self.name_fem = person.full_name(gender=Gender.FEMALE)
+        if self.name_fem != transliterate(self.name_fem):
+            self.name_fem += " —  " + transliterate(self.name_fem)
         self.name_mal = person.full_name(gender=Gender.MALE)
+        if self.name_mal != transliterate(self.name_mal):
+            self.name_mal += " —  " + transliterate(self.name_mal)
         self.name_non = person.full_name()
+        if self.name_non != transliterate(self.name_non):
+            self.name_non += " —  " + transliterate(self.name_non)
         _arc = self._resources["archetypes"].get_value()
         self.nature = Trait(_arc["name"], _arc["description"])
         self.demeanour = self.nature
@@ -157,9 +169,9 @@ class NPC:
         skills = (
             "\n"
             "Names:\n"
-            f"   ♀ {self.name_fem} —  {transliterate(self.name_fem)}\n"
-            f"   ♂ {self.name_mal} —  {transliterate(self.name_mal)}\n"
-            f"   ⚥ {self.name_non} —  {transliterate(self.name_non)}\n"
+            f"   ♀ {self.name_fem}\n"
+            f"   ♂ {self.name_mal}\n"
+            f"   ⚥ {self.name_non}\n"
             f"Skills:\n"
             f"   Primary:   {self.skill_primary}\n"
             f"   Secondary: {self.skill_secondary}\n"
@@ -180,9 +192,9 @@ class NPC:
         """Print NPC in markdown."""
         return f"""
 # Fame
--  f"♀ Name: {self.name_fem} —  {transliterate(self.name_fem)}\n"
--  f"♂ Name: {self.name_mal} —  {transliterate(self.name_mal)}\n"
--  f"⚥ Name: {self.name_non} —  {transliterate(self.name_non)}\n"
+-  f"♀ Name: {self.name_fem}\n"
+-  f"♂ Name: {self.name_mal}\n"
+-  f"⚥ Name: {self.name_non}\n"
 
 ## Skills
 
