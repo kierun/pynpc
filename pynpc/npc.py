@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """NPC class."""
-from collections import namedtuple
 from pathlib import Path
 from secrets import choice
-from typing import Any
+from typing import Any, NamedTuple
 
 import orjson
 import structlog
@@ -15,12 +14,23 @@ from pynpc.skills import get_skill_value
 
 rlog = structlog.get_logger("pynpc.npoc")
 
-# Model for skills: a simple name and rank.
-Skill = namedtuple("Skill", ["name", "rank"])
 
-# Model for phobia: a name, explanation, and serverity.
-Phobia = namedtuple("Phobia", ["name", "severity", "description"])
+class Skill(NamedTuple):
+    """Model for skills: a simple name and rank."""
+
+    name: str
+    rank: str
+
+
 PHOBIA_RANKS = ["Negligable"] * 16 + ["low"] * 8 + ["mild"] * 4 + ["severe"] * 2 + ["debilitating"]
+
+
+class Phobia(NamedTuple):
+    """Model for phobia: a name, explanation, and serverity."""
+
+    name: str
+    severity: str
+    description: str
 
 
 def get_severity() -> str:
@@ -28,23 +38,38 @@ def get_severity() -> str:
     return choice(PHOBIA_RANKS)
 
 
-# random properties - name and description
-Trait = namedtuple("Trait", ["name", "description"])
+class Trait(NamedTuple):
+    """Random properties - name and description."""
 
-# Personality - includes code
-Personality = namedtuple("Personality", ["name", "description", "code"])
+    name: str
+    description: str
 
-# Life events: A tarot card and its meaning.
-Reading = namedtuple("Reading", ["card", "meaning"])
 
-# Idiosyncrasy model: a simple phrase.
-Idiosyncrasy = namedtuple("Idiosyncrasy", ["description"])
+class Personality(NamedTuple):
+    """Personality - includes code."""
+
+    name: str
+    description: str
+    code: str
+
+
+class Reading(NamedTuple):
+    """Life events: A tarot card and its meaning."""
+
+    card: str
+    meaning: str
+
+
+class Idiosyncrasy(NamedTuple):
+    """Idiosyncrasy model: a simple phrase."""
+
+    idiosyncrasy: str
+    description: str = ""  # This has a default value, it will be overwritten if there is a need to.
 
 
 class NPC:
     """Main NPC class."""
 
-    # TODO:  Accept extra data dirs as arg
     def __init__(self, what: str = "fantasy") -> None:
         """Initialise the class.
 
@@ -55,8 +80,6 @@ class NPC:
         rlog.debug(f"Creating {what} NPC")
         self._setting = what
         self._data_dir = [Path(Path(__file__).resolve().parent, "data")]
-        # TODO: append extra data dirs here
-
         # read resource files - everything called *.res.json in the data dir
         # expecting a 'resource' string with a name in it
         # expecting a 'values' array with objects in
