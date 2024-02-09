@@ -6,8 +6,8 @@ from typing import Any, NamedTuple
 
 import orjson
 import structlog
-from anyascii import anyascii
 from mimesis import Gender, Locale, Person
+from unidecode import unidecode as transliterate  # In case we want to change module that does it.
 
 from pynpc.name_corruptor import NameCorruptor, parse_patterns
 from pynpc.skills import get_skill_value
@@ -157,9 +157,9 @@ class NPC:
         skills = (
             "\n"
             "Names:\n"
-            f"   ♀ {self.name_fem} —  {anyascii(self.name_fem)}\n"
-            f"   ♂ {self.name_mal} —  {anyascii(self.name_mal)}\n"
-            f"   ⚥ {self.name_non} —  {anyascii(self.name_non)}\n"
+            f"   ♀ {self.name_fem} —  {transliterate(self.name_fem)}\n"
+            f"   ♂ {self.name_mal} —  {transliterate(self.name_mal)}\n"
+            f"   ⚥ {self.name_non} —  {transliterate(self.name_non)}\n"
             f"Skills:\n"
             f"   Primary:   {self.skill_primary}\n"
             f"   Secondary: {self.skill_secondary}\n"
@@ -180,9 +180,9 @@ class NPC:
         """Print NPC in markdown."""
         return f"""
 # Fame
--  f"♀ Name: {self.name_fem} —  {anyascii(self.name_fem)}\n"
--  f"♂ Name: {self.name_mal} —  {anyascii(self.name_mal)}\n"
--  f"⚥ Name: {self.name_non} —  {anyascii(self.name_non)}\n"
+-  f"♀ Name: {self.name_fem} —  {transliterate(self.name_fem)}\n"
+-  f"♂ Name: {self.name_mal} —  {transliterate(self.name_mal)}\n"
+-  f"⚥ Name: {self.name_non} —  {transliterate(self.name_non)}\n"
 
 ## Skills
 
