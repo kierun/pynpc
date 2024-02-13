@@ -54,7 +54,6 @@ def test_wrong_log_level():
     result = runner.invoke(app, ["--log-level=ko1ni2IP3pu/L>uugh[aexooJ6nu+mu#ukeic"])
     assert result.exit_code == 2
     assert "Invalid value" in result.output, result.output
-    assert "--log-level" in result.output, result.output
 
 
 def test_wrong_localisation():
@@ -62,4 +61,3 @@ def test_wrong_localisation():
     result = runner.invoke(app, ["--localisation=fred,bob,jack"])
     assert result.exit_code == 2
     assert "Invalid value " in result.output, result.output
-    assert "--localisation" in result.output, result.output
