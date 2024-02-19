@@ -115,18 +115,13 @@ class NPC:
 
     def _get_name(self, name: str, sz: int = 3) -> str:
         """Get corruptions variations from a name."""
+        rlog.debug("Generating name", name=name, sz=sz)
         try:
-            first, last = name.split(" ")
+            first, _ = name.split(" ")
         except ValueError as e:
             rlog.error("Name is not in the expected format: 'first last'", name=name, error=e)
             first = name
-            last = ""
-        generated = [first]
-        for _ in range(sz):
-            _next = generated[-1]
-            corrupted = self._corruptor.corrupt_once(_next)
-            generated.append(corrupted)
-        return f"{first} (" + " ".join(generated[1:]) + ") " + last
+        return "(" + " ".join(self._corruptor.corrupt(first, sz)) + ") "
 
     def reading(self) -> Reading:
         """Return either upwards or revesed tarot cards draw."""
@@ -141,12 +136,15 @@ class NPC:
         self.name_fem = person.full_name(gender=Gender.FEMALE)
         if self.name_fem != transliterate(self.name_fem):
             self.name_fem += " —  " + transliterate(self.name_fem)
+        self.name_fem += f" →  {self._get_name(transliterate(self.name_fem), 3)}"
         self.name_mal = person.full_name(gender=Gender.MALE)
         if self.name_mal != transliterate(self.name_mal):
             self.name_mal += " —  " + transliterate(self.name_mal)
+        self.name_mal += f" →  {self._get_name(transliterate(self.name_mal), 3)}"
         self.name_non = person.full_name()
         if self.name_non != transliterate(self.name_non):
             self.name_non += " —  " + transliterate(self.name_non)
+        self.name_non += f" →  {self._get_name(transliterate(self.name_non), 3)}"
         _arc = self._resources["archetypes"].get_value()
         self.nature = Trait(_arc["name"], _arc["description"])
         self.demeanour = self.nature
