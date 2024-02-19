@@ -95,7 +95,10 @@ def test_resource_get_values(res) -> None:
 
 
 def test_get_name(random) -> None:
-    assert "fred" in random._get_name("fred")  # noqa: SLF001
+    sut = random._get_name("fred")  # noqa: SLF001
+    assert "vhred" in sut
+    assert "vhret" in sut
+    assert "vred" in sut
 
 
 @pytest.mark.parametrize(
