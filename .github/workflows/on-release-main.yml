@@ -5,13 +5,16 @@
 
 on: workflow_dispatch
 
-name: release-main
+name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
 
 jobs:
     release:
         # https://github.com/relekang/python-semantic-release/issues/311
         runs-on: ubuntu-latest
         concurrency: release
+        permissions:
+          id-token: write
+          contents: write
 
         steps:
             - uses: actions/checkout@v4
