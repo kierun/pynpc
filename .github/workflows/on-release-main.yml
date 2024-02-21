@@ -26,6 +26,7 @@ jobs:
               uses: relekang/python-semantic-release@v8.7.2
               with:
                   github_token: ${{ secrets.PAT }}
+                  root_options: -vv
 
     publish:
         needs: release
