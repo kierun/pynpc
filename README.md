@@ -1,9 +1,9 @@
 # pynpc
 
-[![PyPi status](https://img.shields.io/pypi/status/Setupr)](https://img.shields.io/pypi/status/Setupr)
+[![PyPi status](https://img.shields.io/pypi/status/pynpc)](https://img.shields.io/pypi/status/pynpc)
 [![PyPi version](https://img.shields.io/pypi/v/pynpc)](https://img.shields.io/pypi/v/pynpc)
-[![PyPi python versions](https://img.shields.io/pypi/pyversions/Setupr)](https://img.shields.io/pypi/pyversions/Setupr)
-[![PyPi downloads](https://img.shields.io/pypi/dm/pynpc)](https://img.shields.io/pypi/dm/Setupr)
+[![PyPi python versions](https://img.shields.io/pypi/pyversions/pynpc)](https://img.shields.io/pypi/pyversions/pynpc)
+[![PyPi downloads](https://img.shields.io/pypi/dm/pynpc)](https://img.shields.io/pypi/dm/pynpc)
 
 [![Release](https://img.shields.io/github/v/release/kierun/pynpc)](https://img.shields.io/github/v/release/kierun/pynpc)
 [![Build status](https://img.shields.io/github/actions/workflow/status/kierun/pynpc/codeql.yml?branch=main)](https://img.shields.io/github/actions/workflow/status/kierun/pynpc/codeql.yml?branch=main)
