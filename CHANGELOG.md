@@ -2,6 +2,21 @@
 
 
 
+## v0.2.1 (2024-02-22)
+
+### Chore
+
+* chore(GHA): release workflow testing ([`4405a60`](https://github.com/kierun/pynpc/commit/4405a6097604f7f99985e38a29946bafc49b3c36))
+
+* chore(GHA): release workflow testing ([`f900fd7`](https://github.com/kierun/pynpc/commit/f900fd7da661ec5ef6555638e408367caa0f774c))
+
+* chore(GHA): release workflow testing ([`0399417`](https://github.com/kierun/pynpc/commit/0399417effa004c630bb6e8cfa3eb308a9cfd090))
+
+### Fix
+
+* fix(GHA): release workflow testing ([`efdbcff`](https://github.com/kierun/pynpc/commit/efdbcffb3b52ea52eefac18fe20118d45680eea7))
+
+
 ## v0.2.0 (2024-02-21)
 
 
