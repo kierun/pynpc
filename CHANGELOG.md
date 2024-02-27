@@ -2,6 +2,23 @@
 
 
 
+## v0.2.2 (2024-02-27)
+
+### Chore
+
+* chore(poetry): added plugin-up ([`46de30a`](https://github.com/kierun/pynpc/commit/46de30acd2e3a5a0a279e209c2c184ffee3cfde7))
+
+* chore(GHA): Node.js 16 actions are deprecated.
+
+Please update the following actions to use Node.js 20: actions/checkout@v3, actions/setup-python@v4, actions/cache@v3, arduino/setup-task@v1. For more information see: https://github.blog/changelog/2023-09-22-github-actions-transitioning-from-node-16-to-node-20/. ([`8f4d9d4`](https://github.com/kierun/pynpc/commit/8f4d9d49c41b2c5fb5a2dba45ae7a0f5bee9f6de))
+
+### Fix
+
+* fix(orjson): orjson does not limit recursion for deeply nested JSON documents —  CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H ([`a15309b`](https://github.com/kierun/pynpc/commit/a15309b758705cd0294678bfd6c5c6881b99f734))
+
+* fix(README): typo ([`e258b9c`](https://github.com/kierun/pynpc/commit/e258b9cad77ce889715c38a42d13e3b4b2e35bc5))
+
+
 ## v0.2.1 (2024-02-22)
 
 ### Chore
