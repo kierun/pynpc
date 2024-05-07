@@ -2,6 +2,79 @@
 
 
 
+## v0.3.0 (2024-05-07)
+
+### Chore
+
+* chore(poetry): updates ([`17be58c`](https://github.com/kierun/pynpc/commit/17be58c9e48fd711bf710ca3a987d18c2d663bdb))
+
+* chore(pre-commit): updates ([`e6629d9`](https://github.com/kierun/pynpc/commit/e6629d9b295c34772b5ddf76484ddee9d64ce314))
+
+* chore(GHA): bump relekang/python-semantic-release from 9.4.0 to 9.6.0
+
+Bumps [relekang/python-semantic-release](https://github.com/relekang/python-semantic-release) from 9.4.0 to 9.6.0.
+- [Release notes](https://github.com/relekang/python-semantic-release/releases)
+- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/relekang/python-semantic-release/compare/v9.4.0...v9.6.0)
+
+---
+updated-dependencies:
+- dependency-name: relekang/python-semantic-release
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`aa90b42`](https://github.com/kierun/pynpc/commit/aa90b42b1664846a84a42acf2416a306c62239aa))
+
+* chore(poetry): updates ([`53ca5ba`](https://github.com/kierun/pynpc/commit/53ca5ba1e7ec4b0a98abef6f0a21da736e29a26e))
+
+* chore(pre-commit): updates ([`3d10e98`](https://github.com/kierun/pynpc/commit/3d10e98ba6cdb8cab7270ce267f6b13eb75ea236))
+
+* chore(GHA): bump relekang/python-semantic-release from 9.1.1 to 9.4.0
+
+Bumps [relekang/python-semantic-release](https://github.com/relekang/python-semantic-release) from 9.1.1 to 9.4.0.
+- [Release notes](https://github.com/relekang/python-semantic-release/releases)
+- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/relekang/python-semantic-release/compare/v9.1.1...v9.4.0)
+
+---
+updated-dependencies:
+- dependency-name: relekang/python-semantic-release
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`f8f3b0b`](https://github.com/kierun/pynpc/commit/f8f3b0b79906c78802c1583dc6ae7169cc653c9f))
+
+* chore(poetry): updates ([`f4f306b`](https://github.com/kierun/pynpc/commit/f4f306b821aa12831b2b89690f93d5d676bdfae4))
+
+* chore(pre-commit): updates ([`edbff80`](https://github.com/kierun/pynpc/commit/edbff80ca110c3e81bfcc936638c4a6292d7df81))
+
+* chore(GHA): bump relekang/python-semantic-release from 8.7.2 to 9.1.1
+
+Bumps [relekang/python-semantic-release](https://github.com/relekang/python-semantic-release) from 8.7.2 to 9.1.1.
+- [Release notes](https://github.com/relekang/python-semantic-release/releases)
+- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/relekang/python-semantic-release/compare/v8.7.2...v9.1.1)
+
+---
+updated-dependencies:
+- dependency-name: relekang/python-semantic-release
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`0025eef`](https://github.com/kierun/pynpc/commit/0025eef8d4dea8d1305a43a6221dd7bc6c550501))
+
+* chore(GHA): gh release should no longer create main tag ([`8a561e0`](https://github.com/kierun/pynpc/commit/8a561e006200e409303cf9f0bc75ddddbd3723dd))
+
+### Feature
+
+* feat(securitry): create security policy
+
+A simple template. ([`98846e1`](https://github.com/kierun/pynpc/commit/98846e17abfc8a271f35a49b444be8312e23e8c5))
+
+
 ## v0.2.2 (2024-02-27)
 
 ### Chore

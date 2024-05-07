@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pynpc"
-version = "0.2.2"
+version = "0.3.0"
 description = "Generate simple NPCs for table top role playing games"
 authors = ["Dr Yann Golanski <github@kierun.org>"]
 keywords = ["ttrpg", "rpg", "generate", "NPC"]
