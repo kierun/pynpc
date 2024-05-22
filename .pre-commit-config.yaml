@@ -41,11 +41,11 @@ repos:
       - id: python-bandit-vulnerability-check
         args: [--verbose, --ini, .banditrc, --recursive, setupr]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.4.3
+    rev: v0.4.4
     hooks:
       - id: ruff
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.16
+    rev: v0.18
     hooks:
       - id: validate-pyproject
   #     ______
@@ -80,10 +80,10 @@ repos:
   #     _______________
   # ___/ GH linting    \_________________________________________________________
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.28.2
+    rev: 0.28.4
     hooks:
       - id: check-github-actions
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.28.2
+    rev: 0.28.4
     hooks:
       - id: check-dependabot
