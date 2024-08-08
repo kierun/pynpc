@@ -39,7 +39,7 @@ coverage = "^7.5.1"
 bandit = "^1.7.8"
 pytest-skip-slow = "^0.0.5"
 commitizen = "^3.27.0"
-python-semantic-release = "^8.7.0"
+python-semantic-release = "^9.8.6"
 pytest-cov = "^4.1.0"
 pydocstyle = "^6.3.0"
 ruff = "^0.2.1"
@@ -50,6 +50,7 @@ ptpython = "^3.0.26"
 pdbpp = "^0.10.3"
 poetry-plugin-up = "^0.7.1"
 
+safety = "^3.2.4"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
