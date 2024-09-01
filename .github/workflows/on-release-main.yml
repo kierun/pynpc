@@ -23,7 +23,7 @@ jobs:
                   token: ${{ secrets.PAT }}
 
             - name: 'Python Semantic Release'
-              uses: relekang/python-semantic-release@v9.8.3
+              uses: relekang/python-semantic-release@v9.8.7
               with:
                   github_token: ${{ secrets.PAT }}
                   root_options: -vv
