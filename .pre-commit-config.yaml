@@ -16,7 +16,7 @@ repos:
   #     __________________
   # ___/ Python specific. \______________________________________________________
   - repo: https://github.com/psf/black
-    rev: 24.4.2
+    rev: 24.8.0
     hooks:
       - id: black
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -41,11 +41,11 @@ repos:
       - id: python-bandit-vulnerability-check
         args: [--verbose, --ini, .banditrc, --recursive, setupr]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.4.9
+    rev: v0.6.4
     hooks:
       - id: ruff
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.18
+    rev: v0.19
     hooks:
       - id: validate-pyproject
   #     ______
@@ -80,10 +80,10 @@ repos:
   #     _______________
   # ___/ GH linting    \_________________________________________________________
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.28.5
+    rev: 0.29.2
     hooks:
       - id: check-github-actions
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.28.5
+    rev: 0.29.2
     hooks:
       - id: check-dependabot
