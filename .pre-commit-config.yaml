@@ -2,7 +2,7 @@
 # ___/ Usefull stuff you do WANT for all repositories. \________________________
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
@@ -16,7 +16,7 @@ repos:
   #     __________________
   # ___/ Python specific. \______________________________________________________
   - repo: https://github.com/psf/black
-    rev: 24.8.0
+    rev: 24.10.0
     hooks:
       - id: black
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -41,11 +41,11 @@ repos:
       - id: python-bandit-vulnerability-check
         args: [--verbose, --ini, .banditrc, --recursive, setupr]
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.6.4
+    rev: v0.8.1
     hooks:
       - id: ruff
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.19
+    rev: v0.23
     hooks:
       - id: validate-pyproject
   #     ______
@@ -61,7 +61,7 @@ repos:
   #     _______________
   # ___/ Markdown lint \_________________________________________________________
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.41.0
+    rev: v0.43.0
     hooks:
       - id: markdownlint
         args: [--ignore, CHANGELOG.md, -s, .mdl_style.rb]
@@ -80,10 +80,10 @@ repos:
   #     _______________
   # ___/ GH linting    \_________________________________________________________
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.29.2
+    rev: 0.30.0
     hooks:
       - id: check-github-actions
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.29.2
+    rev: 0.30.0
     hooks:
       - id: check-dependabot
