@@ -23,7 +23,7 @@ COLOUR_SUCC = "#a3be8c"
 COLOUR_WARN = "#d08770"
 COLOUR_GREY = "#777777"
 
-GITHUB_URL = "https://api.github.com/repos/kierun/pynpc/releases/latest"
+GITHUB_URL = "https://api.github.com/repos/kierun/pynpc/releases"
 rlog = structlog.get_logger("pynpc.utils")
 
 
@@ -54,7 +54,7 @@ def check_if_latest_version() -> VersionCheck:
     """Check if there is a new version published on GitHub."""
     response = requests.get(GITHUB_URL, timeout=60)  # A minute time out.
     if response.status_code == 200:
-        latest_version = response.json()["tag_name"]
+        latest_version = response.json()[0]["tag_name"]
         if latest_version == f"v{__version__}":
             return VersionCheck.LATEST
         return VersionCheck.LAGGING
