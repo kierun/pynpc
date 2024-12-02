@@ -50,8 +50,8 @@ def test_join_with_oxford_commas_conjunction() -> None:
     [
         ({}, 500, VersionCheck.UNKNOWN),
         ({}, 404, VersionCheck.UNKNOWN),
-        ({"tag_name": "v0.0.0"}, 200, VersionCheck.LAGGING),
-        ({"tag_name": f"v{__version__}"}, 200, VersionCheck.LATEST),
+        ([{"tag_name": "v0.0.0"}], 200, VersionCheck.LAGGING),
+        ([{"tag_name": f"v{__version__}"}], 200, VersionCheck.LATEST),
     ],
 )
 def test_check_if_latest_version(payload: dict, status: int, expected: VersionCheck) -> None:
