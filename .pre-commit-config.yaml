@@ -15,14 +15,6 @@ repos:
       - id: fix-encoding-pragma # Python only!
   #     __________________
   # ___/ Python specific. \______________________________________________________
-  - repo: https://github.com/psf/black
-    rev: 24.10.0
-    hooks:
-      - id: black
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.3.3
-    hooks:
-      - id: python-safety-dependencies-check
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.10.1 # Use the revision sha / tag you want to point at
     hooks:
@@ -31,10 +23,6 @@ repos:
     rev: v1.7.5
     hooks:
       - id: docformatter
-  - repo: https://gitlab.com/smop/pre-commit-hooks
-    rev: v1.0.0
-    hooks:
-      - id: check-poetry
   - repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
     rev: v1.0.6
     hooks:
@@ -44,6 +32,9 @@ repos:
     rev: v0.8.1
     hooks:
       - id: ruff
+        args: [--exit-non-zero-on-fix, --config=pyproject.toml]
+      - id: ruff-format
+        args: [--config=pyproject.toml]
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.23
     hooks:

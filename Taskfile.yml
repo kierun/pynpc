@@ -4,13 +4,12 @@ version: '3'
 
 tasks:
   venv:
-    desc: 'Create the virtual environment via poetry'
+    desc: 'Create the virtual environment via UV'
     cmds:
-      - poetry install --sync
+      - uv sync
     sources:
       - pyproject.toml
-      - poetry.lock
-      - poetry.toml
+      - uv.lock
     generates:
       - .venv/bin/activate
     status:
@@ -137,7 +136,7 @@ tasks:
   build:
     desc: 'Generates a distribution files'
     cmds:
-      - poetry build --verbose
+      - uv build --verbose
     sources:
       - docs/**/*
       - pynpc/**/*
