@@ -5,7 +5,7 @@
 
 on: workflow_dispatch
 
-name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
+name: "Publish Python 🐍 distribution 📦 to TestPyPI and PyPI"
 
 jobs:
     release:
@@ -17,81 +17,80 @@ jobs:
           contents: write
 
         steps:
-            - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
-                  token: ${{ secrets.PAT }}
+          - name: "Check out"
+            uses: actions/checkout@v4
+            with:
+                fetch-depth: 0
+                token: ${{ secrets.PAT }}
 
-            - name: 'Python Semantic Release'
-              uses: relekang/python-semantic-release@v9.14.0
-              with:
-                  github_token: ${{ secrets.PAT }}
-                  root_options: -vv
+          - name: "Python Semantic Release"
+            uses: relekang/python-semantic-release@v9.14.0
+            with:
+                github_token: ${{ secrets.PAT }}
+                root_options: -vv
 
     publish:
         needs: release
         runs-on: ubuntu-latest
         concurrency: publish
         steps:
-            - name: Check out
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+          - name: "Check out"
+            uses: actions/checkout@v4
+            with:
+                fetch-depth: 0
 
-            - name: Set up the environment
-              uses: ./.github/workflows/setup-poetry-env
+          - name: "Set up the environment"
+            uses: ./.github/workflows/setup-poetry-env
 
-            - name: Install Task
-              uses: arduino/setup-task@v2
-              with:
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  version: 3.x
+          - name: "Install Task"
+            uses: arduino/setup-task@v2
+            with:
+                repo-token: ${{ secrets.GITHUB_TOKEN }}
+                version: 3.x
 
-            - name: Get latest changes from release step
-              run: |
-                  git pull
+          - name: "Get latest changes from release step"
+            run: |
+                git pull
 
-            - name: 'Poetry build package'
-              run: |
-                  source .venv/bin/activate
-                  poetry build --verbose
+          - name: "UV build package"
+            run: task -f venv
 
-            - name: Set env for tag
-              run: |
-                echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          - name: "Set env for tag"
+            run: |
+              echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
-            - name: Testing tag env
-              run: |
-                echo $RELEASE_VERSION
-                echo ${{ env.RELEASE_VERSION }}
+          - name: "Testing tag env"
+            run: |
+              echo $RELEASE_VERSION
+              echo ${{ env.RELEASE_VERSION }}
 
-            - name: Create GitHub Release
-              env:
-                GITHUB_TOKEN: ${{ github.token }}
-              run: |
-                gh release create '${{ env.RELEASE_VERSION }}' --repo '${{ github.repository }}' --notes "GHA created"
+          - name: "Create GitHub Release"
+            env:
+              GITHUB_TOKEN: ${{ github.token }}
+            run: |
+              gh release create '${{ env.RELEASE_VERSION }}' --repo '${{ github.repository }}' --notes "GHA created"
 
-            - name: Upload artifact signatures to GitHub Release
-              env:
-                GITHUB_TOKEN: ${{ github.token }}
-              run: |
-                gh release upload '${{ env.RELEASE_VERSION }}' dist/** --repo '${{ github.repository }}'
+          - name: "Upload artifact signatures to GitHub Release"
+            env:
+              GITHUB_TOKEN: ${{ github.token }}
+            run: |
+              gh release upload '${{ env.RELEASE_VERSION }}' dist/** --repo '${{ github.repository }}'
 
-            - name: Poetry publish to TEST PyPi
-              run: |
-                  source .venv/bin/activate
-                  poetry config repositories.test-pypi https://test.pypi.org/legacy/
-                  poetry config pypi-token.test-pypi ${{ secrets.TEST_PYPI_API_TOKEN }}
-                  poetry publish --verbose -r test-pypi
+          - name: "Poetry publish to TEST PyPi"
+            run: |
+                source .venv/bin/activate
+                poetry config repositories.test-pypi https://test.pypi.org/legacy/
+                poetry config pypi-token.test-pypi ${{ secrets.TEST_PYPI_API_TOKEN }}
+                poetry publish --verbose -r test-pypi
 
-            - name: Poetry dry run publish to PyPi
-              run: |
-                  source .venv/bin/activate
-                  poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-                  poetry publish --verbose --dry-run
+          - name: "Poetry dry run publish to PyPi"
+            run: |
+                source .venv/bin/activate
+                poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+                poetry publish --verbose --dry-run
 
-            - name: Poetry publish to PyPi
-              run: |
-                  source .venv/bin/activate
-                  poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-                  poetry publish --verbose
+          - name: "Poetry publish to PyPi"
+            run: |
+                source .venv/bin/activate
+                poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+                poetry publish --verbose
