@@ -26,20 +26,20 @@ tasks:
     desc: 'run all the fast tests, no coverage'
     deps: ['activate']
     cmds:
-      - coverage run -m pytest --doctest-modules
-      - coverage combine
-      - coverage report -m
-      - coverage xml
+      - uv run coverage run -m pytest --doctest-modules
+      - uv run coverage combine
+      - uv run coverage report -m
+      - uv run coverage xml
     sources:
       - pynpc/*.py
       - tests/*.py
   tests:
     desc: 'run all the tests and coverage'
     cmds:
-      - coverage run --concurrency=thread -m pytest --doctest-modules --slow
-      - coverage combine
-      - coverage report -m
-      - coverage xml
+      - uv run coverage run --concurrency=thread -m pytest --doctest-modules --slow
+      - uv run coverage combine
+      - uv run coverage report -m
+      - uv run coverage xml
     sources:
       - pynpc/*.py
       - tests/*.py
@@ -47,7 +47,7 @@ tasks:
     desc: 'Generates an HTML coverage report'
     deps: ['tests']
     cmds:
-      - coverage html
+      - uv run coverage html
       - xdg-open ./htmlcov/index.html
     sources:
       - pynpc/*.py
@@ -57,7 +57,7 @@ tasks:
   format:
     desc: 'Formates the code'
     cmds:
-      - isort --profile black .
+      - uv run isort --profile black .
       - black .
     sources:
       - pynpc/*.py
@@ -65,29 +65,29 @@ tasks:
   check-isort:
     desc: 'Isort checks'
     cmds:
-      - isort --profile black --check-only --diff ./pynpc
-      - isort --profile black --check-only --diff ./tests
+      - uv run isort --profile black --check-only --diff ./pynpc
+      - uv run isort --profile black --check-only --diff ./tests
     sources:
       - pynpc/*.py
       - tests/*.py
   check-black:
     desc: 'Black checks'
     cmds:
-      - black --check .
+      - uv run black --check .
     sources:
       - pynpc/*.py
       - tests/*.py
   check-mypy:
     desc: 'Mypy checks'
     cmds:
-      - mypy ./pynpc
+      - uv run mypy ./pynpc
     sources:
       - pynpc/*.py
       - pyporject.toml
   check-docs:
     desc: 'Checks documentation'
     cmds:
-      - mkdocs build -s
+      - uv run mkdocs build -s
     sources:
       - pynpc/*.py
       - tests/*.py
@@ -96,20 +96,20 @@ tasks:
   check-docstyle:
     desc: 'Checks documentation'
     cmds:
-      - pydocstyle --verbose --count
+      - uv run pydocstyle --verbose --count
     sources:
       - pynpc/*.py
       - tests/*.py
   check-bandit:
     desc: 'Bandit security checks'
     cmds:
-      - bandit --verbose --recursive pynpc
+      - uv run bandit --verbose --recursive pynpc
     sources:
       - pynpc/*.py
   check-ruff:
     desc: '(experimental) Ruff checks'
     cmds:
-      - ruff pynpc/*.py tests/*.py
+      - uv run ruff check pynpc/*.py tests/*.py
       # - ruff -v pynpc/*.py tests/*.py
     sources:
       - pynpc/**/*.py
@@ -130,7 +130,7 @@ tasks:
   docs:
     desc: 'Runs a mkdocs servedr on port 8000'
     cmds:
-      - mkdocs serve
+      - uv run mkdocs serve
     sources:
       - docs/**/*
   build:
