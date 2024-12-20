@@ -42,12 +42,6 @@ jobs:
           - name: "Set up the environment"
             uses: ./.github/workflows/setup-poetry-env
 
-          - name: "Install Task"
-            uses: arduino/setup-task@v2
-            with:
-                repo-token: ${{ secrets.GITHUB_TOKEN }}
-                version: 3.x
-
           - name: "Get latest changes from release step"
             run: |
                 git pull

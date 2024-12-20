@@ -1,0 +1,40 @@
+name: "Setup Python Environment"
+description: "Set up Python environment for the given Python version"
+
+inputs:
+  python-version:
+    description: "Python version to use"
+    required: true
+    default: "3.12"
+  uv-version:
+    description: "uv version to use"
+    required: true
+    default: "0.5.9"
+  secret:
+    description: "the GITHUB_TOKEN secret"
+    required: true
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: "Install uv"
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: ${{ inputs.uv-version }}
+        enable-cache: 'true'
+        cache-suffix: ${{ matrix.python-version }}
+
+    - name: "Install Python dependencies"
+      run: uv sync --frozen
+      shell: bash
+
+    - name: "Install Task"
+      uses: arduino/setup-task@v2
+      with:
+        repo-token: ${{ inputs.secrets }}
+        version: 3.x

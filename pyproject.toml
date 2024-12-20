@@ -71,65 +71,62 @@ match-dir = "pynpc"
 [tool.ruff]
 line-length = 120
 lint.select = [
-    "F",     # Pyflakes (F)
-    "W",     # Warning (W)
-    "E",     # Error (E)
-    "C90",   # mccabe (C90)
-    "I",     # isort (I)
-    "N",     # pep8-naming (N)
-    "D",     # pydocstyle (D)
-    "UP",    # pyupgrade (UP)
-    "YTT",   # flake8-2020 (YTT)
-    "ANN",   # flake8-annotations (ANN)
-    "ASYNC", # flake8-async (ASYNC)
-    "TRIO",  # flake8-trio (TRIO)
-    "S",     # flake8-bandit (S)
-    "BLE",   # flake8-blind-except (BLE)
-    #  "FBT",    # flake8-boolean-trap (FBT) Why? ¯\_(ツ)_/¯
-    "B",    # flake8-bugbear (B)
-    "A",    # flake8-builtins (A)
-    "COM",  # flake8-commas (COM)
-    "CPY",  # flake8-copyright (CPY)
-    "C4",   # flake8-comprehensions (C4)
-    "DTZ",  # flake8-datetimez (DTZ)
-    "T10",  # flake8-debugger (T10)
-    "DJ",   # flake8-django (DJ)
-    "EM",   # flake8-errmsg (EM)
-    "EXE",  # flake8-executable (EXE)
-    "FA",   # flake8-future-annotations (FA)
-    "ISC",  # flake8-implicit-str-concat (ISC)
-    "ICN",  # flake8-import-conventions (ICN)
-    "G",    # flake8-logging-format (G)
-    "INP",  # flake8-no-pep420 (INP)
-    "PIE",  # flake8-pie (PIE)
-    "T20",  # flake8-print (T20)
-    "PYI",  # flake8-pyi (PYI)
-    "PT",   # flake8-pytest-style (PT)
-    "Q",    # flake8-quotes (Q)
-    "RSE",  # flake8-raise (RSE)
-    "RET",  # flake8-return (RET)
-    "SLF",  # flake8-self (SLF)
-    "SLOT", # flake8-slots (SLOT)
-    "SIM",  # flake8-simplify (SIM)
-    "TID",  # flake8-tidy-imports (TID)
-    "TCH",  # flake8-type-checking (TCH)
-    "INT",  # flake8-gettext (INT)
-    "ARG",  # flake8-unused-arguments (ARG)
-    "PTH",  # flake8-use-pathlib (PTH)
-    "TD",   # flake8-todos (TD)
-    "FIX",  # flake8-fixme (FIX)
-    "ERA",  # eradicate (ERA)
-    "PD",   # pandas-vet (PD)
-    "PGH",  # pygrep-hooks (PGH)
-    #  "PL",    # Pylint (PL) The horror! The horror!
-    "TRY",  # tryceratops (TRY)
-    "FLY",  # flynt (FLY)
-    "NPY",  # NumPy-specific rules (NPY)
-    "AIR",  # Airflow (AIR)
-    "PERF", # Perflint (PERF)
-    "FURB", # refurb (FURB)
-    "LOG",  # flake8-logging (LOG)
-    "RUF",  # Ruff-specific rules (RUF)
+    "F",      # Pyflakes (F)
+    "W",      # Warning (W)
+    "E",      # Error (E)
+    "C90",    # mccabe (C90)
+    "I",      # isort (I)
+    "N",      # pep8-naming (N)
+    "D",      # pydocstyle (D)
+    "UP",     # pyupgrade (UP)
+    "YTT",    # flake8-2020 (YTT)
+    "ANN",    # flake8-annotations (ANN)
+    "ASYNC",  # flake8-async (ASYNC)
+    "ASYNC1", # flake8-trio (TRIO)
+    "S",      # flake8-bandit (S)
+    "BLE",    # flake8-blind-except (BLE)
+    "B",      # flake8-bugbear (B)
+    "A",      # flake8-builtins (A)
+    "COM",    # flake8-commas (COM)
+    "C4",     # flake8-comprehensions (C4)
+    "DTZ",    # flake8-datetimez (DTZ)
+    "T10",    # flake8-debugger (T10)
+    "DJ",     # flake8-django (DJ)
+    "EM",     # flake8-errmsg (EM)
+    "EXE",    # flake8-executable (EXE)
+    "FA",     # flake8-future-annotations (FA)
+    "ISC",    # flake8-implicit-str-concat (ISC)
+    "ICN",    # flake8-import-conventions (ICN)
+    "G",      # flake8-logging-format (G)
+    "INP",    # flake8-no-pep420 (INP)
+    "PIE",    # flake8-pie (PIE)
+    "T20",    # flake8-print (T20)
+    "PYI",    # flake8-pyi (PYI)
+    "PT",     # flake8-pytest-style (PT)
+    "Q",      # flake8-quotes (Q)
+    "RSE",    # flake8-raise (RSE)
+    "RET",    # flake8-return (RET)
+    "SLF",    # flake8-self (SLF)
+    "SLOT",   # flake8-slots (SLOT)
+    "SIM",    # flake8-simplify (SIM)
+    "TID",    # flake8-tidy-imports (TID)
+    "TCH",    # flake8-type-checking (TCH)
+    "INT",    # flake8-gettext (INT)
+    "ARG",    # flake8-unused-arguments (ARG)
+    "PTH",    # flake8-use-pathlib (PTH)
+    "TD",     # flake8-todos (TD)
+    "FIX",    # flake8-fixme (FIX)
+    "ERA",    # eradicate (ERA)
+    "PD",     # pandas-vet (PD)
+    "PGH",    # pygrep-hooks (PGH)
+    "TRY",    # tryceratops (TRY)
+    "FLY",    # flynt (FLY)
+    "NPY",    # NumPy-specific rules (NPY)
+    "AIR",    # Airflow (AIR)
+    "PERF",   # Perflint (PERF)
+    "FURB",   # refurb (FURB)
+    "LOG",    # flake8-logging (LOG)
+    "RUF",    # Ruff-specific rules (RUF)
 ]
 
 # The following is equivalent to --docstring-convention=pep8:
@@ -151,7 +148,6 @@ lint.extend-ignore = [
     "D415",
     "D416",
     "D417",
-    "ANN101", # Missing type annotation for `self` in method. https://peps.python.org/pep-0673/
     "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in annotations.
     "UP009",  # UTF-8 encoding declaration is unnecessary
     "INP001", # pytest does not want an __init__.py file.
@@ -161,6 +157,10 @@ lint.extend-ignore = [
 lint.unfixable = [
     "F401", # imported but unused.
 ]
+lint.per-file-ignores = { "test_**.py" = ["D100", "D103", "S101", "ANN"] }
+
+# Allow unused variables when underscore-prefixed.
+lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -184,10 +184,6 @@ exclude = [
     "node_modules",
     "venv",
 ]
-lint.per-file-ignores = { "test_**.py" = ["D100", "D103", "S101", "ANN"] }
-
-# Allow unused variables when underscore-prefixed.
-lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Assume Python 3.10.
 target-version = "py310"
@@ -272,6 +268,7 @@ dev = [
     "pdbpp<1.0.0,>=0.10.3",
     "poetry-plugin-up<1.0.0,>=0.7.1",
     "safety<4.0.0,>=3.2.7",
+    "ruff>=0.8.4",
 ]
 
 [build-system]
