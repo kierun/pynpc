@@ -116,20 +116,9 @@ jobs:
       - name: "Check out"
         uses: actions/checkout@v4
 
-      - name: "Debug"
-        run: |
-          mkdir artifacts
-          ls -la .
-          tree
-
       - uses: actions/download-artifact@v4
         with:
           path: ./artifacts/
-
-      - name: "Display structure of downloaded files"
-        run: |
-          ls -R ./artifacts
-          tree ./artifacts
 
       - name: "Pytest coverage comment"
         uses: MishaKav/pytest-coverage-comment@main
