@@ -7,110 +7,124 @@ on: workflow_dispatch
 
 name: "Publish Python 🐍 distribution 📦 to TestPyPI and PyPI"
 
+# https://github.com/relekang/python-semantic-release/issues/311
+# https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html#common-workflow-example
 jobs:
-    semantic-release:
-        # https://github.com/relekang/python-semantic-release/issues/311
-        runs-on: ubuntu-latest
-        concurrency: release
-        permissions:
-          id-token: write
-          contents: write
+  semantic-release:
+    runs-on: ubuntu-latest
+    concurrency: release
 
-        steps:
-          - name: "Check out"
-            uses: actions/checkout@v4
-            with:
-                fetch-depth: 0
-                token: ${{ secrets.PAT }}
+    permissions:
+      id-token: write
+      contents: write
 
-          - name: "Python Semantic Release"
-            uses: relekang/python-semantic-release@v9.14.0
-            with:
-                github_token: ${{ secrets.PAT }}
-                root_options: -vv
+    steps:
+      # Note: we need to checkout the repository at the workflow sha in case during the workflow
+      # the branch was updated. To keep PSR working with the configured release branches,
+      # we force a checkout of the desired release branch but at the workflow sha HEAD.
+      - name: Setup | Checkout Repository at workflow sha
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
 
-    github-release:
-        needs: semantic-release
-        runs-on: ubuntu-latest
-        concurrency: publish
-        steps:
-          - name: "Check out"
-            uses: actions/checkout@v4
-            with:
-                fetch-depth: 0
+      - name: Setup | Force correct release branch on workflow sha
+        run: |
+          git checkout -B ${{ github.ref_name }} ${{ github.sha }}
 
-          - name: "Set up the environment"
-            uses: ./.github/actions/setup-python-env
-            with:
-              python-version: ${{ matrix.python-version }}
-              secret: ${{ secrets.GITHUB_TOKEN }}
+      - name: Action | Semantic Version Release
+        id: release
+        # Adjust tag with desired version if applicable.
+        uses: python-semantic-release/python-semantic-release@v9.12.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          git_committer_name: "github-actions"
+          git_committer_email: "actions@users.noreply.github.com"
+          push: true
+          root_options: -vv
 
-          - name: "Get latest changes from release step"
-            run: |
-                git pull
-
-          - name: "Set env for tag"
-            run: |
-              echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
-          - name: "Testing tag env"
-            run: |
-              echo $RELEASE_VERSION
-              echo ${{ env.RELEASE_VERSION }}
-
-          - name: "Create GitHub Release"
-            env:
-              GITHUB_TOKEN: ${{ github.token }}
-            run: |
-              gh release create '${{ env.RELEASE_VERSION }}' --repo '${{ github.repository }}' --notes "GHA created"
-
-          - name: "Upload artifact signatures to GitHub Release"
-            env:
-              GITHUB_TOKEN: ${{ github.token }}
-            run: |
-              gh release upload '${{ env.RELEASE_VERSION }}' dist/** --repo '${{ github.repository }}'
-
-    pypi-publish:
-      needs: github-release
+  github-release:
+      needs: semantic-release
       runs-on: ubuntu-latest
+      concurrency: publish
       steps:
         - name: "Check out"
           uses: actions/checkout@v4
-
-        - name: "Set up the environment"
-          uses: ./.github/actions/setup-python-env
-
-        - name: "Download updated pyproject.toml"
-          uses: actions/download-artifact@v4
           with:
-            name: pyproject-toml
-
-        - name: "Build package"
-          run: uvx --from build pyproject-build --installer uv
-
-        - name: "Publish package to TEST PYPI"
-          run: uvx twine upload dist/*
-          env:
-            TWINE_USERNAME: __token__
-            TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
-            TWINE_REPOSITORY: testpypi
-
-        - name: "Publish package for real to PYPI"
-          run: uvx twine upload dist/*
-          env:
-            TWINE_USERNAME: __token__
-            TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-            TWINE_REPOSITORY: pypi
-
-    deploy-docs:
-      needs: github-release
-      runs-on: ubuntu-latest
-      steps:
-        - name: "Check out"
-          uses: actions/checkout@v4
+              fetch-depth: 0
 
         - name: "Set up the environment"
           uses: ./.github/actions/setup-python-env
+          with:
+            python-version: ${{ matrix.python-version }}
+            secret: ${{ secrets.GITHUB_TOKEN }}
 
-        - name: "Deploy documentation"
-          run: uv run mkdocs gh-deploy --force
+        - name: "Get latest changes from release step"
+          run: |
+              git pull
+
+        - name: "Set env for tag"
+          run: |
+            echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+        - name: "Testing tag env"
+          run: |
+            echo $RELEASE_VERSION
+            echo ${{ env.RELEASE_VERSION }}
+
+        - name: "Create GitHub Release"
+          env:
+            GITHUB_TOKEN: ${{ github.token }}
+          run: |
+            gh release create '${{ env.RELEASE_VERSION }}' --repo '${{ github.repository }}' --notes "GHA created"
+
+        - name: "Upload artifact signatures to GitHub Release"
+          env:
+            GITHUB_TOKEN: ${{ github.token }}
+          run: |
+            gh release upload '${{ env.RELEASE_VERSION }}' dist/** --repo '${{ github.repository }}'
+
+  pypi-publish:
+    needs: github-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check out"
+        uses: actions/checkout@v4
+
+      - name: "Set up the environment"
+        uses: ./.github/actions/setup-python-env
+
+      - name: "Download updated pyproject.toml"
+        uses: actions/download-artifact@v4
+        with:
+          name: pyproject-toml
+
+      - name: "Build package"
+        run: uvx --from build pyproject-build --installer uv
+
+      - name: "Publish package to TEST PYPI"
+        run: uvx twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          TWINE_REPOSITORY: testpypi
+
+      - name: "Publish package for real to PYPI"
+        run: uvx twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+          TWINE_REPOSITORY: pypi
+
+  deploy-docs:
+    needs: github-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check out"
+        uses: actions/checkout@v4
+
+      - name: "Set up the environment"
+        uses: ./.github/actions/setup-python-env
+
+      - name: "Deploy documentation"
+        run: uv run mkdocs gh-deploy --force
