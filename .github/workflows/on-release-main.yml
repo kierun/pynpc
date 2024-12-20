@@ -8,7 +8,7 @@ on: workflow_dispatch
 name: "Publish Python 🐍 distribution 📦 to TestPyPI and PyPI"
 
 jobs:
-    release:
+    semantic-release:
         # https://github.com/relekang/python-semantic-release/issues/311
         runs-on: ubuntu-latest
         concurrency: release
@@ -29,8 +29,8 @@ jobs:
                 github_token: ${{ secrets.PAT }}
                 root_options: -vv
 
-    publish:
-        needs: release
+    github-release:
+        needs: semantic-release
         runs-on: ubuntu-latest
         concurrency: publish
         steps:
@@ -40,14 +40,14 @@ jobs:
                 fetch-depth: 0
 
           - name: "Set up the environment"
-            uses: ./.github/workflows/setup-poetry-env
+            uses: ./.github/actions/setup-python-env
+            with:
+              python-version: ${{ matrix.python-version }}
+              secret: ${{ secrets.GITHUB_TOKEN }}
 
           - name: "Get latest changes from release step"
             run: |
                 git pull
-
-          - name: "UV build package"
-            run: task -f venv
 
           - name: "Set env for tag"
             run: |
@@ -70,21 +70,47 @@ jobs:
             run: |
               gh release upload '${{ env.RELEASE_VERSION }}' dist/** --repo '${{ github.repository }}'
 
-          - name: "Poetry publish to TEST PyPi"
-            run: |
-                source .venv/bin/activate
-                poetry config repositories.test-pypi https://test.pypi.org/legacy/
-                poetry config pypi-token.test-pypi ${{ secrets.TEST_PYPI_API_TOKEN }}
-                poetry publish --verbose -r test-pypi
+    pypi-publish:
+      needs: github-release
+      runs-on: ubuntu-latest
+      steps:
+        - name: "Check out"
+          uses: actions/checkout@v4
 
-          - name: "Poetry dry run publish to PyPi"
-            run: |
-                source .venv/bin/activate
-                poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-                poetry publish --verbose --dry-run
+        - name: "Set up the environment"
+          uses: ./.github/actions/setup-python-env
 
-          - name: "Poetry publish to PyPi"
-            run: |
-                source .venv/bin/activate
-                poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-                poetry publish --verbose
+        - name: "Download updated pyproject.toml"
+          uses: actions/download-artifact@v4
+          with:
+            name: pyproject-toml
+
+        - name: "Build package"
+          run: uvx --from build pyproject-build --installer uv
+
+        - name: "Publish package to TEST PYPI"
+          run: uvx twine upload dist/*
+          env:
+            TWINE_USERNAME: __token__
+            TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+            TWINE_REPOSITORY: testpypi
+
+        - name: "Publish package for real to PYPI"
+          run: uvx twine upload dist/*
+          env:
+            TWINE_USERNAME: __token__
+            TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+            TWINE_REPOSITORY: pypi
+
+    deploy-docs:
+      needs: github-release
+      runs-on: ubuntu-latest
+      steps:
+        - name: "Check out"
+          uses: actions/checkout@v4
+
+        - name: "Set up the environment"
+          uses: ./.github/actions/setup-python-env
+
+        - name: "Deploy documentation"
+          run: uv run mkdocs gh-deploy --force
