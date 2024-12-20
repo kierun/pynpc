@@ -72,11 +72,25 @@ jobs:
           secret: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Run tests"
-        run: task -f tests
+        run: |
+          mkdir -p ./artifacts
+          uv run pytest \
+            --slow \
+            --junitxml=./artifacts/pytest-${{ matrix.python-version }}.xml \
+            --cov-report=term-missing \
+            --cov=pynpc \
+            --cov=tests \
+            tests/ \
+            | tee ./artifacts/pytest-${{ matrix.python-version }}.txt
 
-      - name: "Upload coverage reports to Codecov with GitHub Action on Python latest — 3.12"
-        uses: codecov/codecov-action@v4
-        if: ${{ matrix.python-version == '3.12' }}
+      - name: 'Upload pytest test results'
+        uses: actions/upload-artifact@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: pytest-coverage-${{ matrix.python-version }}
+          path: ./artifacts/
+        if: ${{ always() }}
 
   documentation:
     runs-on: ubuntu-latest
@@ -92,3 +106,35 @@ jobs:
 
       - name: "Checks documentation"
         run: task -f check-docs
+
+  coverage:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    needs: testing
+    steps:
+      - name: "Check out"
+        uses: actions/checkout@v4
+
+      - name: "Debug"
+        run: |
+          mkdir artifacts
+          ls -la .
+          tree
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts/
+
+      - name: "Display structure of downloaded files"
+        run: |
+          ls -R ./artifacts
+          tree ./artifacts
+
+      - name: "Pytest coverage comment"
+        uses: MishaKav/pytest-coverage-comment@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          pytest-coverage-path: artifacts/pytest-coverage-3.12/pytest-3.12.txt
+          junitxml-path: artifacts/pytest-coverage-3.12/pytest-3.12.xml
