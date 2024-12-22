@@ -277,7 +277,7 @@ commit_parser = "angular"
 logging_use_named_masks = false
 major_on_zero = true
 allow_zero_version = true
-repo_dir = "/home/yg/src/pynpc"
+# repo_dir = "/home/yg/src/pynpc"
 no_git_verify = false
 tag_format = "v{version}"
 
