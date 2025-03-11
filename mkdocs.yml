@@ -1,6 +1,6 @@
-site_name: nhound
-repo_url: https://github.com/kierun/nhound
-site_url: https://kierun.github.io/nhound
+site_name: pyncp
+repo_url: https://github.com/kierun/pynpc
+site_url: https://kierun.github.io/pynpc
 site_description:
   A simple NPC generator for all your table top role playing games.
 site_author: Dr Yann Golanski
@@ -13,12 +13,12 @@ nav:
   - Modules: modules.md
 plugins:
   - search
-  - mkdocstrings:
-      handlers:
-        python:
-          setup_commands:
-            - import sys
-            - sys.path.append('../')
+  #- mkdocstrings:
+  #    handlers:
+  #      python:
+  #        setup_commands:
+  #          - import sys
+  #          - sys.path.append('../')
 copyright: Maintained by Dr Yann Golanski.
 theme:
   name: material
