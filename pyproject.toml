@@ -12,43 +12,42 @@ packages = [{ include = "pynpc" }]
 include = ["LICENSE"]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4.0"
-rich = "^13.9.4"
 click = "^8.2.1"
 click-help-colors = "^0.9.4"
-pendulum = "^3.1.0"
-structlog = ">=23.3,<25.0"
-requests = "^2.32.4"
-types-requests = "^2.32.0.20250602"
+mimesis = "^18.0.0"
 orjson = "^3.10.18"
-mimesis = "^14.0.0"
-typer = { extras = ["all"], version = "^0.9.0" }
+pendulum = "^3.1.0"
+python = ">=3.10,<4.0"
+requests = "^2.32.4"
+rich = "^14.0.0"
+structlog = "^25.4.0"
+typer = "^0.16.0"
 typer-config = { extras = ["all"], version = "^1.4.2" }
+types-requests = "^2.32.0.20250602"
 unidecode = "^1.4.0"
 
 [tool.poetry.group.dev.dependencies]
-black = ">=23.12.1,<25.0.0"
-isort = "^5.13.2"
-pytest = ">=8.4.0"
+bandit = "^1.8.3"
+black = "^25.1.0"
+coverage = "^7.8.2"
+dlint = "^0.16.0"
+isort = "^6.0.1"
 mkdocs = "^1.6.1"
 mkdocs-material = "^9.6.14"
-mkdocstrings = "^0.24.0"
+mkdocstrings = "^0.29.0"
 mypy = "^1.16.0"
-pre-commit = "^3.8.0"
-coverage = "^7.8.2"
-bandit = "^1.8.3"
-pytest-skip-slow = "^0.0.5"
-pytest-cov = "^4.1.0"
-pydocstyle = "^6.3.0"
-ruff = "^0.2.1"
-dlint = "^0.14.1"
-pytest-sugar = "^0.9.7"
-requests-mock = "^1.12.1"
-poetry-plugin-up = "^0.7.1"
 pdbpp = "^0.11.6"
+pre-commit = "^4.2.0"
+pydocstyle = "^6.3.0"
+pytest = ">=8.4.0"
+pytest-cov = "^6.1.1"
+pytest-skip-slow = "^0.0.5"
+pytest-sugar = "^1.0.0"
+requests-mock = "^1.12.1"
+ruff = "^0.11.13"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=2.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
@@ -155,7 +154,7 @@ lint.select = [
     "YTT",   # flake8-2020 (YTT)
     "ANN",   # flake8-annotations (ANN)
     "ASYNC", # flake8-async (ASYNC)
-    "TRIO",  # flake8-trio (TRIO)
+    "ASYNC1", # flake8-async1 (ASYNC)
     "S",     # flake8-bandit (S)
     "BLE",   # flake8-blind-except (BLE)
     #  "FBT",    # flake8-boolean-trap (FBT) Why? ¯\_(ツ)_/¯
@@ -222,7 +221,6 @@ lint.extend-ignore = [
     "D415",
     "D416",
     "D417",
-    "ANN101", # Missing type annotation for `self` in method. https://peps.python.org/pep-0673/
     "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in annotations.
     "UP009",  # UTF-8 encoding declaration is unnecessary
     "INP001", # pytest does not want an __init__.py file.

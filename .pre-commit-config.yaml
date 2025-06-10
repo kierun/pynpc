@@ -1,38 +1,41 @@
 #     _________________________________________________
 # ___/ Usefull stuff you do WANT for all repositories. \________________________
+---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
-        args: [--markdown-linebreak-ext=md]
+        args:
+          - --markdown-linebreak-ext=md
       - id: end-of-file-fixer
       - id: check-yaml
-        args: [--allow-multiple-documents]
+        args:
+          - --allow-multiple-documents
       - id: check-json
       - id: check-toml
-      - id: debug-statements # Python only!
-      - id: fix-encoding-pragma # Python only!
+      - id: debug-statements
+      - id: fix-encoding-pragma
   #     __________________
-  # ___/ Python specific. \______________________________________________________
+  # ___/ Python specific. \_____________________________________________________
   - repo: https://github.com/psf/black
     rev: 25.1.0
     hooks:
       - id: black
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.4.2
-    hooks:
-      - id: python-safety-dependencies-check
+  #  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+  #    rev: v1.4.2
+  #    hooks:
+  #      - id: python-safety-dependencies-check
   - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.10.1 # Use the revision sha / tag you want to point at
+    rev: v5.10.1
     hooks:
       - id: isort
-  #- repo: https://github.com/PyCQA/docformatter
-  #  rev: v1.7.1
-  #  hooks:
-  #    - id: docformatter
-  #      additional_dependencies: [tomli]
-  #      args: [--in-place, --config, ./pyproject.toml]
+  #  - repo: https://github.com/PyCQA/docformatter
+  #    rev: v1.7.1
+  #    hooks:
+  #      - id: docformatter
+  #        additional_dependencies: [tomli]
+  #        args: [--in-place, --config, ./pyproject.toml]
   - repo: https://gitlab.com/smop/pre-commit-hooks
     rev: v1.0.0
     hooks:
@@ -41,7 +44,12 @@ repos:
     rev: v1.0.6
     hooks:
       - id: python-bandit-vulnerability-check
-        args: [--verbose, --ini, .banditrc, --recursive, setupr]
+        args:
+          - --verbose
+          - --ini
+          - .banditrc
+          - --recursive
+          - setupr
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: v0.11.13
     hooks:
@@ -51,7 +59,7 @@ repos:
     hooks:
       - id: validate-pyproject
   #     ______
-  # ___/ BASH \__________________________________________________________________
+  # ___/ BASH \_________________________________________________________________
   - repo: https://github.com/lovesegfault/beautysh
     rev: v6.2.1
     hooks:
@@ -61,26 +69,30 @@ repos:
     hooks:
       - id: shellcheck
   #     _______________
-  # ___/ Markdown lint \_________________________________________________________
+  # ___/ Markdown lint \________________________________________________________
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.45.0
     hooks:
       - id: markdownlint
-        args: [--ignore, CHANGELOG.md, -s, .mdl_style.rb]
+        args:
+          - --ignore
+          - CHANGELOG.md
+          - -s
+          - .mdl_style.rb
   #     ___________________________
-  # ___/ Semantic commit messages. \_____________________________________________
+  # ___/ Semantic commit messages. \____________________________________________
   - repo: https://github.com/jorisroovers/gitlint
     rev: v0.19.1
     hooks:
       - id: gitlint
   #     ________________
-  # ___/ Docker linters \________________________________________________________
+  # ___/ Docker linters \_______________________________________________________
   - repo: https://github.com/IamTheFij/docker-pre-commit
     rev: v3.0.1
     hooks:
       - id: docker-compose-check
   #     _______________
-  # ___/ GH linting    \_________________________________________________________
+  # ___/ GH linting    \________________________________________________________
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.33.0
     hooks:

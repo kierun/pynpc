@@ -1,10 +1,9 @@
 ---
 # https://taskfile.dev/#/
-version: '3'
-
+version: "3"
 tasks:
   venv:
-    desc: 'Create the virtual environment via poetry'
+    desc: Create the virtual environment via poetry
     cmds:
       - poetry install --sync
     sources:
@@ -17,15 +16,17 @@ tasks:
       - test -f .venv/bin/activate
     method: checksum
   activate:
-    desc: 'Activates the virtual environment if needed'
-    deps: ['venv']
+    desc: Activates the virtual environment if needed
+    deps:
+      - venv
     cmds:
       - source .venv/bin/activate
     status:
       - test ! -z $VIRTUAL_ENV
   tests-fast:
-    desc: 'run all the fast tests, no coverage'
-    deps: ['activate']
+    desc: run all the fast tests, no coverage
+    deps:
+      - activate
     cmds:
       - coverage run -m pytest --doctest-modules
       - coverage combine
@@ -35,7 +36,7 @@ tasks:
       - pynpc/*.py
       - tests/*.py
   tests:
-    desc: 'run all the tests and coverage'
+    desc: run all the tests and coverage
     cmds:
       - coverage run --concurrency=thread -m pytest --doctest-modules --slow
       - coverage combine
@@ -45,8 +46,9 @@ tasks:
       - pynpc/*.py
       - tests/*.py
   coverage-html:
-    desc: 'Generates an HTML coverage report'
-    deps: ['tests']
+    desc: Generates an HTML coverage report
+    deps:
+      - tests
     cmds:
       - coverage html
       - xdg-open ./htmlcov/index.html
@@ -56,7 +58,7 @@ tasks:
     generates:
       - htmlcov/index.html
   format:
-    desc: 'Formates the code'
+    desc: Formates the code
     cmds:
       - isort --profile black .
       - black .
@@ -64,7 +66,7 @@ tasks:
       - pynpc/*.py
       - tests/*.py
   check-isort:
-    desc: 'Isort checks'
+    desc: Isort checks
     cmds:
       - isort --profile black --check-only --diff ./pynpc
       - isort --profile black --check-only --diff ./tests
@@ -72,21 +74,21 @@ tasks:
       - pynpc/*.py
       - tests/*.py
   check-black:
-    desc: 'Black checks'
+    desc: Black checks
     cmds:
       - black --check .
     sources:
       - pynpc/*.py
       - tests/*.py
   check-mypy:
-    desc: 'Mypy checks'
+    desc: Mypy checks
     cmds:
       - mypy ./pynpc
     sources:
       - pynpc/*.py
       - pyporject.toml
   check-docs:
-    desc: 'Checks documentation'
+    desc: Checks documentation
     cmds:
       - mkdocs build -s
     sources:
@@ -95,47 +97,45 @@ tasks:
       - mkdocs.yml
       - docs/**/*.md
   check-docstyle:
-    desc: 'Checks documentation'
+    desc: Checks documentation
     cmds:
       - pydocstyle --verbose --count
     sources:
       - pynpc/*.py
       - tests/*.py
   check-bandit:
-    desc: 'Bandit security checks'
+    desc: Bandit security checks
     cmds:
       - bandit --verbose --recursive pynpc
     sources:
       - pynpc/*.py
   check-ruff:
-    desc: '(experimental) Ruff checks'
+    desc: (experimental) Ruff checks
     cmds:
-      - ruff pynpc/*.py tests/*.py
+      - ruff check pynpc/*.py tests/*.py
       # - ruff -v pynpc/*.py tests/*.py
     sources:
       - pynpc/**/*.py
       - pynpc/**/*.py
       - pyproject.toml
   check:
-    desc: 'Runs all the checks'
+    desc: Runs all the checks
     deps:
-      [
-        'check-isort',
-        'check-black',
-        'check-mypy',
-        'check-ruff',
-        'check-docstyle',
-        'check-docs',
-        'check-bandit',
-      ]
+      - check-isort
+      - check-black
+      - check-mypy
+      - check-ruff
+      - check-docstyle
+      - check-docs
+      - check-bandit
   docs:
-    desc: 'Runs a mkdocs servedr on port 8000'
+    desc: Runs a mkdocs servedr on port 8000
     cmds:
       - mkdocs serve
     sources:
       - docs/**/*
   build:
-    desc: 'Generates a distribution files'
+    desc: Generates a distribution files
     cmds:
       - poetry build --verbose
     sources:
@@ -145,5 +145,8 @@ tasks:
     generates:
       - dist/**/*
   before-push:
-    desc: 'Run all the checks before a push'
-    deps: ['format', 'check', 'tests']
+    desc: Run all the checks before a push
+    deps:
+      - format
+      - check
+      - tests
