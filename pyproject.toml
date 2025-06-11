@@ -1,54 +1,76 @@
-[tool.poetry]
+[project]
 name = "pynpc"
 version = "0.4.0"
 description = "Generate simple NPCs for table top role playing games"
-authors = ["Dr Yann Golanski <github@kierun.org>"]
-keywords = ["ttrpg", "rpg", "generate", "NPC"]
-license = "MIT"
-homepage = "https://github.com/kierun/pynpc"
-repository = "https://github.com/kierun/pynpc"
+authors = [{ name = "Dr Yann Golanski", email = "github@kierun.org" }]
+requires-python = ">=3.10,<4.0"
 readme = "README.md"
-packages = [{ include = "pynpc" }]
-include = ["LICENSE"]
+license = "MIT"
+keywords = [
+    "ttrpg",
+    "rpg",
+    "generate",
+    "NPC",
+]
+dependencies = [
+    "click>=8.2.1,<9",
+    "click-help-colors>=0.9.4,<0.10",
+    "mimesis>=18.0.0,<19",
+    "orjson>=3.10.18,<4",
+    "pendulum>=3.1.0,<4",
+    "requests>=2.32.4,<3",
+    "rich>=14.0.0,<15",
+    "structlog>=25.4.0,<26",
+    "typer>=0.16.0,<0.17",
+    "typer-config[all]>=1.4.2,<2",
+    "types-requests>=2.32.0.20250602,<3",
+    "unidecode>=1.4.0,<2",
+]
 
-[tool.poetry.dependencies]
-click = "^8.2.1"
-click-help-colors = "^0.9.4"
-mimesis = "^18.0.0"
-orjson = "^3.10.18"
-pendulum = "^3.1.0"
-python = ">=3.10,<4.0"
-requests = "^2.32.4"
-rich = "^14.0.0"
-structlog = "^25.4.0"
-typer = "^0.16.0"
-typer-config = { extras = ["all"], version = "^1.4.2" }
-types-requests = "^2.32.0.20250602"
-unidecode = "^1.4.0"
+[project.urls]
+Homepage = "https://github.com/kierun/pynpc"
+Repository = "https://github.com/kierun/pynpc"
 
-[tool.poetry.group.dev.dependencies]
-bandit = "^1.8.3"
-black = "^25.1.0"
-coverage = "^7.8.2"
-dlint = "^0.16.0"
-isort = "^6.0.1"
-mkdocs = "^1.6.1"
-mkdocs-material = "^9.6.14"
-mkdocstrings = "^0.29.0"
-mypy = "^1.16.0"
-pdbpp = "^0.11.6"
-pre-commit = "^4.2.0"
-pydocstyle = "^6.3.0"
-pytest = ">=8.4.0"
-pytest-cov = "^6.1.1"
-pytest-skip-slow = "^0.0.5"
-pytest-sugar = "^1.0.0"
-requests-mock = "^1.12.1"
-ruff = "^0.11.13"
+[project.scripts]
+pynpc = "pynpc.console:app"
+
+[dependency-groups]
+dev = [
+    "bandit>=1.8.3,<2",
+    "black>=25.1.0,<26",
+    "coverage>=7.8.2,<8",
+    "dlint>=0.16.0,<0.17",
+    "isort>=6.0.1,<7",
+    "mkdocs>=1.6.1,<2",
+    "mkdocs-material>=9.6.14,<10",
+    "mkdocstrings>=0.29.0,<0.30",
+    "mypy>=1.16.0,<2",
+    "pdbpp>=0.11.6,<0.12",
+    "pre-commit>=4.2.0,<5",
+    "pydocstyle>=6.3.0,<7",
+    "pytest>=8.4.0",
+    "pytest-cov>=6.1.1,<7",
+    "pytest-skip-slow>=0.0.5,<0.0.6",
+    "pytest-sugar>=1.0.0,<2",
+    "requests-mock>=1.12.1,<2",
+    "ruff>=0.11.13,<0.12",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "pynpc",
+    "LICENSE",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "pynpc",
+    "LICENSE",
+]
 
 [build-system]
-requires = ["poetry-core>=2.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.black]
 line-length = 120
@@ -102,9 +124,6 @@ enable_error_code = ['ignore-without-code']
 
 [tool.mypy-google.cloud]
 ignore_missing_imports = "True"
-
-[tool.poetry.scripts]
-pynpc = "pynpc.console:app"
 
 [tool.pytest.ini_options]
 log_auto_indent = true
@@ -230,6 +249,10 @@ lint.extend-ignore = [
 lint.unfixable = [
     "F401", # imported but unused.
 ]
+lint.per-file-ignores = { "test_**.py" = ["D100", "D103", "S101", "ANN"] }
+
+# Allow unused variables when underscore-prefixed.
+lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -253,10 +276,6 @@ exclude = [
     "node_modules",
     "venv",
 ]
-lint.per-file-ignores = { "test_**.py" = ["D100", "D103", "S101", "ANN"] }
-
-# Allow unused variables when underscore-prefixed.
-lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Assume Python 3.10.
 target-version = "py310"
@@ -284,6 +303,11 @@ flake8-secure-coding-standard = ["+*"]
 flake8-simplify = ["+*"]
 flake8-warnings = ["+*"]
 
-# Match by glob.
 [tool.flakeheaven.exceptions."**/test_*.py"]
 flake8-secure-coding-standard = ["-SCS108"]
+
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true
