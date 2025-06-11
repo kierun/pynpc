@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
     commit-message:
       prefix: 'chore(GHA):'
     pull-request-branch-name:
@@ -16,7 +16,7 @@ updates:
   - package-ecosystem: uv
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
     commit-message:
       prefix: 'chore(uv):'
     pull-request-branch-name:
