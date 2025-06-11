@@ -2,96 +2,74 @@
 #   release:
 #     types: [published]
 #     branches: [main]
-
+---
 on: workflow_dispatch
-
-name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
-
+name: "Publish Python \U0001F40D distribution \U0001F4E6 to PyPI and TestPyPI"
 jobs:
-    release:
-        # https://github.com/relekang/python-semantic-release/issues/311
-        runs-on: ubuntu-latest
-        concurrency: release
-        permissions:
-          id-token: write
-          contents: write
-
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
-                  token: ${{ secrets.PAT }}
-
-            - name: 'Python Semantic Release'
-              uses: relekang/python-semantic-release@v10.0.2
-              with:
-                  github_token: ${{ secrets.PAT }}
-                  root_options: -vv
-
-    publish:
-        needs: release
-        runs-on: ubuntu-latest
-        concurrency: publish
-        steps:
-            - name: Check out
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
-
-            - name: Set up the environment
-              uses: ./.github/workflows/setup-poetry-env
-
-            - name: Install Task
-              uses: arduino/setup-task@v2
-              with:
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  version: 3.x
-
-            - name: Get latest changes from release step
-              run: |
-                  git pull
-
-            - name: 'Poetry build package'
-              run: |
-                  source .venv/bin/activate
-                  poetry build --verbose
-
-            - name: Set env for tag
-              run: |
-                echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
-            - name: Testing tag env
-              run: |
-                echo $RELEASE_VERSION
-                echo ${{ env.RELEASE_VERSION }}
-
-            - name: Create GitHub Release
-              env:
-                GITHUB_TOKEN: ${{ github.token }}
-              run: |
-                gh release create '${{ env.RELEASE_VERSION }}' --repo '${{ github.repository }}' --notes "GHA created"
-
-            - name: Upload artifact signatures to GitHub Release
-              env:
-                GITHUB_TOKEN: ${{ github.token }}
-              run: |
-                gh release upload '${{ env.RELEASE_VERSION }}' dist/** --repo '${{ github.repository }}'
-
-            - name: Poetry publish to TEST PyPi
-              run: |
-                  source .venv/bin/activate
-                  poetry config repositories.test-pypi https://test.pypi.org/legacy/
-                  poetry config pypi-token.test-pypi ${{ secrets.TEST_PYPI_API_TOKEN }}
-                  poetry publish --verbose -r test-pypi
-
-            - name: Poetry dry run publish to PyPi
-              run: |
-                  source .venv/bin/activate
-                  poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-                  poetry publish --verbose --dry-run
-
-            - name: Poetry publish to PyPi
-              run: |
-                  source .venv/bin/activate
-                  poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-                  poetry publish --verbose
+  release:
+    # https://github.com/relekang/python-semantic-release/issues/311
+    runs-on: ubuntu-latest
+    concurrency: release
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT }}
+      - name: Python Semantic Release
+        uses: relekang/python-semantic-release@v10.0.2
+        with:
+          github_token: ${{ secrets.PAT }}
+          root_options: -vv
+  publish:
+    needs: release
+    runs-on: ubuntu-latest
+    concurrency: publish
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Set up the environment
+        run: uv sync --locked --all-extras --dev
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+      - name: Get latest changes from release step
+        run: |
+          git pull
+      - name: Poetry build package
+        run: |
+          source .venv/bin/activate
+          task build
+      - name: Set env for tag
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Testing tag env
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh release create '${{ env.RELEASE_VERSION }}' --repo '${{ github.repository }}' --notes "GHA created"
+      - name: Upload artifact signatures to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload '${{ env.RELEASE_VERSION }}' dist/** --repo '${{ github.repository }}'
+      - name: Poetry publish to TEST PyPi
+        run: |
+          source .venv/bin/activate
+          uv publish --index testpypi
+      - name: Poetry publish to PyPi
+        run: |
+          source .venv/bin/activate
+          uv publish --index testpypi
