@@ -33,7 +33,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v6
       - name: Set up the environment
         run: uv sync --locked --all-extras --dev
       - name: Install Task
