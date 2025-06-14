@@ -161,7 +161,7 @@ match-dir = "pynpc"
 
 [tool.ruff]
 line-length = 120
-lint.select = [
+select = [
     "F",     # Pyflakes (F)
     "W",     # Warning (W)
     "E",     # Error (E)
@@ -222,7 +222,7 @@ lint.select = [
 ]
 
 # The following is equivalent to --docstring-convention=pep8:
-lint.extend-ignore = [
+extend-ignore = [
     "D203",
     "D212",
     "D213",
@@ -246,13 +246,13 @@ lint.extend-ignore = [
 ]
 # Always autofix, but never try to fix `F401` (unused imports).
 #fix = true
-lint.unfixable = [
+unfixable = [
     "F401", # imported but unused.
 ]
-lint.per-file-ignores = { "test_**.py" = ["D100", "D103", "S101", "ANN"] }
+per-file-ignores = { "test_**.py" = ["D100", "D103", "S101", "ANN"] }
 
 # Allow unused variables when underscore-prefixed.
-lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
