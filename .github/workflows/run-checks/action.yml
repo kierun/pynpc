@@ -9,7 +9,6 @@ runs:
       run: |
         source .venv/bin/activate
         task check-isort
-        task check-black
       shell: bash
 
     - name: 'ruff lint checks'
