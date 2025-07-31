@@ -13,17 +13,13 @@ keywords = [
     "NPC",
 ]
 dependencies = [
-    "click>=8.2.1,<9",
-    "click-help-colors>=0.9.4,<0.10",
     "mimesis>=18.0.0,<19",
     "orjson>=3.10.18,<4",
-    "pendulum>=3.1.0,<4",
     "requests>=2.32.4,<3",
     "rich>=14.0.0,<15",
     "structlog>=25.4.0,<26",
     "typer>=0.16.0,<0.17",
     "typer-config[all]>=1.4.2,<2",
-    "types-requests>=2.32.0.20250602,<3",
     "unidecode>=1.4.0,<2",
 ]
 
@@ -39,6 +35,7 @@ dev = [
     "bandit>=1.8.3,<2",
     "black>=25.1.0,<26",
     "coverage>=7.8.2,<8",
+    "deptry>=0.23.1",
     "dlint>=0.16.0,<0.17",
     "isort>=6.0.1,<7",
     "mkdocs>=1.6.1,<2",
@@ -312,3 +309,6 @@ name = "testpypi"
 url = "https://test.pypi.org/simple/"
 publish-url = "https://test.pypi.org/legacy/"
 explicit = true
+
+[tool.deptry]
+known_first_party = ["pynpc"]

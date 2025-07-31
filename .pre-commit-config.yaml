@@ -97,3 +97,11 @@ repos:
     rev: 0.33.0
     hooks:
       - id: check-dependabot
+
+  #     ___________
+  # ___/ Deptry    \____________________________________________________________
+  # https://deptry.com/usage/#usage-in-pre-commit
+  - repo: https://github.com/fpgmaas/deptry.git
+    rev: 0.23.1
+    hooks:
+      - id: deptry
