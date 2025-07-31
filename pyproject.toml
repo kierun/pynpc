@@ -51,6 +51,7 @@ dev = [
     "pytest-sugar>=1.0.0,<2",
     "requests-mock>=1.12.1,<2",
     "ruff>=0.11.13,<0.12",
+    "types-requests>=2.32.4.20250611",
 ]
 
 [tool.hatch.build.targets.sdist]
@@ -311,4 +312,4 @@ publish-url = "https://test.pypi.org/legacy/"
 explicit = true
 
 [tool.deptry]
-known_first_party = ["pynpc"]
+known_first_party = ["pynpc", "types-requests"]
