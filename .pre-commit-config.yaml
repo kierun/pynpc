@@ -18,24 +18,10 @@ repos:
       - id: fix-encoding-pragma
   #     __________________
   # ___/ Python specific. \_____________________________________________________
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
-    hooks:
-      - id: black
-  #  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-  #    rev: v1.4.2
-  #    hooks:
-  #      - id: python-safety-dependencies-check
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.10.1
     hooks:
       - id: isort
-  #  - repo: https://github.com/PyCQA/docformatter
-  #    rev: v1.7.1
-  #    hooks:
-  #      - id: docformatter
-  #        additional_dependencies: [tomli]
-  #        args: [--in-place, --config, ./pyproject.toml]
   - repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
     rev: v1.0.6
     hooks:
@@ -47,9 +33,10 @@ repos:
           - --recursive
           - setupr
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.11.13
+    rev: v0.12.7
     hooks:
-      - id: ruff
+      - id: ruff-check
+      - id: ruff-format
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.24.1
     hooks:
@@ -90,11 +77,11 @@ repos:
   #     _______________
   # ___/ GH linting    \________________________________________________________
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.33.0
+    rev: 0.33.2
     hooks:
       - id: check-github-actions
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.33.0
+    rev: 0.33.2
     hooks:
       - id: check-dependabot
 
