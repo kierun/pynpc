@@ -1,3 +1,10 @@
+> [!CAUTION]
+>
+> [This repository has moved to codeberg](https://codeberg.org/kierun/pynpc)
+>
+> Go there.
+>
+---- 
 # pynpc
 
 [![PyPi status](https://img.shields.io/pypi/status/pynpc)](https://img.shields.io/pypi/status/pynpc)
